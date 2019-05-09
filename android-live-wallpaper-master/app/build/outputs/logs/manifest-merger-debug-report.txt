@@ -1,0 +1,73 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:2:1-24:12
+INJECTED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:2:1-24:12
+INJECTED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:2:1-24:12
+INJECTED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:2:1-24:12
+INJECTED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:2:1-24:12
+INJECTED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:2:1-24:12
+INJECTED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:2:1-24:12
+	package
+		ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:4:2-49
+		INJECTED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml
+		INJECTED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml
+	android:versionName
+		ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:5:2-27
+		INJECTED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml
+		INJECTED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:3:2-48
+	xmlns:android
+		ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:4:50-73
+		INJECTED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml
+		INJECTED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml
+application
+ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:7:2-20:16
+	android:label
+		ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:7:15-49
+	tools:ignore
+		ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:9:3-42
+	android:icon
+		ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:8:3-49
+service#com.sample.livewallpaper.bokehrainbow.BokehRainbowWallpaper
+ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:11:3-18:13
+	android:label
+		ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:11:12-41
+	android:permission
+		ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:12:4-58
+	android:name
+		ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:11:42-79
+intent-filter#action:name:android.service.wallpaper.WallpaperService
+ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:13:4-15:20
+action#android.service.wallpaper.WallpaperService
+ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:14:5-73
+	android:name
+		ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:14:13-70
+meta-data#android.service.wallpaper
+ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:16:4-17:37
+	android:resource
+		ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:17:5-34
+	android:name
+		ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:16:15-55
+uses-feature#android.software.live_wallpaper
+ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:22:5-23:34
+	tools:ignore
+		ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:23:3-31
+	android:name
+		ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml:22:19-65
+uses-sdk
+INJECTED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml
+INJECTED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml
+INJECTED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml
+INJECTED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml
+		ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml
+		INJECTED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml
+		ADDED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml
+		INJECTED from /media/salvatore/Dati condivisi/MP2019/android-live-wallpaper-master/app/src/main/AndroidManifest.xml

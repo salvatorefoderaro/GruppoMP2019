@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bokeh">Bokeh Rainbow</string>
+    <string name="bokeh_desc">Translucent fading circles with rainbow colors</string>
+    <string name="wallpapers">Bokeh Wallpapers</string>
+</resources>
