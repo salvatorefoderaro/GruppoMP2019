@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c8707906-087c-4fab-906a-4bb037ec52f1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../MyApplication3/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication3/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TestSpinnerDB/app/src/main/java/com/example/testspinnerdb/ClientCursorAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TestSpinnerDB/app/src/main/java/com/example/testspinnerdb/ClientCursorAdapter.java" afterDir="false" />
-    </list>
+    <list default="true" id="c8707906-087c-4fab-906a-4bb037ec52f1" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +37,15 @@
           <entry key="Groovy" value="2" />
           <entry key="JAVA" value="3" />
           <entry key="XML" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="1221702494">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.opened" value="1" />
         </counts>
       </usages-collector>
     </session>
@@ -99,7 +105,6 @@
               <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
             </state>
           </provider>
-          <provider editor-type-id="android-manifest" />
         </entry>
       </file>
     </leaf>
@@ -132,9 +137,25 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
+            <path>
+              <item name="android-live-wallpaper-master" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="e9137016:NonAndroidModuleNode" />
+            </path>
+            <path>
+              <item name="android-live-wallpaper-master" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="e9137016:NonAndroidModuleNode" />
+              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="android-live-wallpaper-master" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="e9137016:NonAndroidModuleNode" />
+              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
+              <item name="bokehrainbow" type="462c0819:PsiDirectoryNode" />
+            </path>
             <path>
               <item name="android-live-wallpaper-master" type="1abcf292:AndroidViewProjectNode" />
               <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
@@ -143,14 +164,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MPCF19" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SetWallpaper" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -240,7 +260,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1280" height="741" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.3298217" />
