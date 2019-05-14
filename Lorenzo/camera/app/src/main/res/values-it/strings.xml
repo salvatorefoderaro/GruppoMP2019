@@ -5,4 +5,8 @@
     <string name="btt_setWallpaper">Imposta sfondo</string>
     <string name="wallpaperSet">Sfondo impostato correttamente!</string>
     <string name="capturingError">Errore durante la cattura dell\'immagine!</string>
+    <string name="btt_lorenzo">SALVATTO lorenzo</string>
+    <string name="btt_mattia">SALVATTO mattia</string>
+    <string name="tv_credits">Powered by iLoger</string>
+    <string name="btt_salvatore">SALVATTO salvatore</string>
 </resources>
