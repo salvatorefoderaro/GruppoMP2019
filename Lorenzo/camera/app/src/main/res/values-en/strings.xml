@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">camera</string>
+    <string name="btt_camera">Open camera</string>
+    <string name="btt_setWallpaper">Set Wallpaper</string>
+    <string name="wallpaperSet">Wallpaper set correctly!</string>
+    <string name="capturingError">Error while capturing image!</string>
+</resources>
