@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             mHandler.postDelayed(this, (Integer.parseInt(editText.getText().toString()))*1000);
         }
     };
-    
+
     private void setWallpaper(){
 
         WallpaperManager wallpaperManager = WallpaperManager.getInstance(getApplicationContext());
