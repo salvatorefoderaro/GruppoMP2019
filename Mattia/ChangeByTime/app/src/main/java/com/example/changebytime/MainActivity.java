@@ -55,8 +55,7 @@ public class MainActivity extends AppCompatActivity {
             mHandler.postDelayed(this, (Integer.parseInt(editText.getText().toString()))*1000);
         }
     };
-
-    @SuppressLint("ResourceType")  //TODO da capire a cosa serve!!!
+    
     private void setWallpaper(){
 
         WallpaperManager wallpaperManager = WallpaperManager.getInstance(getApplicationContext());
@@ -66,6 +65,6 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            //TODO Inserire le immagini!
+
     }
 }
