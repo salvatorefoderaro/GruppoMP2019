@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="matrixlw.app.skd.wa">
+    package="it.iloger.wallpaper">
 
     <uses-feature android:name="android.software.live_wallpaper" />
 
@@ -12,8 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
         <service
-            android:name=".MatrixWall"
+            android:name="it.iloger.wallpaper.MatrixWall"
             android:enabled="true"
             android:label="MatrixWall"
             android:permission="android.permission.BIND_WALLPAPER">
@@ -27,12 +28,12 @@
         </service>
 
         <activity
-            android:name=".SettingsActivity"
+            android:name="it.iloger.wallpaper.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:exported="true">
         </activity>
 
-        <activity android:name=".MainActivity">
+        <activity android:name="it.iloger.wallpaper.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

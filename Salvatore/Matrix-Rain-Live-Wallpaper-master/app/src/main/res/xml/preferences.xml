@@ -4,29 +4,29 @@
     <EditTextPreference
         android:key="matrix_scroll_text"
         android:defaultValue="SAPAN"
-        android:summary="Set the falling text"
+        android:summary="@string/fallingText"
         android:title="Falling text" />
 
     <EditTextPreference
         android:key="matrix_falling_speed"
         android:defaultValue="10"
-        android:summary="Set the falling speed in mili-second"
+        android:summary="@string/fallingSpeed"
         android:title="Set speed" />
 
     <EditTextPreference
         android:key="matrix_font_size"
         android:defaultValue="15"
-        android:summary="Set the font size"
+        android:summary="@string/fontSize"
         android:title="Set font size" />
 
     <Preference
         android:key="background_color"
-        android:title="Set the background color"
+        android:title="@string/backgroundColor"
         android:defaultValue="#FF000000"/>
 
     <Preference
         android:key="text_color"
-        android:title="Set the text color"
+        android:title="@string/textColor"
         android:defaultValue="#FF8BFF4A"/>
 
 </PreferenceScreen>
