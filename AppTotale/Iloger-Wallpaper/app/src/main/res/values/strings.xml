@@ -1,0 +1,26 @@
+<resources>
+    <string name="setLiveWAllpaper">Set Live Wallpaper</string>
+    <string name="settingsLiveWallpaper">Live Wallpaper Settings</string>
+    <string name="app_name" translatable="false">iLoger Wallpaper</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="matrix_text" translatable="false">Matrix</string>
+    <string name="matrix_speed" translatable="false">10</string>
+    <string name="fallingSpeed">Set the falling speed in mili-second</string>
+    <string name="fallingText">Set the falling text</string>
+    <string name="fontSize">Set the font size</string>
+    <string name="backgroundColor">Set the background color</string>
+    <string name="textColor">Set the text color</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="start_repeating">Start repeating</string>
+    <string name="stop_repeating">Storp repeating</string>
+    <string name="seconds">seconds</string>
+    <string name="btt_salvatore">Set Live Wallpaper</string>
+    <string name="btt_lorenzo">Set Wallpaper from Camera</string>
+    <string name="btt_mattia">Set Random Wallpaper</string>
+    <string name="btt_camera">Open camera</string>
+    <string name="btt_setWallpaper">Set Wallpaper</string>
+    <string name="wallpaperSet">Wallpaper set correctly!</string>
+    <string name="capturingError">Error while capturing image!</string>
+    <string name="tv_credits" translatable="false">Powered by iLoger</string>
+</resources>
