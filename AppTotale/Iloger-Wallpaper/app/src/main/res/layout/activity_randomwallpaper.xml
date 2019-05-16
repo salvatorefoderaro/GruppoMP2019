@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="it.iloger.wallpaper.RandomWallpaper">
+    tools:context="it.iloger.wallpaper.MyActivities.RandomWallpaper">
 
-    <EditText
+    <it.iloger.wallpaper.MyViews.MyEditText
         android:id="@+id/secondEditText"
         android:layout_width="150px"
         android:layout_height="wrap_content"
@@ -17,13 +17,13 @@
         android:inputType="number"
         android:autofillHints="" />
 
-    <Button
+    <it.iloger.wallpaper.MyViews.MyButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="startRepeating"
         android:text="@string/start_repeating" />
 
-    <Button
+    <it.iloger.wallpaper.MyViews.MyButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="stopRepeating"

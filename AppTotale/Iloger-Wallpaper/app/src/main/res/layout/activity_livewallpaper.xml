@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LiveWallpaper">
+    tools:context=".MyActivities.LiveWallpaper">
 
-    <Button
+    <it.iloger.wallpaper.MyViews.MyButton
         android:id="@+id/button3"
         android:layout_width="343dp"
         android:layout_height="63dp"
@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <it.iloger.wallpaper.MyViews.MyButton
         android:id="@+id/button4"
         android:layout_width="299dp"
         android:layout_height="77dp"

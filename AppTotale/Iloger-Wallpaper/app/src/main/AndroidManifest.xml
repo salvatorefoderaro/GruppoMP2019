@@ -18,7 +18,7 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <service
-            android:name="it.iloger.wallpaper.MatrixWallLiveWallpaper"
+            android:name="it.iloger.wallpaper.MyActivities.MatrixWallLiveWallpaper"
             android:enabled="true"
             android:label="MatrixWall"
             android:permission="android.permission.BIND_WALLPAPER">
@@ -32,21 +32,21 @@
         </service>
 
         <activity
-            android:name="it.iloger.wallpaper.MatrixWallSettings"
+            android:name="it.iloger.wallpaper.MyActivities.MatrixWallSettings"
             android:label="@string/title_activity_settings"
             android:exported="true">
         </activity>
 
-        <activity android:name="it.iloger.wallpaper.RandomWallpaper">
+        <activity android:name="it.iloger.wallpaper.MyActivities.RandomWallpaper">
         </activity>
 
-        <activity android:name="it.iloger.wallpaper.CameraWallpaper">
+        <activity android:name="it.iloger.wallpaper.MyActivities.CameraWallpaper">
         </activity>
 
-        <activity android:name="it.iloger.wallpaper.LiveWallpaper">
+        <activity android:name="it.iloger.wallpaper.MyActivities.LiveWallpaper">
         </activity>
 
-        <activity android:name="it.iloger.wallpaper.MainActivity">
+        <activity android:name="it.iloger.wallpaper.MyActivities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">iLoger Wallpaper</string>
     <string name="title_activity_settings">Impostazioni</string>
     <string name="setLiveWAllpaper">Imposta Live Wallpaper</string>
     <string name="settingsLiveWallpaper">Impostazioni Live Wallpaper</string>
@@ -9,4 +8,16 @@
     <string name="fallingText">Imposta il testo</string>
     <string name="fontSize">Imposta le dimension idel testo</string>
     <string name="textColor">Imposta il colore del testo</string>
+    <string name="btt_lorenzo">Imposta Wallpaper dalla fotocamera</string>
+    <string name="btt_mattia">Imposta Wallpaper Random</string>
+    <string name="btt_salvatore">Imposta Live Wallpaper</string>
+    <string name="btt_setWallpaper">Imposta Wallpaper</string>
+    <string name="capturingError">Errore durante la cattura dell\'immagine!</string>
+    <string name="start">Inizia</string>
+    <string name="start_repeating">Inizia ripetizione</string>
+    <string name="stop">Ferma</string>
+    <string name="stop_repeating">Ferma ripetizione</string>
+    <string name="wallpaperSet">Wallpaper impostato correttamente!</string>
+    <string name="btt_camera">Apri la fotocamera</string>
+    <string name="seconds">secondi</string>
 </resources>
