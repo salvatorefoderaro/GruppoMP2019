@@ -32,6 +32,7 @@ public class CameraWallpaper extends AppCompatActivity {
     private static final String[] WRITE_EXTERNAL_STORAGE_PERMISSION =
             new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
     private Uri imageToUploadUri;
+    private int gotit = 0;
 
     ImageView iv_picture;
 
@@ -64,6 +65,15 @@ public class CameraWallpaper extends AppCompatActivity {
         btt_setWallpaper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(gotit==0){
+                    Toast.makeText(
+                            getApplicationContext(),
+                            getText(R.string.noImage).toString(),
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 WallpaperManager myWallpaperManager
                         = WallpaperManager.getInstance(getApplicationContext());
                 try {
@@ -183,6 +193,7 @@ public class CameraWallpaper extends AppCompatActivity {
                 if(reducedSizeBitmap != null){
                     iv_picture.setImageBitmap(reducedSizeBitmap);
                 }else{
+                    gotit = 0;
                     Toast.makeText(
                             this,
                             getText(R.string.capturingError).toString(),
@@ -190,12 +201,14 @@ public class CameraWallpaper extends AppCompatActivity {
                     ).show();
                 }
             }else{
+                gotit = 0;
                 Toast.makeText(
                         this,
                         getText(R.string.capturingError).toString(),
                         Toast.LENGTH_LONG
                 ).show();
             }
+            gotit = 1;
         }
     }
 }

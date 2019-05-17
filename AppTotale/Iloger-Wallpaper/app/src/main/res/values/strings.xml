@@ -1,4 +1,5 @@
 <resources>
+    <string name="noImage">No captured image found</string>
     <string name="setLiveWAllpaper">Set Live Wallpaper</string>
     <string name="settingsLiveWallpaper">Live Wallpaper Settings</string>
     <string name="app_name" translatable="false">iLoger Wallpaper</string>
