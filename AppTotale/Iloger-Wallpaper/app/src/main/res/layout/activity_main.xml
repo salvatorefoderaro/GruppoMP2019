@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/matrixhd"
     android:orientation="vertical">
 
     <it.iloger.wallpaper.MyViews.MyButton
         android:id="@+id/btt_salvatore"
+        style="@style/myButton"
         android:layout_width="210dp"
         android:layout_height="55dp"
         android:layout_marginStart="8dp"
@@ -19,12 +19,11 @@
         app:layout_constraintBottom_toTopOf="@+id/btt_lorenzo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        style="@style/myButton"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <it.iloger.wallpaper.MyViews.MyButton
         android:id="@+id/btt_lorenzo"
+        style="@style/myButton"
         android:layout_width="253dp"
         android:layout_height="56dp"
         android:layout_marginStart="8dp"
@@ -37,19 +36,17 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        style="@style/myButton"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <it.iloger.wallpaper.MyViews.MyButton
         android:id="@+id/btt_mattia"
+        style="@style/myButton"
         android:layout_width="265dp"
         android:layout_height="44dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="8dp"
         android:onClick="randomWallpaper"
-        style="@style/myButton"
         android:text="@string/btt_mattia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,9 +56,13 @@
         android:id="@+id/tv_credits"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/tv_credits"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

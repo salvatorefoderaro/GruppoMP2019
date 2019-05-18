@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/matrixhd"
     android:gravity="center"
     android:orientation="vertical"
     tools:context="it.iloger.wallpaper.MyActivities.RandomWallpaper">
@@ -16,7 +17,8 @@
         android:ems="10"
         android:hint="@string/seconds"
 
-        android:inputType="number" />
+        android:inputType="number"
+        android:textColor="@android:color/white" />
 
     <it.iloger.wallpaper.MyViews.MyButton
         style="@style/myButton"

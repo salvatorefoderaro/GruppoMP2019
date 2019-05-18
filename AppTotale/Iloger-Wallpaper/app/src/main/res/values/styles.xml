@@ -9,8 +9,8 @@
     </style>
 
     <style name="myButton">
-        <item name="android:textColor">#FFFFFF</item>
-        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:background">@color/buttonColor</item>
     </style>
 
 </resources>

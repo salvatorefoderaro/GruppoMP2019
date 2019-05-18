@@ -27,7 +27,7 @@
     <color name="darkGrey">#FF363F45</color>
 
     <!-- Seekbar colors -->
-    <color name="seekRed">#FFFF0000</color>
+    <color name="seekRed">#590000</color>
     <color name="seekGreen">#FF00FF00</color>
     <color name="seekBlue">#FF0000FF</color>
 

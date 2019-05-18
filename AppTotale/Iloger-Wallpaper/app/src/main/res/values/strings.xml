@@ -24,4 +24,7 @@
     <string name="wallpaperSet">Wallpaper set correctly!</string>
     <string name="capturingError">Error while capturing image!</string>
     <string name="tv_credits" translatable="false">Powered by iLoger</string>
+    <string name="fallingTextTitle">Falling text</string>
+    <string name="setSpeedTitle">Set speed</string>
+    <string name="setFontSizeTitle">Set font size</string>
 </resources>

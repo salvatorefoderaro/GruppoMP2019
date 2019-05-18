@@ -21,4 +21,7 @@
     <string name="btt_camera">Apri la fotocamera</string>
     <string name="seconds">secondi</string>
     <string name="noImage">Nessuna foto scattata</string>
+    <string name="setSpeedTitle">Velocità</string>
+    <string name="setFontSizeTitle">Dimensione testo</string>
+    <string name="fallingTextTitle">Testo a cascata</string>
 </resources>
