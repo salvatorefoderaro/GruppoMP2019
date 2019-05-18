@@ -20,4 +20,5 @@
     <string name="wallpaperSet">Wallpaper impostato correttamente!</string>
     <string name="btt_camera">Apri la fotocamera</string>
     <string name="seconds">secondi</string>
+    <string name="noImage">Nessuna foto scattata</string>
 </resources>
