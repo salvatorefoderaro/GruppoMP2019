@@ -4,14 +4,17 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.WallpaperManager;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -28,11 +31,13 @@ public class CameraWallpaper extends AppCompatActivity {
 
     private static final int CAMERA_PHOTO = 111;
     private static final String[] READ_EXTERNAL_STORAGE_PERMISSION =
-            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE};
+    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE};
     private static final String[] WRITE_EXTERNAL_STORAGE_PERMISSION =
-            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
     private Uri imageToUploadUri;
     private int gotit = 0;
+    private static final int MY_READ_PERMISSION_REQUEST_CODE = 1;
+    private static final int PICK_IMAGE_REQUEST = 2;
 
     ImageView iv_picture;
 
@@ -48,9 +53,9 @@ public class CameraWallpaper extends AppCompatActivity {
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
 
-
         Button btt_camera = findViewById(R.id.btt_camera);
         System.out.println(btt_camera);
+        Button getImageFromGallery = findViewById(R.id.getImageFromGallery);
         Button btt_setWallpaper = findViewById(R.id.btt_setWallpaper);
 
         iv_picture = findViewById(R.id.iv_picture);
@@ -60,6 +65,29 @@ public class CameraWallpaper extends AppCompatActivity {
             public void onClick(View v) {
                 captureCameraImage();
             }
+        });
+
+        getImageFromGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int MY_READ_PERMISSION_REQUEST_CODE =1 ;
+                int PICK_IMAGE_REQUEST = 2;
+                if (ContextCompat.checkSelfPermission(CameraWallpaper.this.getApplicationContext(), android.Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED)
+                {
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+                }
+                else
+                {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                    {
+                        requestPermissions(
+                                new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
+                                MY_READ_PERMISSION_REQUEST_CODE);
+                    }
+                }            }
         });
 
         btt_setWallpaper.setOnClickListener(new View.OnClickListener() {
@@ -186,6 +214,7 @@ public class CameraWallpaper extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == CAMERA_PHOTO && resultCode == Activity.RESULT_OK) {
             if(imageToUploadUri != null){
                 Uri selectedImage = imageToUploadUri;
@@ -210,5 +239,33 @@ public class CameraWallpaper extends AppCompatActivity {
             }
             gotit = 1;
         }
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null)
+        {
+            Uri uri = data.getData();
+            try
+            {
+                Bitmap imageToSet = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+                iv_picture.setImageBitmap(imageToSet);
+                // setWallpaper.setEnabled(true);
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[]
+            permissions, int[] grantResults) {
+        if (requestCode == MY_READ_PERMISSION_REQUEST_CODE
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+        {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+        }
+    }
+
 }

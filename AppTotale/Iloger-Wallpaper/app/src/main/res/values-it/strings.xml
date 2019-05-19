@@ -24,4 +24,5 @@
     <string name="setSpeedTitle">Velocità</string>
     <string name="setFontSizeTitle">Dimensione testo</string>
     <string name="fallingTextTitle">Testo a cascata</string>
+    <string name="select_from_gallery" translatable="false">Seleziona immagine</string>
 </resources>
