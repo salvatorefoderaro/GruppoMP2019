@@ -13,4 +13,11 @@
         <item name="android:background">@color/buttonColor</item>
     </style>
 
+    <style name="alertBox">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:background">@color/buttonColor</item>
+        <item name="android:colorAccent">#FFFFFF</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+    </style>
+
 </resources>
