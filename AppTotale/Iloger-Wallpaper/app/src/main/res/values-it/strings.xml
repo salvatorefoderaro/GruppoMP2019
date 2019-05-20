@@ -8,7 +8,7 @@
     <string name="fallingText">Imposta il testo</string>
     <string name="fontSize">Imposta le dimension idel testo</string>
     <string name="textColor">Imposta il colore del testo</string>
-    <string name="btt_lorenzo">Imposta Wallpaper dalla fotocamera</string>
+    <string name="btt_lorenzo">Imposta Wallpaper dalla fotocamera o galleria</string>
     <string name="btt_mattia">Imposta Wallpaper Random</string>
     <string name="btt_salvatore">Imposta Live Wallpaper</string>
     <string name="btt_setWallpaper">Imposta Wallpaper</string>

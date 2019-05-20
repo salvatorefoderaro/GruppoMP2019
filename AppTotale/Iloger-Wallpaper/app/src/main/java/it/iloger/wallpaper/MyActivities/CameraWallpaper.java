@@ -30,23 +30,22 @@ import it.iloger.wallpaper.R;
 public class CameraWallpaper extends AppCompatActivity {
 
     private static final int CAMERA_PHOTO = 111;
-    private static final String[] READ_EXTERNAL_STORAGE_PERMISSION =
-    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE};
-    private static final String[] WRITE_EXTERNAL_STORAGE_PERMISSION =
-    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    private static final String[] READ_EXTERNAL_STORAGE_PERMISSION = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE};
+    private static final String[] WRITE_EXTERNAL_STORAGE_PERMISSION = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
     private Uri imageToUploadUri;
     private int gotit = 0;
     private static final int MY_READ_PERMISSION_REQUEST_CODE = 1;
     private static final int PICK_IMAGE_REQUEST = 2;
-
-    ImageView iv_picture;
+    private ImageView iv_picture;
+    private Button btt_setWallpaper;
+    private Boolean gallery;
+    private Bitmap imageFromGallery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
-
         ActivityCompat.requestPermissions(CameraWallpaper.this, READ_EXTERNAL_STORAGE_PERMISSION, 1);
         ActivityCompat.requestPermissions(CameraWallpaper.this, WRITE_EXTERNAL_STORAGE_PERMISSION, 1);
 
@@ -56,8 +55,7 @@ public class CameraWallpaper extends AppCompatActivity {
         Button btt_camera = findViewById(R.id.btt_camera);
         System.out.println(btt_camera);
         Button getImageFromGallery = findViewById(R.id.getImageFromGallery);
-        Button btt_setWallpaper = findViewById(R.id.btt_setWallpaper);
-
+        btt_setWallpaper = findViewById(R.id.btt_setWallpaper);
         iv_picture = findViewById(R.id.iv_picture);
 
         btt_camera.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +103,11 @@ public class CameraWallpaper extends AppCompatActivity {
                 WallpaperManager myWallpaperManager
                         = WallpaperManager.getInstance(getApplicationContext());
                 try {
-                    myWallpaperManager.setBitmap(getBitmap(imageToUploadUri.getPath()));
+                    if (gallery){
+                        myWallpaperManager.setBitmap(imageFromGallery);
+                    } else {
+                        myWallpaperManager.setBitmap(getBitmap(imageToUploadUri.getPath()));
+                    }
                     Toast.makeText(
                             getApplicationContext(),
                             getText(R.string.wallpaperSet).toString(),
@@ -115,6 +117,7 @@ public class CameraWallpaper extends AppCompatActivity {
                 }
             }
         });
+        btt_setWallpaper.setEnabled(false);
     }
 
     private void captureCameraImage() {
@@ -238,6 +241,8 @@ public class CameraWallpaper extends AppCompatActivity {
                 ).show();
             }
             gotit = 1;
+            gallery = false;
+            btt_setWallpaper.setEnabled(true);
         }
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null)
@@ -245,9 +250,11 @@ public class CameraWallpaper extends AppCompatActivity {
             Uri uri = data.getData();
             try
             {
-                Bitmap imageToSet = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-                iv_picture.setImageBitmap(imageToSet);
-                // setWallpaper.setEnabled(true);
+                imageFromGallery = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+                iv_picture.setImageBitmap(imageFromGallery);
+                gotit = 1;
+                btt_setWallpaper.setEnabled(true);
+                gallery = true;
             }
             catch (IOException e)
             {
@@ -257,15 +264,16 @@ public class CameraWallpaper extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[]
-            permissions, int[] grantResults) {
-        if (requestCode == MY_READ_PERMISSION_REQUEST_CODE
-                && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-        {
-            Intent intent = new Intent();
-            intent.setType("image/*");
-            intent.setAction(Intent.ACTION_GET_CONTENT);
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (grantResults.length > 0) {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            if (requestCode == MY_READ_PERMISSION_REQUEST_CODE && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+            }
+        } else {
+            return;
         }
     }
-
 }

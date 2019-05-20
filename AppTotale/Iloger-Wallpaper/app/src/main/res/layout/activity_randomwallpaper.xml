@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/matrixhd"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context="it.iloger.wallpaper.MyActivities.RandomWallpaper">
+    android:orientation="vertical">
 
     <it.iloger.wallpaper.MyViews.MyEditText
         android:id="@+id/secondEditText"
@@ -16,22 +14,36 @@
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/seconds"
-
         android:inputType="number"
-        android:textColor="@android:color/white" />
-
-    <it.iloger.wallpaper.MyViews.MyButton
-        style="@style/myButton"
-        android:layout_width="173dp"
-        android:layout_height="wrap_content"
-        android:onClick="startRepeating"
-        android:text="@string/start_repeating" />
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <it.iloger.wallpaper.MyViews.MyButton
         style="@style/myButton"
         android:layout_width="172dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="116dp"
+        android:layout_marginRight="116dp"
         android:onClick="stopRepeating"
-        android:text="@string/stop_repeating" />
+        android:text="@string/stop_repeating"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myButton2" />
 
-</LinearLayout>
+    <it.iloger.wallpaper.MyViews.MyButton
+        android:id="@+id/myButton2"
+        style="@style/myButton"
+        android:layout_width="173dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="116dp"
+        android:layout_marginRight="116dp"
+        android:onClick="startRepeating"
+        android:text="@string/start_repeating"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/secondEditText" />
+
+</android.support.constraint.ConstraintLayout>

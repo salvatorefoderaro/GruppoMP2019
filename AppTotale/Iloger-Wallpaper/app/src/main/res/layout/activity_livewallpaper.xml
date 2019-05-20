@@ -7,39 +7,35 @@
     android:background="@drawable/matrixhd"
     tools:context=".MyActivities.LiveWallpaper">
 
-    <it.iloger.wallpaper.MyViews.MyButton
-        android:id="@+id/button3"
-        style="@style/myButton"
-        android:layout_width="343dp"
+    <it.iloger.wallpaper.MyViews.MyEditText
+        android:id="@+id/secondEditText"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:layout_marginLeft="88dp"
-        android:layout_marginTop="216dp"
-        android:layout_marginEnd="88dp"
-        android:layout_marginRight="88dp"
-        android:onClick="setWallpaper"
-        android:text="@string/setLiveWAllpaper"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/seconds"
+        android:inputType="number"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="99dp"
+        tools:layout_editor_absoluteY="343dp" />
 
     <it.iloger.wallpaper.MyViews.MyButton
-        android:id="@+id/button4"
+        android:id="@+id/myButton"
         style="@style/myButton"
-        android:layout_width="299dp"
+        android:layout_width="173dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginRight="56dp"
-        android:onClick="wallpaperSettings"
-        android:text="@string/settingsLiveWallpaper"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        android:onClick="startRepeating"
+        android:text="@string/start_repeating"
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="472dp" />
+
+    <it.iloger.wallpaper.MyViews.MyButton
+        style="@style/myButton"
+        android:layout_width="172dp"
+        android:layout_height="wrap_content"
+        android:onClick="stopRepeating"
+        android:text="@string/stop_repeating"
+        tools:layout_editor_absoluteX="94dp"
+        tools:layout_editor_absoluteY="565dp" />
 </android.support.constraint.ConstraintLayout>
