@@ -31,7 +31,10 @@
         android:onClick="stopRepeating"
         android:text="@string/stop_repeating"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myButton2" />
+        app:layout_constraintTop_toBottomOf="@+id/myButton2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
 
     <it.iloger.wallpaper.MyViews.MyButton
         android:id="@+id/myButton2"
@@ -44,6 +47,9 @@
         android:onClick="startRepeating"
         android:text="@string/start_repeating"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/secondEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/secondEditText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
 
 </android.support.constraint.ConstraintLayout>

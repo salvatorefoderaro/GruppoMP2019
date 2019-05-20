@@ -3,7 +3,7 @@
 
     <EditTextPreference
         android:key="matrix_scroll_text"
-        android:defaultValue="SAPAN"
+        android:defaultValue="iLoger"
         android:summary="@string/fallingText"
         android:title="@string/fallingTextTitle" />
 
