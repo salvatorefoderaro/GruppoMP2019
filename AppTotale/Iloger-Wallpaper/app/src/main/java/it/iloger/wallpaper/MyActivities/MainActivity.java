@@ -26,16 +26,16 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed(){
         // setup the alert builder
         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.alertBox));
-        builder.setTitle("Chiusura dell'applicazioene");
-        builder.setMessage("Sei sicuro di voler uscire dall'applicazione?");
+        builder.setTitle(getString(R.string.closeApp));
+        builder.setMessage(getString(R.string.exitFromApp));
 
         // add the buttons
-        builder.setPositiveButton("Si, esci!", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(getString(R.string.confirmExit), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 System.exit(1);
             }
         });
-        builder.setNegativeButton("No!", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(getString(R.string.noExit), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
 
             }
