@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -32,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     private LineChart chart;
     private EditText editText;
     private TextView textView;
-    private Button button;
     private SeekBar seekbar;
     private EditText estremoAText;
     private EditText estremoBText;
@@ -46,12 +44,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         chart = findViewById(R.id.chart);
         textView = findViewById(R.id.textView);
         estremoAText = findViewById(R.id.editText2);
         estremoBText = findViewById(R.id.editText3);
         textView.setText("");
-        button = findViewById(R.id.button);
+
+        Button button = findViewById(R.id.button);
         editText =findViewById(R.id.editText);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -62,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
         });
         seekbar = findViewById(R.id.seekBar);
         precision = 0.25f;
+
+        // Seekbar necessaria per modificare la precisione del disegno del grafico,
+        // aumentando o diminuendo il numero di punti che devo andare a disegnare
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
@@ -84,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
             public void afterTextChanged(Editable mEdit)
             {
                 String input = mEdit.toString();
+                // Controllo che il numero di parentesi inserito sia corretto
+                // stesso numero di parentesi aperte e parentesi chiuse (appena finisco di scrivere)
                 if ((input.length() - input.replace(")", "").length()) - (input.length() - input.replace("(", "").length()) != 0){
                     textView.setText("Inserisci un numero corretto di parentesi!");
                 } else {
@@ -95,14 +100,6 @@ public class MainActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count){}
         });
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
     @Override
@@ -117,27 +114,33 @@ public class MainActivity extends AppCompatActivity {
         Evaluator mathEvaluator = new Evaluator();
         LinkedList<Entry> entries = new LinkedList<Entry>();
         String input = editText.getText().toString();
-        input = input.replace("e", "exp");
 
         System.out.println("Stringa in input: " + input);
 
         String toLeft, toRight, leftString, rightString;
 
-        if (!input.contains("x")){
+        if (!input.contains("x_")){
+
+            // La funzione dovra essere f(x_), dunque controllo che il termine sia presente
             AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
             alertDialog.setTitle("Errore!");
             alertDialog.setMessage("Errore di sintassi nella funzione inserita!");
             alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
             alertDialog.show();
             return;
         }
 
+        // Per evitare problemi con l'esponenziale, effettuo questa sostituzione
+        input = input.replace("e", "(exp(1))");
+
         while(input.contains("^")) {
+
+            // Trasformo tutti i "cappelletti", per poterli far digerire a jEval
             leftString = input.substring(0, input.indexOf("^"));
             rightString = input.substring(input.indexOf("^") + 1);
 
@@ -154,63 +157,62 @@ public class MainActivity extends AppCompatActivity {
             input = input.replace(toLeft + "^" + toRight, "pow(" + toLeft + "," + toRight + ")");
         }
 
+        // I valori del ciclo for vengono dati dalla seekbar, grazie alla quale sarà possibile modificare i valori di precision
         for (double i = estremoA; i <= estremoB; i +=precision) {
 
             try {
-                if ( (!mathEvaluator.evaluate(input.replace("x", Double.toString(i))).equals("NaN"))
-                        && (!mathEvaluator.evaluate(input.replace("x", Double.toString(i))).equals("-Infinity"))
-                        && (!mathEvaluator.evaluate(input.replace("x", Double.toString(i))).equals("+Infinity"))) {
-                    entries.add(new Entry((float) i, Float.parseFloat(mathEvaluator.evaluate(input.replace("x", Double.toString(i))))));
+
+                // Controllo che il valore della funzione non sia NaN (non definito) o +/- infinito,
+                // lo faccio sostituendo ad x_ il valore assunto da i nel ciclo for
+                if ((!mathEvaluator.evaluate(input.replace("x_", Double.toString(i))).equals("NaN"))
+                        && (!mathEvaluator.evaluate(input.replace("x_", Double.toString(i))).equals("-Infinity"))
+                        && (!mathEvaluator.evaluate(input.replace("x_", Double.toString(i))).equals("+Infinity"))) {
+
+                    // Aggiungo il valore calcolato al grafico
+                    entries.add(new Entry((float) i, Float.parseFloat(mathEvaluator.evaluate(input.replace("x_", Double.toString(i))))));
+                    entries = null;
+
                 } else {
+
+                    // In caso contrario, non aggiungo i valori e mostro un messaggio di errore
                     AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
                     alertDialog.setTitle("Errore!");
                     alertDialog.setMessage("Errore nel dominio della funzione!");
                     alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
                     alertDialog.show();
                     return;
                 }
 
             } catch (EvaluationException e) {
+
+                // Errore di sintassi nella stringa inserita dall'utente,
+                // unico motivo per il quale jEval fallisce (quando non sa interpretare la stringa)
+                e.printStackTrace();
                 AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
                 alertDialog.setTitle("Errore!");
                 alertDialog.setMessage("Errore di sintassi nella funzione inserita!");
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
                 alertDialog.show();
                 return;
             }
 
         }
 
-        LineDataSet dataSet = new LineDataSet(entries, "Label"); // add entries to dataset
+        // Aggiungo i valori ad un dataset e creo tutti gli elementi necessari per il grafico
+        LineDataSet dataSet = new LineDataSet(entries, "Label");
         LineData lineData = new LineData(dataSet);
         chart.setData(lineData);
         chart.invalidate();
         seekbar.setVisibility(View.VISIBLE);
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

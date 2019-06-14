@@ -22,7 +22,7 @@ public class MathStringParser {
     }
 
     static public String isLeftString(String string){
-        List<Integer> charCountMap = new ArrayList<Integer>();
+        List<Integer> charCountMap = new ArrayList<>();
         for (int i = 0; i<string.length(); i++){
             if (string.charAt(i) == '('){
                 charCountMap.add(i);
@@ -33,7 +33,7 @@ public class MathStringParser {
     }
 
     static public String isRightString(String string){
-        List<Integer> charCountMap = new ArrayList<Integer>();
+        List<Integer> charCountMap = new ArrayList<>();
         for (int i = 0; i<string.length(); i++){
             if (string.charAt(i) == ')'){
                 charCountMap.add(i);
