@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">camera</string>
+    <string name="btt_salvatore">SALVATTO salvatore</string>
+    <string name="btt_lorenzo">SALVATTO lorenzo</string>
+    <string name="btt_mattia">SALVATTO mattia</string>
+    <string name="btt_camera">Open camera</string>
+    <string name="btt_setWallpaper">Set Wallpaper</string>
+    <string name="wallpaperSet">Wallpaper set correctly!</string>
+    <string name="capturingError">Error while capturing image!</string>
+    <string name="tv_credits">Powered by iLoger</string>
+</resources>
