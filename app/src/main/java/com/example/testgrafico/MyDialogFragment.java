@@ -49,15 +49,16 @@ public class MyDialogFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_sample_dialog, container);
+        View view = inflater.inflate(R.layout.fragment_main, container);
         getDialog().setTitle("Simple Dialog");
         chart = view.findViewById(R.id.chart);
         seekBar = view.findViewById(R.id.seekBar);
+        seekBar.setProgress(9);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser) {
-                precision = (seekBar.getProgress() + 1) * 0.20f;
+                precision = (seekBar.getProgress() + 1) * 0.10f;
                 drawExpression();
             }
 

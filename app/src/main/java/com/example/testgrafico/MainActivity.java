@@ -19,13 +19,13 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText editText;
     private EditText editText1;
-    private TextView textView;
+    private TextView textView1;
+    private TextView textView2;
     private EditText estremoAText;
     private EditText estremoBText;
     private int estremoA;
     private int estremoB;
-
-    //asd
+    private boolean showed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +34,12 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        textView = findViewById(R.id.textView);
+        textView1 = findViewById(R.id.textView1);
+        textView2 = findViewById(R.id.textView2);
         estremoAText = findViewById(R.id.editText2);
         estremoBText = findViewById(R.id.editText3);
-        textView.setText("");
+        textView1.setText("");
+        textView2.setText("");
 
         final Button button = findViewById(R.id.button);
         editText =findViewById(R.id.editText1);
@@ -45,24 +47,25 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                if (estremoAText.getText().toString().isEmpty() || estremoBText.getText().toString().isEmpty() ||
-                        editText.getText().toString().isEmpty()){
-                    error(MainActivity.this, "Riempire tutti i campi");
+            if (estremoAText.getText().toString().isEmpty() || estremoBText.getText().toString().isEmpty() ||
+                    editText.getText().toString().isEmpty()){
+                error(MainActivity.this, "Riempire tutti i campi");
+                return;
+            }
+
+            try {
+                estremoA = Integer.parseInt(estremoAText.getText().toString());
+                estremoB = Integer.parseInt(estremoBText.getText().toString());
+                if (estremoA >= estremoB){
+                    error(MainActivity.this, "L'estremo A deve essere strettamente minore di B!");
                     return;
                 }
+            } catch (NumberFormatException n){
+                error(MainActivity.this, "Inserire valori estremi corretti!");
+                return;
+            }
 
-                try {
-                    estremoA = Integer.parseInt(estremoAText.getText().toString());
-                    estremoB = Integer.parseInt(estremoBText.getText().toString());
-                    if (estremoA >= estremoB){
-                        error(MainActivity.this, "L'estremo A deve essere strettamente minore di B!");
-                    }
-                }catch (NumberFormatException n){
-                    error(MainActivity.this, "Inserire valori estremi corretti!");
-                    return;
-                }
-
-                drawExpression1();
+            setToDraw();
             }
         });
 
@@ -75,13 +78,43 @@ public class MainActivity extends AppCompatActivity {
                 // Controllo che il numero di parentesi inserito sia corretto
                 // stesso numero di parentesi aperte e parentesi chiuse (appena finisco di scrivere)
                 if ((input.length() - input.replace(")", "").length()) - (input.length() - input.replace("(", "").length()) != 0){
-                    textView.setText("Inserisci un numero corretto di parentesi!");
+                    textView1.setText("Inserisci un numero corretto di parentesi!");
                     button.setClickable(false);
                 } else {
-                    textView.setText("");
+                    textView1.setText("");
                     button.setClickable(true);
                 }
             }
+
+
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+            public void onTextChanged(CharSequence s, int start, int before, int count){
+                if (s.toString().equals("^") && !showed){
+                    error(MainActivity.this, "ASPETTAAAAA!\nLa sintassi corretta è la seguente:\n(log(x_))^2\n(sin(x_))^(cos(x_))");
+                    showed = true;
+                }
+            }
+        });
+
+        editText1.addTextChangedListener(new TextWatcher()
+        {
+            @Override
+            public void afterTextChanged(Editable mEdit)
+            {
+                String input = mEdit.toString();
+                // Controllo che il numero di parentesi inserito sia corretto
+                // stesso numero di parentesi aperte e parentesi chiuse (appena finisco di scrivere)
+                if ((input.length() - input.replace(")", "").length()) - (input.length() - input.replace("(", "").length()) != 0){
+                    textView2.setText("Inserisci un numero corretto di parentesi!");
+                    button.setClickable(false);
+                } else {
+                    textView2.setText("");
+                    button.setClickable(true);
+                }
+            }
+
+
 
             public void beforeTextChanged(CharSequence s, int start, int count, int after){}
             public void onTextChanged(CharSequence s, int start, int before, int count){}
@@ -96,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public void drawExpression1(){
+    public void setToDraw(){
 
         Bundle bundle = new Bundle();
         bundle.putInt("estremoA", estremoA);
