@@ -186,7 +186,7 @@ public class MyDialogFragment extends DialogFragment {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         i.putExtra(Intent.EXTRA_STREAM, getImageUri(context, chart.getChartBitmap()));
         try {
-            startActivity(Intent.createChooser(i, "My Profile ..."));
+            startActivity(Intent.createChooser(i, "Seleziona un applicazione ..."));
         } catch (android.content.ActivityNotFoundException ex) {
             ex.printStackTrace();
         }
@@ -227,6 +227,7 @@ public class MyDialogFragment extends DialogFragment {
             context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
             MediaScannerConnection.scanFile(context, new String[]{file.toString()}, new String[]{file.getName()}, null);
             out.close();
+            Toast.makeText(context,"Immagine salvata correttamente in galleria!",Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
         }
