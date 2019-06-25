@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/mnt/01D3B92F59E2BEB0/GruppoMP2018-2019/ProgettoFinale/TestGrafico/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-gu/values-gu.xml",
+            "outputFile": "/mnt/01D3B92F59E2BEB0/ASD/ProgettoFinale/TestGrafico/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-gu/values-gu.xml",
             "map": [
                 {
                     "source": "/home/salvatore/.gradle/caches/transforms-2/files-2.1/191091ef78f8ec8f9955b5d5e0f160cc/res/values-gu/values-gu.xml",

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/mnt/01D3B92F59E2BEB0/GruppoMP2018-2019/ProgettoFinale/TestGrafico/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zh-rTW/values-zh-rTW.xml",
+            "outputFile": "/mnt/01D3B92F59E2BEB0/ASD/ProgettoFinale/TestGrafico/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zh-rTW/values-zh-rTW.xml",
             "map": [
                 {
                     "source": "/home/salvatore/.gradle/caches/transforms-2/files-2.1/29f829dc31d8faf78d68f1e5812e50b7/res/values-zh-rTW/values-zh-rTW.xml",
