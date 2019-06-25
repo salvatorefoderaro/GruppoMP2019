@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TestGrafico</string>
+    <string name="action_settings">Settings</string>
+    <string name="estremob">EstremoB</string>
+    <string name="estremoa">EstremoA</string>
+    <string name="textview">TextView</string>
+    <string name="f_x">f(X) =</string>
+    <string name="disegna_grafico">Disegna grafico</string>
+</resources>

@@ -1,5 +1,6 @@
 package com.example.testgrafico;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -32,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private LineChart chart;
     private EditText editText;
     private TextView textView;
-    private Button button;
     private SeekBar seekbar;
     private EditText estremoAText;
     private EditText estremoBText;
@@ -51,12 +51,29 @@ public class MainActivity extends AppCompatActivity {
         estremoAText = findViewById(R.id.editText2);
         estremoBText = findViewById(R.id.editText3);
         textView.setText("");
-        button = findViewById(R.id.button);
+        Button button = findViewById(R.id.button);
         editText =findViewById(R.id.editText);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                estremoA = Integer.parseInt(estremoAText.getText().toString());
-                estremoB = Integer.parseInt(estremoBText.getText().toString());
+
+                if (estremoAText.getText().toString().isEmpty() || estremoBText.getText().toString().isEmpty() ||
+                editText.getText().toString().isEmpty()){
+                    error("Riempire tutti i campi");
+                    return;
+
+                }
+
+                try {
+                    estremoA = Integer.parseInt(estremoAText.getText().toString());
+                    estremoB = Integer.parseInt(estremoBText.getText().toString());
+                    if (estremoA >= estremoB){
+                        error("L'estremo A deve essere strettamente minore di B!");
+                    }
+                }catch (NumberFormatException n){
+                    error("Inserire valori estremi corretti!");
+                    return;
+                }
+
                 drawExpression();
             }
         });
@@ -115,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
     public void drawExpression(){
 
         Evaluator mathEvaluator = new Evaluator();
-        LinkedList<Entry> entries = new LinkedList<Entry>();
+        LinkedList<Entry> entries = new LinkedList<>();
         String input = editText.getText().toString();
         input = input.replace("e", "exp");
 
@@ -124,16 +141,7 @@ public class MainActivity extends AppCompatActivity {
         String toLeft, toRight, leftString, rightString;
 
         if (!input.contains("x")){
-            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-            alertDialog.setTitle("Errore!");
-            alertDialog.setMessage("Errore di sintassi nella funzione inserita!");
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-            alertDialog.show();
+            error("Errore di sintassi nella funzione inserita!");
             return;
         }
 
@@ -162,30 +170,12 @@ public class MainActivity extends AppCompatActivity {
                         && (!mathEvaluator.evaluate(input.replace("x", Double.toString(i))).equals("+Infinity"))) {
                     entries.add(new Entry((float) i, Float.parseFloat(mathEvaluator.evaluate(input.replace("x", Double.toString(i))))));
                 } else {
-                    AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-                    alertDialog.setTitle("Errore!");
-                    alertDialog.setMessage("Errore nel dominio della funzione!");
-                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                    alertDialog.show();
+                    error("Errore nel dominio della funzione!");
                     return;
                 }
 
             } catch (EvaluationException e) {
-                AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-                alertDialog.setTitle("Errore!");
-                alertDialog.setMessage("Errore di sintassi nella funzione inserita!");
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-                alertDialog.show();
+                error("Errore di sintassi nella funzione inserita!");
                 return;
             }
 
@@ -212,5 +202,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void error(String msg){
+
+        AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+        alertDialog.setTitle("Errore!");
+        alertDialog.setMessage(msg);
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
     }
 }
