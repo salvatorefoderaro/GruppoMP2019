@@ -17,8 +17,12 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -53,6 +57,8 @@ public class MyDialogFragment extends DialogFragment {
     private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION = 1;
     private Button saveGallery;
     private Button share;
+    private Toolbar toolbar;
+    private Menu menuList;
 
     @Override
     public void onAttach(Activity activity) {
@@ -74,25 +80,15 @@ public class MyDialogFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_main, container);
+        View view = inflater.inflate(R.layout.fragment_app_bar, container);
         getDialog().setTitle("Simple Dialog");
+
+        toolbar = view.findViewById(R.id.toolbar1);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        setHasOptionsMenu(true);
+
         chart = view.findViewById(R.id.chart);
         seekBar = view.findViewById(R.id.seekBar);
-        saveGallery = view.findViewById(R.id.button5);
-        share =  view.findViewById(R.id.button6);
-        share.setClickable(false);
-        saveGallery.setClickable(false);
-        saveGallery.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                saveTempBitmap(chart.getChartBitmap());
-            }
-        });
-
-        share.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                share_bitMap_to_Apps();
-            }
-        });
 
         seekBar.setProgress(9);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -154,8 +150,6 @@ public class MyDialogFragment extends DialogFragment {
         chart.setData(lineData);
         chart.invalidate();
         chart.getDescription().setEnabled(false);
-        share.setClickable(true);
-        saveGallery.setClickable(true);
 
     }
 
@@ -181,7 +175,7 @@ public class MyDialogFragment extends DialogFragment {
         return Uri.parse(path);
     }
 
-    public void share_bitMap_to_Apps() {
+    public void shareGraph() {
         int writeExternalStoragePermission = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (writeExternalStoragePermission != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION);
@@ -244,6 +238,35 @@ public class MyDialogFragment extends DialogFragment {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        this.menuList = menu;
+        inflater.inflate(R.menu.menu_fragment, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+        menuList.findItem(R.id.help).setVisible(false);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.share:
+                shareGraph();
+                return true;
+
+            case R.id.save:
+                saveTempBitmap(chart.getChartBitmap());
+                return true;
+
+            case R.id.close:
+                dismiss();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }

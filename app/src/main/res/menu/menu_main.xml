@@ -1,6 +1,34 @@
-<?xml version="1.0" encoding="utf-8"?>
-
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+        <item
+            android:id="@+id/close"
+            android:icon="@drawable/close"
+            android:orderInCategory="300"
+            android:title=""
+            app:showAsAction="always" />
+
+        <item
+            android:id="@+id/help"
+            android:icon="@drawable/help"
+            android:orderInCategory="300"
+            android:title=""
+            app:showAsAction="always" />
+
+        <item
+            android:id="@+id/share"
+            android:icon="@drawable/share_vector"
+            android:orderInCategory="300"
+            android:title=""
+            app:showAsAction="always" />
+
+        <item
+            android:id="@+id/save"
+            android:icon="@drawable/save"
+            android:orderInCategory="300"
+            android:title=""
+            app:showAsAction="always" />
 
 </menu>
