@@ -1,4 +1,0 @@
-#Tue May 14 20:05:20 CEST 2019
-base.0=/media/salvatore/Dati condivisi/GruppoMP2019/Lorenzo/camera/app/build/intermediates/transforms/dexMerger/debug/1
-path.0=classes.dex
-renamed.0=classes.dex

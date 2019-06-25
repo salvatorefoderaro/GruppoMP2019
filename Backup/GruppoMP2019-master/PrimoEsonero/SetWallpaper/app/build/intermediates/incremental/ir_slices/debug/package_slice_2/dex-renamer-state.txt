@@ -1,4 +1,0 @@
-#Fri May 10 17:05:05 CEST 2019
-base.0=/home/lorenzo/Università/mobilepr/MP2018-2019/Esonero/GruppoMP2019/SetWallpaper/app/build/intermediates/transforms/dexMerger/debug/2
-path.0=classes.dex
-renamed.0=classes.dex

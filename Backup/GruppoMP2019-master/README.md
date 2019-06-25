@@ -1,1 +1,0 @@
-GruppoMP2019
