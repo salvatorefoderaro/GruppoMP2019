@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "/mnt/01D3B92F59E2BEB0/GruppoMP2018-2019/ProgettoFinale/TestGrafico/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v28/values-v28.xml",
+            "map": [
+                {
+                    "source": "/home/salvatore/.gradle/caches/transforms-2/files-2.1/191091ef78f8ec8f9955b5d5e0f160cc/res/values-v28/values-v28.xml",
+                    "from": {
+                        "startLines": "2,3,4,8",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,130,217,447",
+                        "endLines": "2,3,7,11",
+                        "endColumns": "74,86,12,12",
+                        "endOffsets": "125,212,442,684"
+                    }
+                }
+            ]
+        }
+    ]
+}

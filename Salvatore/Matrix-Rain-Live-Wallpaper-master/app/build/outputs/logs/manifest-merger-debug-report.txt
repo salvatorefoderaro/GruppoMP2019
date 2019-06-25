@@ -1,0 +1,199 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:2:1-45:12
+INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:2:1-45:12
+INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:2:1-45:12
+INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:2:1-45:12
+MERGED from [:cpl] /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:appcompat-v7:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/148f02c813a3fe773d122a03912d5793/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-v4:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/8fe135c3bef6a82f577eb638d01dba44/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/702e6b53a06df9b6ed6df35dbf741e37/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/bbad188396e4329673cc2e774ebcb780/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/salvatore/.gradle/caches/transforms-2/files-2.1/0f7ea4e706b72a8a567b706fbcf93088/AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:support-fragment:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/230ff699b6ba87faca576875de24bcaf/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/c8fca502ac85b8876474224e7bd0288c/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/90bf47e9d297f1ff8b7b887dacb82af4/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-media-compat:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/84fab1eecfe7cbe52b75001cbc545ef9/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:loader:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/4de0a67926478e94db0c7638ccca44bd/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:viewpager:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/3572644dad24b5ca1a2c5dcd8d3cc887/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:coordinatorlayout:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/12c432d8772b780e2ccad6d79890ca37/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:drawerlayout:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/350367282bf28ca1172ac666da7d2386/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:slidingpanelayout:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/1e2a95c5d00402fde6181312ee713440/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:customview:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/15d59c809f41613e7ae4cd34e3f64d9c/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/5fda4420dbaa8b3af756feef35114a88/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/38e0c9653523b03607f05659174262ab/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/c81a8aba9316e0855d4c112d9231b797/AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:versionedparcelable:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/3e73b5c370da5f4647441b02067d7cd4/AndroidManifest.xml:17:1-25:12
+MERGED from [com.android.support:cursoradapter:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/8cea02aaa89ca43814a904bf2644ef78/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /home/salvatore/.gradle/caches/transforms-2/files-2.1/ead39d5f20fad97c67b494d7db8a81fc/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:documentfile:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/f375e0c5b883e39fcfb9a51b80414b19/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/c16f23dcaa6479207d307b7532191a8e/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:print:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/dad4a3b387505afdc24cb9b18a6e31cb/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/salvatore/.gradle/caches/transforms-2/files-2.1/f37e603d44eb62c182c7bd7fe312005a/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:interpolator:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/9e0ba1622fb9268356292baeb852f2c4/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata:1.1.1] /home/salvatore/.gradle/caches/transforms-2/files-2.1/1f085618de4879deb610bfe901a1fad0/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /home/salvatore/.gradle/caches/transforms-2/files-2.1/3d2818237c1defe7a90ffa423a7c8604/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.1] /home/salvatore/.gradle/caches/transforms-2/files-2.1/301d0913873ad1f0c164abeccb0d944e/AndroidManifest.xml:17:1-22:12
+INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:2:1-45:12
+INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:2:1-45:12
+INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:2:1-45:12
+	package
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:4:5-34
+		INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml
+		INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:2:1-45:12
+		INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:2:1-45:12
+		INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:2:11-69
+uses-feature#android.software.live_wallpaper
+ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:6:5-68
+	android:name
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:6:19-65
+application
+ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:8:5-43:19
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/salvatore/.gradle/caches/transforms-2/files-2.1/0f7ea4e706b72a8a567b706fbcf93088/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/salvatore/.gradle/caches/transforms-2/files-2.1/0f7ea4e706b72a8a567b706fbcf93088/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:support-compat:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/c81a8aba9316e0855d4c112d9231b797/AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:support-compat:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/c81a8aba9316e0855d4c112d9231b797/AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:versionedparcelable:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/3e73b5c370da5f4647441b02067d7cd4/AndroidManifest.xml:22:5-23:19
+MERGED from [com.android.support:versionedparcelable:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/3e73b5c370da5f4647441b02067d7cd4/AndroidManifest.xml:22:5-23:19
+	android:appComponentFactory
+		ADDED from [com.android.support:support-compat:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/c81a8aba9316e0855d4c112d9231b797/AndroidManifest.xml:22:18-91
+	android:supportsRtl
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:12:9-35
+	android:label
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:11:9-41
+	tools:ignore
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:14:9-48
+	android:icon
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:10:9-43
+	android:allowBackup
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:9:9-35
+	android:theme
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:13:9-40
+service#it.iloger.wallpaper.MatrixWall
+ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:16:9-28:19
+	android:enabled
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:18:13-35
+	android:label
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:19:13-39
+	android:permission
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:20:13-67
+	android:name
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:17:13-58
+intent-filter#action:name:android.service.wallpaper.WallpaperService
+ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:21:13-23:29
+action#android.service.wallpaper.WallpaperService
+ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:22:17-85
+	android:name
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:22:25-82
+meta-data#android.service.wallpaper
+ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:25:13-27:55
+	android:resource
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:27:17-52
+	android:name
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:26:17-57
+activity#it.iloger.wallpaper.SettingsActivity
+ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:30:9-34:20
+	android:label
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:32:13-60
+	android:exported
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:33:13-36
+	android:name
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:31:13-64
+activity#it.iloger.wallpaper.MainActivity
+ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:36:9-41:20
+	android:name
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:36:19-66
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:37:13-40:29
+action#android.intent.action.MAIN
+ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:38:17-69
+	android:name
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:38:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:39:17-77
+	android:name
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml:39:27-74
+uses-sdk
+INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml
+INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml
+MERGED from [:cpl] /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:cpl] /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/148f02c813a3fe773d122a03912d5793/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/148f02c813a3fe773d122a03912d5793/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/8fe135c3bef6a82f577eb638d01dba44/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/8fe135c3bef6a82f577eb638d01dba44/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/702e6b53a06df9b6ed6df35dbf741e37/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/702e6b53a06df9b6ed6df35dbf741e37/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/bbad188396e4329673cc2e774ebcb780/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/bbad188396e4329673cc2e774ebcb780/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/salvatore/.gradle/caches/transforms-2/files-2.1/0f7ea4e706b72a8a567b706fbcf93088/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/salvatore/.gradle/caches/transforms-2/files-2.1/0f7ea4e706b72a8a567b706fbcf93088/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:support-fragment:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/230ff699b6ba87faca576875de24bcaf/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/230ff699b6ba87faca576875de24bcaf/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/c8fca502ac85b8876474224e7bd0288c/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/c8fca502ac85b8876474224e7bd0288c/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/90bf47e9d297f1ff8b7b887dacb82af4/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/90bf47e9d297f1ff8b7b887dacb82af4/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/84fab1eecfe7cbe52b75001cbc545ef9/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/84fab1eecfe7cbe52b75001cbc545ef9/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/4de0a67926478e94db0c7638ccca44bd/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/4de0a67926478e94db0c7638ccca44bd/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/3572644dad24b5ca1a2c5dcd8d3cc887/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/3572644dad24b5ca1a2c5dcd8d3cc887/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/12c432d8772b780e2ccad6d79890ca37/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/12c432d8772b780e2ccad6d79890ca37/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/350367282bf28ca1172ac666da7d2386/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/350367282bf28ca1172ac666da7d2386/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/1e2a95c5d00402fde6181312ee713440/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/1e2a95c5d00402fde6181312ee713440/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/15d59c809f41613e7ae4cd34e3f64d9c/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/15d59c809f41613e7ae4cd34e3f64d9c/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/5fda4420dbaa8b3af756feef35114a88/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/5fda4420dbaa8b3af756feef35114a88/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/38e0c9653523b03607f05659174262ab/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/38e0c9653523b03607f05659174262ab/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/c81a8aba9316e0855d4c112d9231b797/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/c81a8aba9316e0855d4c112d9231b797/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/3e73b5c370da5f4647441b02067d7cd4/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/3e73b5c370da5f4647441b02067d7cd4/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/8cea02aaa89ca43814a904bf2644ef78/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/8cea02aaa89ca43814a904bf2644ef78/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /home/salvatore/.gradle/caches/transforms-2/files-2.1/ead39d5f20fad97c67b494d7db8a81fc/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /home/salvatore/.gradle/caches/transforms-2/files-2.1/ead39d5f20fad97c67b494d7db8a81fc/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/f375e0c5b883e39fcfb9a51b80414b19/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/f375e0c5b883e39fcfb9a51b80414b19/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/c16f23dcaa6479207d307b7532191a8e/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/c16f23dcaa6479207d307b7532191a8e/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/dad4a3b387505afdc24cb9b18a6e31cb/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/dad4a3b387505afdc24cb9b18a6e31cb/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/salvatore/.gradle/caches/transforms-2/files-2.1/f37e603d44eb62c182c7bd7fe312005a/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/salvatore/.gradle/caches/transforms-2/files-2.1/f37e603d44eb62c182c7bd7fe312005a/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/9e0ba1622fb9268356292baeb852f2c4/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] /home/salvatore/.gradle/caches/transforms-2/files-2.1/9e0ba1622fb9268356292baeb852f2c4/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] /home/salvatore/.gradle/caches/transforms-2/files-2.1/1f085618de4879deb610bfe901a1fad0/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] /home/salvatore/.gradle/caches/transforms-2/files-2.1/1f085618de4879deb610bfe901a1fad0/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /home/salvatore/.gradle/caches/transforms-2/files-2.1/3d2818237c1defe7a90ffa423a7c8604/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /home/salvatore/.gradle/caches/transforms-2/files-2.1/3d2818237c1defe7a90ffa423a7c8604/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] /home/salvatore/.gradle/caches/transforms-2/files-2.1/301d0913873ad1f0c164abeccb0d944e/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] /home/salvatore/.gradle/caches/transforms-2/files-2.1/301d0913873ad1f0c164abeccb0d944e/AndroidManifest.xml:20:5-44
+INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml
+INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml
+		INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml
+		INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/AndroidManifest.xml

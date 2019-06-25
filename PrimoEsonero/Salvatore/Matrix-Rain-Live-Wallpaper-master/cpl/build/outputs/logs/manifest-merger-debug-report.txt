@@ -1,0 +1,37 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml:2:1-46
+INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml:2:1-46
+INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml:2:1-46
+INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml:2:1-46
+INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml:2:1-46
+INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml:2:1-46
+INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml:2:1-46
+	package
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml:2:11-43
+		INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml
+		INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml:2:1-46
+		INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml:2:1-46
+	android:versionCode
+		INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml:2:1-46
+		INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml
+uses-sdk
+INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml
+INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml
+INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml
+INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml
+		INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml
+		ADDED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml
+		INJECTED from /home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/src/main/AndroidManifest.xml

@@ -1,0 +1,10 @@
+#Tue Jun 25 13:38:22 CEST 2019
+path.2=classes_0.dex
+path.1=classes.dex
+path.0=classes.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
+renamed.0=classes.dex
+base.2=/mnt/01D3B92F59E2BEB0/GruppoMP2018-2019/ProgettoFinale/TestGrafico/app/build/intermediates/dex/debug/mergeLibDexDebug/out
+base.1=/mnt/01D3B92F59E2BEB0/GruppoMP2018-2019/ProgettoFinale/TestGrafico/app/build/intermediates/dex/debug/mergeProjectDexDebug/out
+base.0=/mnt/01D3B92F59E2BEB0/GruppoMP2018-2019/ProgettoFinale/TestGrafico/app/build/intermediates/dex/debug/mergeExtDexDebug/out

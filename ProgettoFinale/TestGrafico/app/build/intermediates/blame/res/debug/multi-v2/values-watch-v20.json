@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "/mnt/01D3B92F59E2BEB0/GruppoMP2018-2019/ProgettoFinale/TestGrafico/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-watch-v20/values-watch-v20.xml",
+            "map": [
+                {
+                    "source": "/home/salvatore/.gradle/caches/transforms-2/files-2.1/191091ef78f8ec8f9955b5d5e0f160cc/res/values-watch-v20/values-watch-v20.xml",
+                    "from": {
+                        "startLines": "2,5,8",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,214,385",
+                        "endLines": "4,7,10",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "209,380,553"
+                    }
+                }
+            ]
+        }
+    ]
+}

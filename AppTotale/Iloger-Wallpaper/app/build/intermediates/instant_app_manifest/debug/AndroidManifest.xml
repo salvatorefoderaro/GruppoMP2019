@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="it.iloger.wallpaper"
+    android:targetSandboxVersion="2"
+    android:versionCode="3"
+    android:versionName="1.3" >
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="23" />
+
+    <uses-feature android:name="android.software.live_wallpaper" />
+
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+        android:allowBackup="true"
+        android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
+        android:debuggable="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:testOnly="true"
+        android:theme="@style/AppTheme" >
+        <service
+            android:name="it.iloger.wallpaper.MyActivities.MatrixWallLiveWallpaper"
+            android:enabled="true"
+            android:label="MatrixWall"
+            android:permission="android.permission.BIND_WALLPAPER" >
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/mywallpaper" />
+        </service>
+
+        <activity
+            android:name="it.iloger.wallpaper.MyActivities.MatrixWallSettings"
+            android:exported="true"
+            android:label="@string/title_activity_settings"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="it.iloger.wallpaper.MyActivities.RandomWallpaper"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="it.iloger.wallpaper.MyActivities.CameraWallpaper"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="it.iloger.wallpaper.MyActivities.LiveWallpaper"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="it.iloger.wallpaper.MyActivities.MainActivity"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

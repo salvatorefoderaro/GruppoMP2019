@@ -1,0 +1,43 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w820dp-v13/values-w820dp-v13.xml",
+            "map": [
+                {
+                    "source": "/home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/cpl/build/intermediates/packaged_res/debug/values-w820dp-v13/values-w820dp-v13.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "46",
+                        "endOffsets": "97"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "113",
+                        "endColumns": "46",
+                        "endOffsets": "155"
+                    }
+                },
+                {
+                    "source": "/home/salvatore/Scaricati/Matrix-Rain-Live-Wallpaper-master/app/src/main/res/values-w820dp/dimens.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "4",
+                        "startOffsets": "291",
+                        "endColumns": "57",
+                        "endOffsets": "344"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "57",
+                        "endOffsets": "108"
+                    }
+                }
+            ]
+        }
+    ]
+}
