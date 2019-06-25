@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private int estremoA;
     private int estremoB;
 
+    //asd
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
