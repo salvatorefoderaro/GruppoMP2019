@@ -92,13 +92,11 @@ public class getValueList {
                     // Aggiungo il valore calcolato al grafico
                     entries.add(new Entry((float) i, value));
                 } else {
-
                     error(context, "Errore nel dominio o valore non calcolabile!");
                     return null;
                 }
 
             } catch (EvaluationException e) {
-
                 // Errore di sintassi nella stringa inserita dall'utente,
                 // unico motivo per il quale jEval fallisce (quando non sa interpretare la stringa)
                 error(context, "Errore di sintassi nella funzione inserita!");
