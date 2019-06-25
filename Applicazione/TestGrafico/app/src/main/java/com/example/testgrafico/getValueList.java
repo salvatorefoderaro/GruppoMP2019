@@ -21,7 +21,7 @@ public class getValueList {
         ArrayList<Entry> entries = new ArrayList<Entry>();
         float maxElem = 0, minElem = 0, value;
 
-        String toLeft, toRight, leftString, rightString;
+        String toLeft, toRight, leftString, rightString, betweenAbs;
 
         if (!input.contains("x_")){
 
@@ -30,6 +30,13 @@ public class getValueList {
         }
 
         // Per evitare problemi con l'esponenziale, effettuo questa sostituzione
+
+        while (input.contains("|")){
+
+            betweenAbs = input.substring(input.indexOf("|") + 1,
+                    input.substring(input.indexOf("|") +1).indexOf("|") + input.indexOf("|")+1);
+            input = input.replace("|" + betweenAbs + "|", "abs(" + betweenAbs + ")");
+        }
 
         while(input.contains("^")) {
 
@@ -56,7 +63,7 @@ public class getValueList {
         }
 
         input = input.replace("e", "exp(1)");
-
+        
         // I valori del ciclo for vengono dati dalla seekbar, grazie alla quale sarà possibile modificare i valori di precision
         for (double i = estremoA; i <= estremoB; i +=precision) {
 
