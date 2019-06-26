@@ -78,16 +78,19 @@ public class FragmentDrawGraph extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        // Aggiungo le icone al menù
         View view = inflater.inflate(R.layout.fragment_app_bar, container);
         toolbar = view.findViewById(R.id.tb_func);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         toolbar.setTitle("Grafico di funzione");
         setHasOptionsMenu(true);
 
+        // Imposto i vari elementi dell'interfaccia grafica
         chart = view.findViewById(R.id.chart);
         seekBar = view.findViewById(R.id.seekBar);
-
         seekBar.setProgress(0);
+
+        // Imposto le funzioni per la seekbar
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
@@ -105,11 +108,13 @@ public class FragmentDrawGraph extends DialogFragment {
             }
         });
 
+        // Ottengo le funzioni passate dalla main Activity
         function1 = getArguments().getString("function1");
         function2 = getArguments().getString("function2");
         estremoA = getArguments().getInt("estremoA");
         estremoB = getArguments().getInt("estremoB");
 
+        // Procedo con la creazione del grafico
         drawExpression();
 
         return view;
@@ -119,6 +124,8 @@ public class FragmentDrawGraph extends DialogFragment {
 
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
 
+        // Controllo quante funzioni ho ricevuto dalla Main activity e, per le funzioni
+        // != null, ottengo i valori numerici da inserire nel grafico
         if (function1 != null) {
             ArrayList<Entry> entries1 = getListValue(context, function1, estremoA, estremoB, precision);
             if (entries1 == null) {
@@ -143,13 +150,14 @@ public class FragmentDrawGraph extends DialogFragment {
             dataSets.add(dataSet1);
         }
 
+        // Popolo il grafico e lo mostro
         LineData lineData = new LineData(dataSets);
         chart.setData(lineData);
         chart.invalidate();
         chart.getDescription().setEnabled(false);
-
     }
 
+    // Permessi necessari per l'intent della condivisione e per il salvataggio del grafico in galleria
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -165,12 +173,7 @@ public class FragmentDrawGraph extends DialogFragment {
 
     }
 
-    public Uri getImageUri(Context inContext, Bitmap inImage) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
-        return Uri.parse(path);
-    }
+    // Condividi grafico
 
     public void shareGraph() {
         int writeExternalStoragePermission = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -188,6 +191,15 @@ public class FragmentDrawGraph extends DialogFragment {
             ex.printStackTrace();
         }
     }
+
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
+    }
+
+    // Salva immagine
 
     public void saveTempBitmap(Bitmap bitmap) {
         if (isExternalStorageWritable()) {
@@ -238,6 +250,7 @@ public class FragmentDrawGraph extends DialogFragment {
         return false;
     }
 
+    // Creazione del menù
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         this.menuList = menu;

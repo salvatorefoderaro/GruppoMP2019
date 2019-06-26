@@ -21,6 +21,8 @@ public class getValueList {
 
         String toLeft, toRight, leftString, rightString, betweenAbs;
 
+        input = "(" + input + ")";
+
         if (!input.contains("x_")){
 
             error(context, "Errore di sintassi nella funzione inserita!");
