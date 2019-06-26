@@ -78,7 +78,7 @@ public class MyDialogFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_app_bar, container);
-        toolbar = view.findViewById(R.id.toolbar1);
+        toolbar = view.findViewById(R.id.tb_func);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         toolbar.setTitle("Grafico di funzione");
         setHasOptionsMenu(true);

@@ -1,5 +1,6 @@
 package com.example.testgrafico;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -9,14 +10,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.GestureDetector;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +32,20 @@ public class MainActivity extends AppCompatActivity {
     private int estremoB;
     private boolean showed = false;
     private Menu menuList;
+    private int cursor_position;
+    private String clicked_editText;
+    private FragmentManager fm = getSupportFragmentManager();
+    private FunctionFragment fragment = new FunctionFragment();
 
+    public String getClicked_editText() {
+        return clicked_editText;
+    }
+
+    public void setClicked_editText(String clicked_editText) {
+        this.clicked_editText = clicked_editText;
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +88,54 @@ public class MainActivity extends AppCompatActivity {
             setToDraw();
             }
         });
+
+
+
+
+
+        //-----------------------------------DOUBLE TAP---------------------------------------------------------//
+
+        final GestureDetector gestureDetector = new GestureDetector(getApplicationContext(), new GestureDetector.SimpleOnGestureListener() {
+            public boolean onDoubleTap(MotionEvent e) {
+                setClicked_editText("editText");   //Memorizzo l'editTex su cui viene fatto il doppio tap
+                cursor_position = editText.getSelectionStart(); //Memorizzo la posizione del cursore, in modo da sapere dove inserire la funzione selezionata
+                /*FragmentManager fm = getSupportFragmentManager();
+                FunctionFragment fragment = new FunctionFragment();*/
+                fragment.show(fm, "func");
+
+                return true;
+            }
+        });
+
+        editText.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return gestureDetector.onTouchEvent(event);
+            }
+        });
+
+        final GestureDetector gestureDetector1 = new GestureDetector(getApplicationContext(), new GestureDetector.SimpleOnGestureListener() {
+            public boolean onDoubleTap(MotionEvent e) {
+                // start activity
+                setClicked_editText("editText1");
+                cursor_position = editText1.getSelectionStart();
+                fragment.show(fm, "func");
+                return true;
+            }
+        });
+
+        editText1.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return gestureDetector1.onTouchEvent(event);
+            }
+        });
+
+        //-------------------------------------------------------------------------------------------------------------//
+
+
+
+
 
         editText.addTextChangedListener(new TextWatcher()
         {
@@ -184,4 +247,115 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void func_Coseno(View view) {
+
+        if (getClicked_editText().equals("editText")){
+            //editText.append("cos()");
+            editText.getText().insert(cursor_position, "cos(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+
+        }else if (getClicked_editText().equals("editText1")){
+            //editText1.append("cos()");
+            editText1.getText().insert(cursor_position, "cos(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        }
+    }
+
+    public void func_Seno(View view) {
+
+        if (getClicked_editText().equals("editText")){
+            //editText.append("cos()");
+            editText.getText().insert(cursor_position, "sin(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+
+        }else if (getClicked_editText().equals("editText1")){
+            //editText1.append("cos()");
+            editText1.getText().insert(cursor_position, "sin(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        }
+    }
+
+    public void func_Acos(View view) {
+
+        if (getClicked_editText().equals("editText")){
+            //editText.append("cos()");
+            editText.getText().insert(cursor_position, "acos(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+
+        }else if (getClicked_editText().equals("editText1")){
+            //editText1.append("cos()");
+            editText1.getText().insert(cursor_position, "acos(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        }
+    }
+
+    public void func_Asin(View view) {
+
+        if (getClicked_editText().equals("editText")){
+            //editText.append("cos()");
+            editText.getText().insert(cursor_position, "asin(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+
+        }else if (getClicked_editText().equals("editText1")){
+            //editText1.append("cos()");
+            editText1.getText().insert(cursor_position, "asin(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        }
+    }
+
+    public void func_Atan(View view) {
+
+        if (getClicked_editText().equals("editText")){
+            //editText.append("cos()");
+            editText.getText().insert(cursor_position, "atan(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+
+        }else if (getClicked_editText().equals("editText1")){
+            //editText1.append("cos()");
+            editText1.getText().insert(cursor_position, "atan(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        }
+    }
+
+    public void func_Atan2(View view) {
+
+        if (getClicked_editText().equals("editText")){
+            //editText.append("cos()");
+            editText.getText().insert(cursor_position, "atan2(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+
+        }else if (getClicked_editText().equals("editText1")){
+            //editText1.append("cos()");
+            editText1.getText().insert(cursor_position, "atan2(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        }
+    }
+
+    public void func_log(View view) {
+
+        if (getClicked_editText().equals("editText")){
+            //editText.append("cos()");
+            editText.getText().insert(cursor_position, "log(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+
+        }else if (getClicked_editText().equals("editText1")){
+            //editText1.append("cos()");
+            editText1.getText().insert(cursor_position, "log(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        }
+    }
+
+    public void func_tan(View view) {
+
+        if (getClicked_editText().equals("editText")){
+            //editText.append("cos()");
+            editText.getText().insert(cursor_position, "tan(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+
+        }else if (getClicked_editText().equals("editText1")){
+            //editText1.append("cos()");
+            editText1.getText().insert(cursor_position, "tan(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        }
+    }
 }
