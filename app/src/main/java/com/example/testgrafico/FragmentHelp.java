@@ -17,6 +17,7 @@ public class FragmentHelp extends DialogFragment {
 
     private Toolbar toolbar;
 
+
     @Override
     public void onStart() {
         super.onStart();
