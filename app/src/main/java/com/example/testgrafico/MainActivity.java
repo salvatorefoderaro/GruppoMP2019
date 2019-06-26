@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView2;
     private EditText estremoAText;
     private EditText estremoBText;
+    private TextInputLayout test;
+    private TextInputLayout test1;
+    private TextInputLayout A;
+    private TextInputLayout B;
     private int estremoA;
     private int estremoB;
     private boolean showed = false;
@@ -59,15 +64,17 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        textView1 = findViewById(R.id.textView1);
-        textView2 = findViewById(R.id.textView2);
-        estremoAText = findViewById(R.id.editText2);
-        estremoBText = findViewById(R.id.editText3);
-        textView1.setText("");
-        textView2.setText("");
+        A = findViewById(R.id.name_text_input2);
+        B = findViewById(R.id.name_text_input3);
+
+        estremoAText = A.getEditText();
+        estremoBText = B.getEditText();
         drawGraph = findViewById(R.id.fab);
-        editText =findViewById(R.id.editText1);
-        editText1 =findViewById(R.id.editText4);
+        test = findViewById(R.id.name_text_input);
+        test1 = findViewById(R.id.name_text_input1);
+
+        editText = test.getEditText();
+        editText1 = test1.getEditText();
         drawGraph.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -138,10 +145,7 @@ public class MainActivity extends AppCompatActivity {
         //-------------------------------------------------------------------------------------------------------------//
 
 
-
-
-
-        editText.addTextChangedListener(new TextWatcher()
+        /* editText.addTextChangedListener(new TextWatcher()
         {
             @Override
             public void afterTextChanged(Editable mEdit)
@@ -150,10 +154,8 @@ public class MainActivity extends AppCompatActivity {
                 // Controllo che il numero di parentesi inserito sia corretto
                 // stesso numero di parentesi aperte e parentesi chiuse (appena finisco di scrivere)
                 if ((input.length() - input.replace(")", "").length()) - (input.length() - input.replace("(", "").length()) != 0){
-                    textView1.setText("Inserisci un numero corretto di parentesi!");
                     drawGraph.setClickable(false);
                 } else {
-                    textView1.setText("");
                     drawGraph.setClickable(true);
                 }
             }
@@ -178,17 +180,15 @@ public class MainActivity extends AppCompatActivity {
                 // Controllo che il numero di parentesi inserito sia corretto
                 // stesso numero di parentesi aperte e parentesi chiuse (appena finisco di scrivere)
                 if ((input.length() - input.replace(")", "").length()) - (input.length() - input.replace("(", "").length()) != 0){
-                    textView2.setText("Inserisci un numero corretto di parentesi!");
                     drawGraph.setClickable(false);
                 } else {
-                    textView2.setText("");
                     drawGraph.setClickable(true);
                 }
             }
 
             public void beforeTextChanged(CharSequence s, int start, int count, int after){}
             public void onTextChanged(CharSequence s, int start, int before, int count){}
-        });
+        }); */
 
     }
 
