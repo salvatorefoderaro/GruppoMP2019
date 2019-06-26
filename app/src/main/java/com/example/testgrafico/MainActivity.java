@@ -78,8 +78,12 @@ public class MainActivity extends AppCompatActivity {
         drawGraph.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-            if (estremoAText.getText().toString().isEmpty() || estremoBText.getText().toString().isEmpty() ||
-                    editText.getText().toString().isEmpty()){
+            if ((estremoAText.getText().toString().isEmpty() || estremoBText.getText().toString().isEmpty())){
+                error(MainActivity.this, "Riempire tutti i campi");
+                return;
+            }
+
+            if ((editText.getText().toString().isEmpty() && editText1.getText().toString().isEmpty())){
                 error(MainActivity.this, "Riempire tutti i campi");
                 return;
             }
