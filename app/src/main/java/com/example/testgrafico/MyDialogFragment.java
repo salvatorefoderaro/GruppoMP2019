@@ -25,7 +25,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
@@ -55,8 +54,6 @@ public class MyDialogFragment extends DialogFragment {
     private SeekBar seekBar;
     private Chart<LineData> chart;
     private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION = 1;
-    private Button saveGallery;
-    private Button share;
     private Toolbar toolbar;
     private Menu menuList;
 
@@ -81,10 +78,9 @@ public class MyDialogFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_app_bar, container);
-        getDialog().setTitle("Simple Dialog");
-
         toolbar = view.findViewById(R.id.toolbar1);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        toolbar.setTitle("Grafico di funzione");
         setHasOptionsMenu(true);
 
         chart = view.findViewById(R.id.chart);

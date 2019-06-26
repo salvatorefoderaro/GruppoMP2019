@@ -133,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
         menuList.findItem(R.id.save).setVisible(false);
         menuList.findItem(R.id.share).setVisible(false);
         menuList.findItem(R.id.close).setVisible(false);
-
         return true;
     }
 
