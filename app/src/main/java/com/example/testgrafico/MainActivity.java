@@ -33,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
     private boolean showed = false;
     private Menu menuList;
 
+    FragmentManager fm = getSupportFragmentManager();
+    FunctionFragment fragment = new FunctionFragment();
+
 
     private String clicked_editText;
     private String selected_Func;
@@ -108,9 +111,9 @@ public class MainActivity extends AppCompatActivity {
 
         final GestureDetector gestureDetector = new GestureDetector(getApplicationContext(), new GestureDetector.SimpleOnGestureListener() {
             public boolean onDoubleTap(MotionEvent e) {
-                // start activity
-                FragmentManager fm = getSupportFragmentManager();
-                FunctionFragment fragment = new FunctionFragment();
+                setClicked_editText("editText");
+                /*FragmentManager fm = getSupportFragmentManager();
+                FunctionFragment fragment = new FunctionFragment();*/
                 fragment.show(fm, "func");
 
                 return true;
@@ -127,7 +130,8 @@ public class MainActivity extends AppCompatActivity {
         final GestureDetector gestureDetector1 = new GestureDetector(getApplicationContext(), new GestureDetector.SimpleOnGestureListener() {
             public boolean onDoubleTap(MotionEvent e) {
                 // start activity
-
+                setClicked_editText("editText1");
+                fragment.show(fm, "func");
                 return true;
             }
         });
@@ -256,6 +260,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void func_Coseno(View view) {
+
+
+        if (getClicked_editText().equals("editText")){
+            editText.append("cos()");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+
+        }else if (getClicked_editText().equals("editText1")){
+            editText1.append("cos()");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+
+        }
 
 
 

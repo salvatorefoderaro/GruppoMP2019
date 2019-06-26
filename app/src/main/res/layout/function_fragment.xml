@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="104dp"
-        android:text="cos()"
-        android:onClick="ciao"
+        android:text="@string/cos"
+        android:onClick="func_Coseno"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,5 +28,15 @@
         app:layout_constraintBottom_toTopOf="@+id/btnCos"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginBottom="594dp"
+        android:text="Funzione Coseno"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnCos" />
 
 </android.support.constraint.ConstraintLayout>

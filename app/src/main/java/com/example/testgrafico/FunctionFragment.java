@@ -13,7 +13,7 @@ import android.widget.Button;
 
 public class FunctionFragment extends DialogFragment {
 
-    private Toolbar toolbar;
+    private Toolbar toolbar2;
     private Button button;
 
     @Override
@@ -31,9 +31,9 @@ public class FunctionFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.function_fragment, container);
-        /*toolbar = view.findViewById(R.id.tb_func);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        toolbar.setTitle("Funzioni");*/
+        toolbar2 = view.findViewById(R.id.toolbar2);
+        //((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        toolbar2.setTitle("Funzioni");
 
         setHasOptionsMenu(true);
 
