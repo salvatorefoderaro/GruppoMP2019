@@ -1,14 +1,14 @@
-package com.example.testgrafico;
+package com.example.testgrafico.MathHelper;
 
 import android.content.Context;
 import com.github.mikephil.charting.data.Entry;
 import net.sourceforge.jeval.EvaluationException;
 import net.sourceforge.jeval.Evaluator;
 import java.util.ArrayList;
-import static com.example.testgrafico.MathStringParser.isLeftDigit;
-import static com.example.testgrafico.MathStringParser.isLeftString;
-import static com.example.testgrafico.MathStringParser.isRightDigit;
-import static com.example.testgrafico.MathStringParser.isRightString;
+import static com.example.testgrafico.MathHelper.MathStringParser.isLeftDigit;
+import static com.example.testgrafico.MathHelper.MathStringParser.isLeftString;
+import static com.example.testgrafico.MathHelper.MathStringParser.isRightDigit;
+import static com.example.testgrafico.MathHelper.MathStringParser.isRightString;
 import static com.example.testgrafico.MainActivity.error;
 
 public class getValueList {

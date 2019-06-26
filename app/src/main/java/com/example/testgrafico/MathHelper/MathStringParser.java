@@ -1,4 +1,4 @@
-package com.example.testgrafico;
+package com.example.testgrafico.MathHelper;
 
 import java.util.ArrayList;
 import java.util.List;

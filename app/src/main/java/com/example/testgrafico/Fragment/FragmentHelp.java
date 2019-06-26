@@ -1,4 +1,4 @@
-package com.example.testgrafico;
+package com.example.testgrafico.Fragment;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.testgrafico.R;
 
 
 public class FragmentHelp extends DialogFragment {

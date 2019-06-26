@@ -1,4 +1,4 @@
-package com.example.testgrafico;
+package com.example.testgrafico.Fragment;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -6,12 +6,16 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class FunctionFragment extends DialogFragment {
+import com.example.testgrafico.R;
+
+public class FragmentFunction extends DialogFragment {
 
     private Toolbar toolbar2;
     private Button button;
@@ -32,27 +36,25 @@ public class FunctionFragment extends DialogFragment {
 
         View view = inflater.inflate(R.layout.function_fragment, container);
         toolbar2 = view.findViewById(R.id.toolbar2);
-        //((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        toolbar2.setTitle("Funzioni");
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar2);
+        toolbar2.setTitle("Seleziona una funzione...");
 
         setHasOptionsMenu(true);
 
         return view;
     }
 
-    /*@Override
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_fragment_help, menu);
         super.onCreateOptionsMenu(menu, inflater);
         menu.findItem(R.id.help).setVisible(false);
         menu.findItem(R.id.save).setVisible(false);
         menu.findItem(R.id.share).setVisible(false);
-    }*/
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-        // Handle item selection
         switch (item.getItemId()) {
             case R.id.close:
                 dismiss();

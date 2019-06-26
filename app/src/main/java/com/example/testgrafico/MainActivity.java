@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -16,9 +17,12 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.testgrafico.Fragment.FragmentDrawGraph;
+import com.example.testgrafico.Fragment.FragmentFunction;
+import com.example.testgrafico.Fragment.FragmentHelp;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private int cursor_position;
     private String clicked_editText;
     private FragmentManager fm = getSupportFragmentManager();
-    private FunctionFragment fragment = new FunctionFragment();
+    private FragmentFunction fragment = new FragmentFunction();
+    private FloatingActionButton drawGraph;
 
     public String getClicked_editText() {
         return clicked_editText;
@@ -60,11 +65,10 @@ public class MainActivity extends AppCompatActivity {
         estremoBText = findViewById(R.id.editText3);
         textView1.setText("");
         textView2.setText("");
-
-        final Button button = findViewById(R.id.button);
+        drawGraph = findViewById(R.id.fab);
         editText =findViewById(R.id.editText1);
         editText1 =findViewById(R.id.editText4);
-        button.setOnClickListener(new View.OnClickListener() {
+        drawGraph.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
             if (estremoAText.getText().toString().isEmpty() || estremoBText.getText().toString().isEmpty() ||
@@ -100,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 setClicked_editText("editText");   //Memorizzo l'editTex su cui viene fatto il doppio tap
                 cursor_position = editText.getSelectionStart(); //Memorizzo la posizione del cursore, in modo da sapere dove inserire la funzione selezionata
                 /*FragmentManager fm = getSupportFragmentManager();
-                FunctionFragment fragment = new FunctionFragment();*/
+                FragmentFunction fragment = new FragmentFunction();*/
                 fragment.show(fm, "func");
 
                 return true;
@@ -147,10 +151,10 @@ public class MainActivity extends AppCompatActivity {
                 // stesso numero di parentesi aperte e parentesi chiuse (appena finisco di scrivere)
                 if ((input.length() - input.replace(")", "").length()) - (input.length() - input.replace("(", "").length()) != 0){
                     textView1.setText("Inserisci un numero corretto di parentesi!");
-                    button.setClickable(false);
+                    drawGraph.setClickable(false);
                 } else {
                     textView1.setText("");
-                    button.setClickable(true);
+                    drawGraph.setClickable(true);
                 }
             }
 
@@ -175,10 +179,10 @@ public class MainActivity extends AppCompatActivity {
                 // stesso numero di parentesi aperte e parentesi chiuse (appena finisco di scrivere)
                 if ((input.length() - input.replace(")", "").length()) - (input.length() - input.replace("(", "").length()) != 0){
                     textView2.setText("Inserisci un numero corretto di parentesi!");
-                    button.setClickable(false);
+                    drawGraph.setClickable(false);
                 } else {
                     textView2.setText("");
-                    button.setClickable(true);
+                    drawGraph.setClickable(true);
                 }
             }
 
@@ -214,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         FragmentManager fm = getSupportFragmentManager();
-        MyDialogFragment myDialogFragment = new MyDialogFragment();
+        FragmentDrawGraph myDialogFragment = new FragmentDrawGraph();
         myDialogFragment.setArguments(bundle);
         myDialogFragment.show(fm, "dialog_fragment");
     }
@@ -251,12 +255,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (getClicked_editText().equals("editText")){
             //editText.append("cos()");
-            editText.getText().insert(cursor_position, "cos(x_)");
+            editText.getText().insert(cursor_position, "(cos(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
 
         }else if (getClicked_editText().equals("editText1")){
             //editText1.append("cos()");
-            editText1.getText().insert(cursor_position, "cos(x_)");
+            editText1.getText().insert(cursor_position, "(cos(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }
     }
@@ -265,12 +269,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (getClicked_editText().equals("editText")){
             //editText.append("cos()");
-            editText.getText().insert(cursor_position, "sin(x_)");
+            editText.getText().insert(cursor_position, "(sin(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
 
         }else if (getClicked_editText().equals("editText1")){
             //editText1.append("cos()");
-            editText1.getText().insert(cursor_position, "sin(x_)");
+            editText1.getText().insert(cursor_position, "(sin(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }
     }
@@ -279,12 +283,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (getClicked_editText().equals("editText")){
             //editText.append("cos()");
-            editText.getText().insert(cursor_position, "acos(x_)");
+            editText.getText().insert(cursor_position, "(acos(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
 
         }else if (getClicked_editText().equals("editText1")){
             //editText1.append("cos()");
-            editText1.getText().insert(cursor_position, "acos(x_)");
+            editText1.getText().insert(cursor_position, "(acos(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }
     }
@@ -293,12 +297,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (getClicked_editText().equals("editText")){
             //editText.append("cos()");
-            editText.getText().insert(cursor_position, "asin(x_)");
+            editText.getText().insert(cursor_position, "(asin(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
 
         }else if (getClicked_editText().equals("editText1")){
             //editText1.append("cos()");
-            editText1.getText().insert(cursor_position, "asin(x_)");
+            editText1.getText().insert(cursor_position, "(asin(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }
     }
@@ -307,12 +311,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (getClicked_editText().equals("editText")){
             //editText.append("cos()");
-            editText.getText().insert(cursor_position, "atan(x_)");
+            editText.getText().insert(cursor_position, "(atan(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
 
         }else if (getClicked_editText().equals("editText1")){
             //editText1.append("cos()");
-            editText1.getText().insert(cursor_position, "atan(x_)");
+            editText1.getText().insert(cursor_position, "(atan(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }
     }
@@ -321,12 +325,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (getClicked_editText().equals("editText")){
             //editText.append("cos()");
-            editText.getText().insert(cursor_position, "atan2(x_)");
+            editText.getText().insert(cursor_position, "(atan2(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
 
         }else if (getClicked_editText().equals("editText1")){
             //editText1.append("cos()");
-            editText1.getText().insert(cursor_position, "atan2(x_)");
+            editText1.getText().insert(cursor_position, "(atan2(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }
     }
@@ -335,12 +339,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (getClicked_editText().equals("editText")){
             //editText.append("cos()");
-            editText.getText().insert(cursor_position, "log(x_)");
+            editText.getText().insert(cursor_position, "(log(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
 
         }else if (getClicked_editText().equals("editText1")){
             //editText1.append("cos()");
-            editText1.getText().insert(cursor_position, "log(x_)");
+            editText1.getText().insert(cursor_position, "(log(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }
     }
@@ -349,12 +353,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (getClicked_editText().equals("editText")){
             //editText.append("cos()");
-            editText.getText().insert(cursor_position, "tan(x_)");
+            editText.getText().insert(cursor_position, "(tan(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
 
         }else if (getClicked_editText().equals("editText1")){
             //editText1.append("cos()");
-            editText1.getText().insert(cursor_position, "tan(x_)");
+            editText1.getText().insert(cursor_position, "(tan(x_)(");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }
     }

@@ -1,4 +1,4 @@
-package com.example.testgrafico;
+package com.example.testgrafico.Fragment;
 
 import android.Manifest;
 import android.app.Activity;
@@ -28,6 +28,7 @@ import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import com.example.testgrafico.R;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -41,9 +42,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static com.example.testgrafico.getValueList.getListValue;
+import static com.example.testgrafico.MathHelper.getValueList.getListValue;
 
-public class MyDialogFragment extends DialogFragment {
+public class FragmentDrawGraph extends DialogFragment {
 
     private String function1 = null;
     private String function2 = null;
@@ -86,12 +87,12 @@ public class MyDialogFragment extends DialogFragment {
         chart = view.findViewById(R.id.chart);
         seekBar = view.findViewById(R.id.seekBar);
 
-        seekBar.setProgress(9);
+        seekBar.setProgress(0);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser) {
-                precision = (seekBar.getProgress() + 1) * 0.10f;
+                precision = 1.1f - ((seekBar.getProgress() + 1) * 0.10f);
                 drawExpression();
             }
 
