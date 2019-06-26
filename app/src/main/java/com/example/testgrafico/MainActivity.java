@@ -33,8 +33,9 @@ public class MainActivity extends AppCompatActivity {
     private boolean showed = false;
     private Menu menuList;
 
-    FragmentManager fm = getSupportFragmentManager();
-    FunctionFragment fragment = new FunctionFragment();
+    private FragmentManager fm = getSupportFragmentManager();
+    private FunctionFragment fragment = new FunctionFragment();
+    private int cursor_position;
 
 
     private String clicked_editText;
@@ -112,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
         final GestureDetector gestureDetector = new GestureDetector(getApplicationContext(), new GestureDetector.SimpleOnGestureListener() {
             public boolean onDoubleTap(MotionEvent e) {
                 setClicked_editText("editText");
+                cursor_position = editText.getSelectionStart();
                 /*FragmentManager fm = getSupportFragmentManager();
                 FunctionFragment fragment = new FunctionFragment();*/
                 fragment.show(fm, "func");
@@ -131,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onDoubleTap(MotionEvent e) {
                 // start activity
                 setClicked_editText("editText1");
+                cursor_position = editText1.getSelectionStart();
                 fragment.show(fm, "func");
                 return true;
             }
@@ -261,24 +264,29 @@ public class MainActivity extends AppCompatActivity {
 
     public void func_Coseno(View view) {
 
-
         if (getClicked_editText().equals("editText")){
-            editText.append("cos()");
+            //editText.append("cos()");
+            editText.getText().insert(cursor_position, "cos()");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
 
         }else if (getClicked_editText().equals("editText1")){
-            editText1.append("cos()");
+            //editText1.append("cos()");
+            editText.getText().insert(cursor_position, "cos()");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
-
         }
-
-
-
-
     }
 
     public void func_Seno(View view) {
 
+        if (getClicked_editText().equals("editText")){
+            //editText.append("cos()");
+            editText.getText().insert(cursor_position, "sin()");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
 
+        }else if (getClicked_editText().equals("editText1")){
+            //editText1.append("cos()");
+            editText.getText().insert(cursor_position, "sin()");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        }
     }
 }
