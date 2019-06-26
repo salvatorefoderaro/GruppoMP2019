@@ -32,14 +32,10 @@ public class MainActivity extends AppCompatActivity {
     private int estremoB;
     private boolean showed = false;
     private Menu menuList;
-
+    private int cursor_position;
+    private String clicked_editText;
     private FragmentManager fm = getSupportFragmentManager();
     private FunctionFragment fragment = new FunctionFragment();
-    private int cursor_position;
-
-
-    private String clicked_editText;
-    private String selected_Func;
 
     public String getClicked_editText() {
         return clicked_editText;
@@ -48,17 +44,6 @@ public class MainActivity extends AppCompatActivity {
     public void setClicked_editText(String clicked_editText) {
         this.clicked_editText = clicked_editText;
     }
-
-
-    public String getSelected_Func() {
-        return selected_Func;
-    }
-
-    public void setSelected_Func(String selected_Func) {
-        this.selected_Func = selected_Func;
-    }
-
-
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -112,8 +97,8 @@ public class MainActivity extends AppCompatActivity {
 
         final GestureDetector gestureDetector = new GestureDetector(getApplicationContext(), new GestureDetector.SimpleOnGestureListener() {
             public boolean onDoubleTap(MotionEvent e) {
-                setClicked_editText("editText");
-                cursor_position = editText.getSelectionStart();
+                setClicked_editText("editText");   //Memorizzo l'editTex su cui viene fatto il doppio tap
+                cursor_position = editText.getSelectionStart(); //Memorizzo la posizione del cursore, in modo da sapere dove inserire la funzione selezionata
                 /*FragmentManager fm = getSupportFragmentManager();
                 FunctionFragment fragment = new FunctionFragment();*/
                 fragment.show(fm, "func");
@@ -271,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
 
         }else if (getClicked_editText().equals("editText1")){
             //editText1.append("cos()");
-            editText.getText().insert(cursor_position, "cos()");
+            editText1.getText().insert(cursor_position, "cos()");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }
     }
@@ -285,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
 
         }else if (getClicked_editText().equals("editText1")){
             //editText1.append("cos()");
-            editText.getText().insert(cursor_position, "sin()");
+            editText1.getText().insert(cursor_position, "sin()");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }
     }

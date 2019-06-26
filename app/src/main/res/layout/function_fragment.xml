@@ -7,13 +7,24 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/btnCos"
+        android:id="@+id/btnSin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="164dp"
+        android:onClick="func_Seno"
+        android:text="@string/sin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnCos2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="104dp"
-        android:text="@string/cos"
         android:onClick="func_Coseno"
+        android:text="@string/cos"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,7 +36,7 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toTopOf="@+id/btnCos"
+        app:layout_constraintBottom_toTopOf="@+id/btnSin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,10 +44,22 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="18dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginBottom="532dp"
+        android:text="@string/funzione_seno"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnSin" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
         android:layout_marginStart="85dp"
         android:layout_marginBottom="594dp"
-        android:text="Funzione Coseno"
+        android:text="@string/funzione_coseno"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnCos" />
+        app:layout_constraintStart_toEndOf="@+id/btnSin" />
 
 </android.support.constraint.ConstraintLayout>
