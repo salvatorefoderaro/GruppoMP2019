@@ -251,12 +251,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (getClicked_editText().equals("editText")){
             //editText.append("cos()");
-            editText.getText().insert(cursor_position, "cos()");
+            editText.getText().insert(cursor_position, "cos(x_)");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
 
         }else if (getClicked_editText().equals("editText1")){
             //editText1.append("cos()");
-            editText1.getText().insert(cursor_position, "cos()");
+            editText1.getText().insert(cursor_position, "cos(x_)");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }
     }
@@ -265,12 +265,96 @@ public class MainActivity extends AppCompatActivity {
 
         if (getClicked_editText().equals("editText")){
             //editText.append("cos()");
-            editText.getText().insert(cursor_position, "sin()");
+            editText.getText().insert(cursor_position, "sin(x_)");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
 
         }else if (getClicked_editText().equals("editText1")){
             //editText1.append("cos()");
-            editText1.getText().insert(cursor_position, "sin()");
+            editText1.getText().insert(cursor_position, "sin(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        }
+    }
+
+    public void func_Acos(View view) {
+
+        if (getClicked_editText().equals("editText")){
+            //editText.append("cos()");
+            editText.getText().insert(cursor_position, "acos(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+
+        }else if (getClicked_editText().equals("editText1")){
+            //editText1.append("cos()");
+            editText1.getText().insert(cursor_position, "acos(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        }
+    }
+
+    public void func_Asin(View view) {
+
+        if (getClicked_editText().equals("editText")){
+            //editText.append("cos()");
+            editText.getText().insert(cursor_position, "asin(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+
+        }else if (getClicked_editText().equals("editText1")){
+            //editText1.append("cos()");
+            editText1.getText().insert(cursor_position, "asin(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        }
+    }
+
+    public void func_Atan(View view) {
+
+        if (getClicked_editText().equals("editText")){
+            //editText.append("cos()");
+            editText.getText().insert(cursor_position, "atan(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+
+        }else if (getClicked_editText().equals("editText1")){
+            //editText1.append("cos()");
+            editText1.getText().insert(cursor_position, "atan(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        }
+    }
+
+    public void func_Atan2(View view) {
+
+        if (getClicked_editText().equals("editText")){
+            //editText.append("cos()");
+            editText.getText().insert(cursor_position, "atan2(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+
+        }else if (getClicked_editText().equals("editText1")){
+            //editText1.append("cos()");
+            editText1.getText().insert(cursor_position, "atan2(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        }
+    }
+
+    public void func_log(View view) {
+
+        if (getClicked_editText().equals("editText")){
+            //editText.append("cos()");
+            editText.getText().insert(cursor_position, "log(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+
+        }else if (getClicked_editText().equals("editText1")){
+            //editText1.append("cos()");
+            editText1.getText().insert(cursor_position, "log(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        }
+    }
+
+    public void func_tan(View view) {
+
+        if (getClicked_editText().equals("editText")){
+            //editText.append("cos()");
+            editText.getText().insert(cursor_position, "tan(x_)");
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+
+        }else if (getClicked_editText().equals("editText1")){
+            //editText1.append("cos()");
+            editText1.getText().insert(cursor_position, "tan(x_)");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }
     }
