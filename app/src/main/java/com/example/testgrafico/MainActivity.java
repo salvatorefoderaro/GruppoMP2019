@@ -28,6 +28,7 @@ import com.example.testgrafico.Fragment.FragmentHelp;
 public class MainActivity extends AppCompatActivity {
 
 
+
     private EditText editText;
     private EditText editText1;
     private EditText estremoAText;
