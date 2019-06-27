@@ -21,7 +21,7 @@
         android:layout_width="279dp"
         android:layout_height="22dp"
         android:layout_marginTop="8dp"
-        android:max="9"
+        android:max="4"
         android:progress="0"
         app:layout_constraintEnd_toEndOf="@id/chart"
         app:layout_constraintHeight_percent="0.05"
