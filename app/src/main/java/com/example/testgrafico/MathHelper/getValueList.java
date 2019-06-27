@@ -21,7 +21,7 @@ public class getValueList {
 
         String toLeft, toRight, leftString, rightString, betweenAbs;
 
-        input = "(" + input + ")";
+        input = input.replace(" ", "");
 
         if (!input.contains("x_")){
 
@@ -59,10 +59,19 @@ public class getValueList {
                 toRight = isRightString(rightString);
             }
 
-            input = input.replace(toLeft + "^" + toRight, "pow(" + toLeft + "," + toRight + ")");
+            input = input.replace("(" + toLeft + "^" + toRight + ")", "pow(" + toLeft + "," + toRight + ")");
         }
 
         input = input.replace("e", "exp(1)");
+
+        try {
+            mathEvaluator.evaluate("(pow(1,2) + 2)");
+        } catch (EvaluationException e) {
+            e.printStackTrace();
+        }
+
+
+        System.out.println("\n"+input+"\n");
         
         // I valori del ciclo for vengono dati dalla seekbar, grazie alla quale sarà possibile modificare i valori di precision
         for (double i = estremoA; i <= estremoB; i +=precision) {
@@ -97,6 +106,7 @@ public class getValueList {
                 }
 
             } catch (EvaluationException e) {
+                e.printStackTrace();
                 // Errore di sintassi nella stringa inserita dall'utente,
                 // unico motivo per il quale jEval fallisce (quando non sa interpretare la stringa)
                 error(context, "Errore di sintassi nella funzione inserita!");
