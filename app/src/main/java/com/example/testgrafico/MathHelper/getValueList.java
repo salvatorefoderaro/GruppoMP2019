@@ -59,7 +59,8 @@ public class getValueList {
                 toRight = isRightString(rightString);
             }
 
-            input = input.replace("(" + toLeft + "^" + toRight + ")", "pow(" + toLeft + "," + toRight + ")");
+            System.out.println("To left is :" + toLeft + " To right is: " + toRight);
+            input = input.replace(toLeft + "^" + toRight, "pow(" + toLeft + "," + toRight + ")");
         }
 
         input = input.replace("e", "exp(1)");

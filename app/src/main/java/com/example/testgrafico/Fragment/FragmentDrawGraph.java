@@ -50,7 +50,7 @@ public class FragmentDrawGraph extends DialogFragment {
     private String function2 = null;
     private int estremoA;
     private int estremoB;
-    private float precision = 1;
+    private float precision = 0.1f;
     private Context context;
     private SeekBar seekBar;
     private Chart<LineData> chart;
@@ -95,7 +95,7 @@ public class FragmentDrawGraph extends DialogFragment {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser) {
-                precision = 1.1f - ((seekBar.getProgress() + 1) * 0.10f);
+                precision = 0.1f - ((seekBar.getProgress() + 0.1f) * 0.01f);
                 drawExpression();
             }
 
