@@ -19,5 +19,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView" />
+
+        <uk.co.onemandan.materialtextview.MaterialTextView
+            android:id="@+id/mtv_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:mtv_labelText="label"
+            app:mtv_contentText="Contentttttttttttttttt"
+            app:mtv_helperText="helper"
+            app:mtv_labelTextColor="#FFFFFF"
+            app:mtv_contentTextColor="?android:colorPrimaryDark"
+            app:mtv_helperTextColor="?colorAccent"/>
+
     </LinearLayout>
 </ScrollView>

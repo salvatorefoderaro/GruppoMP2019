@@ -29,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText editText;
     private EditText editText1;
-    private TextView textView1;
-    private TextView textView2;
     private EditText estremoAText;
     private EditText estremoBText;
     private TextInputLayout test;
@@ -39,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     private TextInputLayout B;
     private int estremoA;
     private int estremoB;
-    private boolean showed = false;
     private Menu menuList;
     private int cursor_position;
     private String clicked_editText;
@@ -75,34 +72,53 @@ public class MainActivity extends AppCompatActivity {
 
         editText = test.getEditText();
         editText1 = test1.getEditText();
+
+        // Aggiungo tutti quanti i controlli per i vari input una volta premuto il FAB
         drawGraph.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-            if ((estremoAText.getText().toString().isEmpty() || estremoBText.getText().toString().isEmpty())){
-                error(MainActivity.this, "Riempire tutti i campi");
+        if ((estremoAText.getText().toString().isEmpty() || estremoBText.getText().toString().isEmpty())){
+            error(MainActivity.this, "Riempire tutti i campi");
+            return;
+        }
+
+        if ((editText.getText().toString().isEmpty() && editText1.getText().toString().isEmpty())){
+            error(MainActivity.this, "Riempire tutti i campi");
+            return;
+        }
+
+        if (!editText.getText().toString().isEmpty()){
+            String input = editText.getText().toString();
+            if ((input.length() - input.replace(")", "").length()) - (input.length() - input.replace("(", "").length()) != 0){
+                error(MainActivity.this, "Funzione 1\n\nInserire un numero corretto di parentesi!");
                 return;
             }
+        }
 
-            if ((editText.getText().toString().isEmpty() && editText1.getText().toString().isEmpty())){
-                error(MainActivity.this, "Riempire tutti i campi");
+        if (!editText1.getText().toString().isEmpty()){
+            String input = editText1.getText().toString();
+            if ((input.length() - input.replace(")", "").length()) - (input.length() - input.replace("(", "").length()) != 0){
+                error(MainActivity.this, "Funzione 2\n\nInserire un numero corretto di parentesi!");
                 return;
             }
+        }
 
-            try {
-                estremoA = Integer.parseInt(estremoAText.getText().toString());
-                estremoB = Integer.parseInt(estremoBText.getText().toString());
-                if (estremoA >= estremoB){
-                    error(MainActivity.this, "L'estremo A deve essere strettamente minore di B!");
-                    return;
-                }
-            } catch (NumberFormatException n){
-                error(MainActivity.this, "Inserire valori estremi corretti!");
+        try {
+            estremoA = Integer.parseInt(estremoAText.getText().toString());
+            estremoB = Integer.parseInt(estremoBText.getText().toString());
+            if (estremoA >= estremoB){
+                error(MainActivity.this, "L'estremo A deve essere strettamente minore di B!");
                 return;
             }
+        } catch (NumberFormatException n){
+            error(MainActivity.this, "Inserire valori estremi corretti!");
+            return;
+        }
 
-            setToDraw();
-            }
-        });
+        // Se tutti i controlli sono andati a buon fine, procedo impostando il fragment
+        setToDraw();
+        }
+    });
 
 
 
@@ -149,53 +165,9 @@ public class MainActivity extends AppCompatActivity {
         //-------------------------------------------------------------------------------------------------------------//
 
 
-        /* editText.addTextChangedListener(new TextWatcher()
-        {
-            @Override
-            public void afterTextChanged(Editable mEdit)
-            {
-                String input = mEdit.toString();
-                // Controllo che il numero di parentesi inserito sia corretto
-                // stesso numero di parentesi aperte e parentesi chiuse (appena finisco di scrivere)
-                if ((input.length() - input.replace(")", "").length()) - (input.length() - input.replace("(", "").length()) != 0){
-                    drawGraph.setClickable(false);
-                } else {
-                    drawGraph.setClickable(true);
-                }
-            }
-
-
-
-            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
-            public void onTextChanged(CharSequence s, int start, int before, int count){
-                if (s.toString().equals("^") && !showed){
-                    error(MainActivity.this, "ASPETTAAAAA!\nLa sintassi corretta è la seguente:\n(log(x_))^2\n(sin(x_))^(cos(x_))");
-                    showed = true;
-                }
-            }
-        });
-
-        editText1.addTextChangedListener(new TextWatcher()
-        {
-            @Override
-            public void afterTextChanged(Editable mEdit)
-            {
-                String input = mEdit.toString();
-                // Controllo che il numero di parentesi inserito sia corretto
-                // stesso numero di parentesi aperte e parentesi chiuse (appena finisco di scrivere)
-                if ((input.length() - input.replace(")", "").length()) - (input.length() - input.replace("(", "").length()) != 0){
-                    drawGraph.setClickable(false);
-                } else {
-                    drawGraph.setClickable(true);
-                }
-            }
-
-            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
-            public void onTextChanged(CharSequence s, int start, int before, int count){}
-        }); */
-
     }
 
+    // Aggiungo le icone al menù
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         this.menuList = menu;
@@ -209,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void setToDraw(){
 
+        // Aggiungo in un bundle le funzioni da passare al Fragment
         Bundle bundle = new Bundle();
         bundle.putInt("estremoA", estremoA);
         bundle.putInt("estremoB", estremoB);
@@ -221,6 +194,7 @@ public class MainActivity extends AppCompatActivity {
             bundle.putString("function2", editText1.getText().toString());
         }
 
+        // Faccio partire il fragment
         FragmentManager fm = getSupportFragmentManager();
         FragmentDrawGraph myDialogFragment = new FragmentDrawGraph();
         myDialogFragment.setArguments(bundle);
