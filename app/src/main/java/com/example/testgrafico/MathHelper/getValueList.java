@@ -78,6 +78,14 @@ public class getValueList {
 
 
         System.out.println("\n"+input+"\n");
+
+        /* TODO
+        * Da quello che ho capito in questo ciclo for vengono trovati i valori delle x e delle y giusto?
+        * Quello che non capisco è come vengono trovati.
+        * Scrivimi una piccola spiegazione qua quando puoi grazie;
+        *
+        *
+        * */
         
         // I valori del ciclo for vengono dati dalla seekbar, grazie alla quale sarà possibile modificare i valori di precision
         for (double i = estremoA; i <= estremoB; i +=precision) {
@@ -105,9 +113,7 @@ public class getValueList {
                     }
 
 
-                    /*TODO Massimo e minimo
 
-                    *   */
 
                     // Aggiungo il valore calcolato al grafico
                     entries.add(new Entry((float) i, value));
