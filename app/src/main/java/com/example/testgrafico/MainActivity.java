@@ -123,10 +123,6 @@ public class MainActivity extends AppCompatActivity {
         }
     });
 
-
-
-
-
         //-----------------------------------DOUBLE TAP---------------------------------------------------------//
 
         final GestureDetector gestureDetector = new GestureDetector(getApplicationContext(), new GestureDetector.SimpleOnGestureListener() {
@@ -166,9 +162,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //-------------------------------------------------------------------------------------------------------------//
-
-
-
 
     }
 

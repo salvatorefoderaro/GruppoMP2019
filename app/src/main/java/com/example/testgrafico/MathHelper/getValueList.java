@@ -2,10 +2,10 @@ package com.example.testgrafico.MathHelper;
 
 import android.content.Context;
 import com.github.mikephil.charting.data.Entry;
+
 import net.sourceforge.jeval.EvaluationException;
 import net.sourceforge.jeval.Evaluator;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import static com.example.testgrafico.MathHelper.MathStringParser.isLeftDigit;
 import static com.example.testgrafico.MathHelper.MathStringParser.isLeftString;
@@ -121,7 +121,6 @@ public class getValueList {
                     * */
 
 
-
                     // Aggiungo il valore calcolato al grafico
                     entries.add(new Entry((float) i, value));
                 } else {
@@ -138,7 +137,6 @@ public class getValueList {
             }
 
         }
-
 
         return entries;
     }
