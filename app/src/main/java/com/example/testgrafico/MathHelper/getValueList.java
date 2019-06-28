@@ -19,9 +19,8 @@ public class getValueList {
 
     static public ArrayList<Entry> getListValue(Context context, String input, int estremoA,
                                                 int estremoB, float precision){
-
-       float maxY = 0, minY = 0, maxX = 0, minX = 0, value;
-
+        float maxY = 0, minY = 0, maxX = 0, minX = 0, value;
+        boolean firstValue = true;
 
         Evaluator mathEvaluator = new Evaluator();
         ArrayList<Entry> entries = new ArrayList<Entry>();
@@ -98,24 +97,25 @@ public class getValueList {
                     value = Float.parseFloat(mathEvaluator.evaluate(input.replace("x_", Double.toString(i))));
 
                     // Trovo massimo e minimo
-                    if (minY == 0 || maxY == 0) {
+                    if (firstValue) {
                         minY = maxY = value;
-                        maxX = minX = (float) i;
+                        maxX = minX = (float) i ;
+                        firstValue = false;
                     } else if (value > maxY) {
                         maxY = value;
                         maxX = (float) i;
                     } else if (value < minY) {
+                        System.out.println("\nValue is: " + value + " and minY is: " + minY);
                         minY = value;
                         minX = (float) i;
                     }
-
-
 
                     // Aggiungo il valore calcolato al grafico
                     entries.add(new Entry((float) i, value));
 
                     getValueList getValueList = new getValueList();
                     getValueList.MaxMin(maxX, maxY, minX, minY);
+
                 } else {
                     error(context, "Errore nel dominio o valore non calcolabile!");
                     return null;
