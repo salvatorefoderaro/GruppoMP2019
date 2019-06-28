@@ -28,13 +28,14 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
     private float precision;
 
     public TestAsyncTask(Context context, String input, int estremoA,
-                         int estremoB, float precision) {
+                         int estremoB, float precision, ProgressDialog dialog) {
         // list all the parameters like in normal class define
         this.context = context;
         this.input = input;
         this.estremoA = estremoA;
         this.estremoB = estremoB;
         this.precision = precision;
+        this.dialog = dialog;
     }
 
     @Override
@@ -165,8 +166,5 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
     protected void onPreExecute() {
         super.onPreExecute();
         System.out.println("Wewe");
-        this.dialog = new ProgressDialog(context);
-        this.dialog.setMessage("WEWE");
-        this.dialog.show();
     }
 }

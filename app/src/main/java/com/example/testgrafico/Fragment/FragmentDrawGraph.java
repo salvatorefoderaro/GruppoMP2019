@@ -3,6 +3,7 @@ package com.example.testgrafico.Fragment;
 import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -26,6 +27,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
@@ -70,6 +72,7 @@ public class FragmentDrawGraph extends DialogFragment {
     private Toolbar toolbar;
     private Menu menuList;
     private TestAsyncTask task;
+    private ProgressDialog dialog;
 
     @Override
     public void onAttach(Activity activity) {
@@ -144,7 +147,10 @@ public class FragmentDrawGraph extends DialogFragment {
         if (function1 != null) {
             ArrayList<Entry> entries1 = null;
             try {
-                task = (TestAsyncTask) new TestAsyncTask(context, function1, estremoA, estremoB, precision).execute();
+                dialog = new ProgressDialog(context);
+                dialog.setMessage("WEWE");
+                dialog.show();
+                task = (TestAsyncTask) new TestAsyncTask(context, function1, estremoA, estremoB, precision, dialog).execute();
                 entries1 = task.get();
             } catch (ExecutionException e) {
                 e.printStackTrace();
@@ -184,7 +190,10 @@ public class FragmentDrawGraph extends DialogFragment {
         if (function2 != null) {
             ArrayList<Entry> entries2 = null;
             try {
-                entries2 = new TestAsyncTask(context, function1, estremoA, estremoB, precision).execute().get();
+                dialog = new ProgressDialog(context);
+                dialog.setMessage("WEWE");
+                dialog.show();
+                entries2 = new TestAsyncTask(context, function1, estremoA, estremoB, precision, dialog).execute().get();
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
