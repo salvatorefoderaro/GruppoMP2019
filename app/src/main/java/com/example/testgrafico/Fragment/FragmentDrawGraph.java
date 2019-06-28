@@ -32,6 +32,7 @@ import android.widget.Toast;
 import com.example.testgrafico.MainActivity;
 import com.example.testgrafico.MaxMin_Singleton;
 import com.example.testgrafico.R;
+import com.example.testgrafico.TestAsyncTask;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.components.IMarker;
 import com.github.mikephil.charting.components.XAxis;
@@ -51,6 +52,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import static com.example.testgrafico.MathHelper.getValueList.*;
 
@@ -67,9 +69,7 @@ public class FragmentDrawGraph extends DialogFragment {
     private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION = 1;
     private Toolbar toolbar;
     private Menu menuList;
-
-
-
+    private TestAsyncTask task;
 
     @Override
     public void onAttach(Activity activity) {
@@ -136,14 +136,21 @@ public class FragmentDrawGraph extends DialogFragment {
     public void drawExpression() {
 
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-
         ArrayList<ILineDataSet> draw_Max = new ArrayList<>();
         ArrayList<ILineDataSet> draw_Min = new ArrayList<>();
 
         // Controllo quante funzioni ho ricevuto dalla Main activity e, per le funzioni
         // != null, ottengo i valori numerici da inserire nel grafico
         if (function1 != null) {
-            ArrayList<Entry> entries1 = getListValue(context, function1, estremoA, estremoB, precision);
+            ArrayList<Entry> entries1 = null;
+            try {
+                task = (TestAsyncTask) new TestAsyncTask(context, function1, estremoA, estremoB, precision).execute();
+                entries1 = task.get();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             ArrayList<Entry> max = MaxMin_Singleton.getInstance().getValues().get(0);
             ArrayList<Entry> min = MaxMin_Singleton.getInstance().getValues().get(1);
 
@@ -175,7 +182,14 @@ public class FragmentDrawGraph extends DialogFragment {
         }
 
         if (function2 != null) {
-            ArrayList<Entry> entries2 = getListValue(context, function2, estremoA, estremoB, precision);
+            ArrayList<Entry> entries2 = null;
+            try {
+                entries2 = new TestAsyncTask(context, function1, estremoA, estremoB, precision).execute().get();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             ArrayList<Entry> max = MaxMin_Singleton.getInstance().getValues().get(0);
             ArrayList<Entry> min = MaxMin_Singleton.getInstance().getValues().get(1);
             if (entries2 == null) {
@@ -208,10 +222,8 @@ public class FragmentDrawGraph extends DialogFragment {
         // Popolo il grafico e lo mostro
         LineData lineData = new LineData(dataSets);
 
-
         /*LineData draw_max = new LineData(max);
         LineData draw_min = new LineData(min);*/
-
 
         chart.setData(lineData);
         chart.invalidate();
@@ -395,8 +407,6 @@ public class FragmentDrawGraph extends DialogFragment {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
 
 
 }
