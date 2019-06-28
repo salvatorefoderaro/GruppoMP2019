@@ -113,6 +113,13 @@ public class getValueList {
                     }
 
 
+                    /* TODO
+                    * Non ho capito neanche perchè nel trovare massimo e minimo consideriamo solo value, che dovrebbe essere la cordinata y giusto?
+                    *
+                    *
+                    *
+                    * */
+
 
 
                     // Aggiungo il valore calcolato al grafico
