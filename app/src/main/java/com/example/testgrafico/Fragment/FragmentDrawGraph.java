@@ -23,17 +23,25 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import com.example.testgrafico.MainActivity;
 import com.example.testgrafico.R;
 import com.github.mikephil.charting.charts.Chart;
+import com.github.mikephil.charting.components.IMarker;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.listener.ChartTouchListener;
+import com.github.mikephil.charting.listener.OnChartGestureListener;
+import com.github.mikephil.charting.utils.MPPointD;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -41,8 +49,11 @@ import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-import static com.example.testgrafico.MathHelper.getValueList.getListValue;
+import static com.example.testgrafico.MathHelper.getValueList.*;
+
+
 
 public class FragmentDrawGraph extends DialogFragment {
 
@@ -57,6 +68,9 @@ public class FragmentDrawGraph extends DialogFragment {
     private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION = 1;
     private Toolbar toolbar;
     private Menu menuList;
+
+
+
 
     @Override
     public void onAttach(Activity activity) {
@@ -133,8 +147,9 @@ public class FragmentDrawGraph extends DialogFragment {
                 return;
             }
             LineDataSet dataSet = new LineDataSet(entries1, function1);
+
             dataSet.setColor(Color.RED);
-            dataSet.setCircleColor(Color.RED);
+            dataSet.setDrawCircles(false);  //Disattivo i cerchi sui vari punti
             dataSet.setDrawValues(false);
             dataSets.add(dataSet);
         }
@@ -146,15 +161,77 @@ public class FragmentDrawGraph extends DialogFragment {
                 return;
             }
             LineDataSet dataSet1 = new LineDataSet(entries2, function2);
+            dataSet1.setDrawCircles(false);  //Disattivo i cerchi sui vari punti
             dataSet1.setDrawValues(false);
             dataSets.add(dataSet1);
         }
 
+
         // Popolo il grafico e lo mostro
         LineData lineData = new LineData(dataSets);
+
+        /*LineData draw_max = new LineData(max);
+        LineData draw_min = new LineData(min);*/
+
+
         chart.setData(lineData);
         chart.invalidate();
         chart.getDescription().setEnabled(false);
+        chart.setScaleX(1.0f);
+        chart.setScaleY(1.0f);
+        chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+
+        /*chart.setOnChartGestureListener(new OnChartGestureListener() {
+            @Override
+            public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+
+            }
+
+            @Override
+            public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+
+            }
+
+            @Override
+            public void onChartLongPressed(MotionEvent me) {
+
+            }
+
+            @Override
+            public void onChartDoubleTapped(MotionEvent me) {
+
+            }
+
+            @Override
+            public void onChartSingleTapped(MotionEvent me) {
+
+                System.out.println(chart.getXAxis().getXOffset());
+
+
+
+            }
+
+            @Override
+            public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) {
+
+            }
+
+            @Override
+            public void onChartScale(MotionEvent me, float scaleX, float scaleY) {
+
+            }
+
+            @Override
+            public void onChartTranslate(MotionEvent me, float dX, float dY) {
+
+            }
+        });*/
+
+
+
+
+
+
     }
 
     // Permessi necessari per l'intent della condivisione e per il salvataggio del grafico in galleria
@@ -279,5 +356,8 @@ public class FragmentDrawGraph extends DialogFragment {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
+
 
 }

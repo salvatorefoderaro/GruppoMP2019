@@ -4,6 +4,8 @@ import android.content.Context;
 import com.github.mikephil.charting.data.Entry;
 import net.sourceforge.jeval.EvaluationException;
 import net.sourceforge.jeval.Evaluator;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import static com.example.testgrafico.MathHelper.MathStringParser.isLeftDigit;
 import static com.example.testgrafico.MathHelper.MathStringParser.isLeftString;
@@ -12,12 +14,15 @@ import static com.example.testgrafico.MathHelper.MathStringParser.isRightString;
 import static com.example.testgrafico.MainActivity.error;
 
 public class getValueList {
+
     static public ArrayList<Entry> getListValue(Context context, String input, int estremoA,
                                                 int estremoB, float precision){
 
+       float maxElem = 0, minElem = 0, value;
+
+
         Evaluator mathEvaluator = new Evaluator();
         ArrayList<Entry> entries = new ArrayList<Entry>();
-        float maxElem = 0, minElem = 0, value;
 
         String toLeft, toRight, leftString, rightString, betweenAbs;
 
@@ -98,6 +103,11 @@ public class getValueList {
                         minElem = value;
                     }
 
+
+                    /*TODO Massimo e minimo
+
+                    *   */
+
                     // Aggiungo il valore calcolato al grafico
                     entries.add(new Entry((float) i, value));
                 } else {
@@ -114,6 +124,9 @@ public class getValueList {
             }
 
         }
+
+
         return entries;
     }
+
 }
