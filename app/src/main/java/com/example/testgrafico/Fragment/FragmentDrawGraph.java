@@ -30,6 +30,7 @@ import android.widget.SeekBar;
 import android.widget.Toast;
 
 import com.example.testgrafico.MainActivity;
+import com.example.testgrafico.MaxMin_Singleton;
 import com.example.testgrafico.R;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.components.IMarker;
@@ -52,8 +53,6 @@ import java.util.Date;
 import java.util.List;
 
 import static com.example.testgrafico.MathHelper.getValueList.*;
-
-
 
 public class FragmentDrawGraph extends DialogFragment {
 
@@ -138,37 +137,77 @@ public class FragmentDrawGraph extends DialogFragment {
 
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
 
+        ArrayList<ILineDataSet> draw_Max = new ArrayList<>();
+        ArrayList<ILineDataSet> draw_Min = new ArrayList<>();
+
         // Controllo quante funzioni ho ricevuto dalla Main activity e, per le funzioni
         // != null, ottengo i valori numerici da inserire nel grafico
         if (function1 != null) {
             ArrayList<Entry> entries1 = getListValue(context, function1, estremoA, estremoB, precision);
+            ArrayList<Entry> max = MaxMin_Singleton.getInstance().getValues().get(0);
+            ArrayList<Entry> min = MaxMin_Singleton.getInstance().getValues().get(1);
+
             if (entries1 == null) {
                 dismiss();
                 return;
             }
             LineDataSet dataSet = new LineDataSet(entries1, function1);
+            LineDataSet max_c = new LineDataSet(max, "max");
+            LineDataSet min_c = new LineDataSet(min, "min");
+
+            max_c.setColor(Color.BLACK);
+            min_c.setColor(Color.GREEN);
+            max_c.setDrawCircles(true);
+            min_c.setDrawCircles(true);
+            max_c.setCircleColor(Color.BLACK);
+            min_c.setCircleColor(Color.GREEN);
+            max_c.setDrawValues(false);
+            min_c.setDrawValues(false);
+            draw_Max.add(max_c);
+            draw_Min.add(min_c);
 
             dataSet.setColor(Color.RED);
             dataSet.setDrawCircles(false);  //Disattivo i cerchi sui vari punti
             dataSet.setDrawValues(false);
             dataSets.add(dataSet);
+            dataSets.add(max_c);            //Aggiunngo massimo e minimo
+            dataSets.add(min_c);
         }
 
         if (function2 != null) {
             ArrayList<Entry> entries2 = getListValue(context, function2, estremoA, estremoB, precision);
+            ArrayList<Entry> max = MaxMin_Singleton.getInstance().getValues().get(0);
+            ArrayList<Entry> min = MaxMin_Singleton.getInstance().getValues().get(1);
             if (entries2 == null) {
                 dismiss();
                 return;
             }
             LineDataSet dataSet1 = new LineDataSet(entries2, function2);
+            LineDataSet max_c = new LineDataSet(max, "max");
+            LineDataSet min_c = new LineDataSet(min, "min");
+
+            max_c.setColor(Color.BLACK);
+            min_c.setColor(Color.GREEN);
+            max_c.setDrawCircles(true);
+            min_c.setDrawCircles(true);
+            max_c.setCircleColor(Color.BLACK);
+            min_c.setCircleColor(Color.GREEN);
+            max_c.setDrawValues(false);
+            min_c.setDrawValues(false);
+            draw_Max.add(max_c);
+            draw_Min.add(min_c);
+
             dataSet1.setDrawCircles(false);  //Disattivo i cerchi sui vari punti
             dataSet1.setDrawValues(false);
             dataSets.add(dataSet1);
+            dataSets.add(max_c);            //Aggiunngo massimo e minimo
+            dataSets.add(min_c);
         }
 
 
         // Popolo il grafico e lo mostro
         LineData lineData = new LineData(dataSets);
+
 
         /*LineData draw_max = new LineData(max);
         LineData draw_min = new LineData(min);*/

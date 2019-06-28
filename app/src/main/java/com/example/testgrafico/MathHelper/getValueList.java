@@ -1,11 +1,13 @@
 package com.example.testgrafico.MathHelper;
 
 import android.content.Context;
-import com.github.mikephil.charting.data.Entry;
 
+import com.example.testgrafico.MaxMin_Singleton;
+import com.github.mikephil.charting.data.Entry;
 import net.sourceforge.jeval.EvaluationException;
 import net.sourceforge.jeval.Evaluator;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import static com.example.testgrafico.MathHelper.MathStringParser.isLeftDigit;
 import static com.example.testgrafico.MathHelper.MathStringParser.isLeftString;
@@ -18,7 +20,7 @@ public class getValueList {
     static public ArrayList<Entry> getListValue(Context context, String input, int estremoA,
                                                 int estremoB, float precision){
 
-       float maxElem = 0, minElem = 0, value;
+       float maxY = 0, minY = 0, maxX = 0, minX = 0, value;
 
 
         Evaluator mathEvaluator = new Evaluator();
@@ -79,14 +81,6 @@ public class getValueList {
 
         System.out.println("\n"+input+"\n");
 
-        /* TODO
-        * Da quello che ho capito in questo ciclo for vengono trovati i valori delle x e delle y giusto?
-        * Quello che non capisco è come vengono trovati.
-        * Scrivimi una piccola spiegazione qua quando puoi grazie;
-        *
-        *
-        * */
-        
         // I valori del ciclo for vengono dati dalla seekbar, grazie alla quale sarà possibile modificare i valori di precision
         for (double i = estremoA; i <= estremoB; i +=precision) {
 
@@ -104,25 +98,24 @@ public class getValueList {
                     value = Float.parseFloat(mathEvaluator.evaluate(input.replace("x_", Double.toString(i))));
 
                     // Trovo massimo e minimo
-                    if (minElem == 0 || maxElem == 0) {
-                        minElem = maxElem = value;
-                    } else if (value > maxElem) {
-                        maxElem = value;
-                    } else if (value < minElem) {
-                        minElem = value;
+                    if (minY == 0 || maxY == 0) {
+                        minY = maxY = value;
+                        maxX = minX = (float) i;
+                    } else if (value > maxY) {
+                        maxY = value;
+                        maxX = (float) i;
+                    } else if (value < minY) {
+                        minY = value;
+                        minX = (float) i;
                     }
 
-
-                    /* TODO
-                    * Non ho capito neanche perchè nel trovare massimo e minimo consideriamo solo value, che dovrebbe essere la cordinata y giusto?
-                    *
-                    *
-                    *
-                    * */
 
 
                     // Aggiungo il valore calcolato al grafico
                     entries.add(new Entry((float) i, value));
+
+                    getValueList getValueList = new getValueList();
+                    getValueList.MaxMin(maxX, maxY, minX, minY);
                 } else {
                     error(context, "Errore nel dominio o valore non calcolabile!");
                     return null;
@@ -137,8 +130,26 @@ public class getValueList {
             }
 
         }
-
         return entries;
     }
+
+    public void MaxMin(float maxX, float maxY, float minX, float minY){
+
+        ArrayList<Entry> max = new ArrayList<>();
+        ArrayList<Entry> min = new ArrayList<>();
+
+        ArrayList<ArrayList<Entry>> mEm_coord = new ArrayList<>();
+
+        max.add(new Entry(maxX, maxY));
+        min.add(new Entry(minX, minY));
+
+        mEm_coord.add(0, max);
+        mEm_coord.add(1, min);
+
+        MaxMin_Singleton.getInstance().setValues(mEm_coord);
+
+    }
+
+
 
 }
