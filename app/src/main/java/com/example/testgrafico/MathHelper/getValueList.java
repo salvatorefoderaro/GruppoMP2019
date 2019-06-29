@@ -6,8 +6,6 @@ import com.example.testgrafico.MaxMin_Singleton;
 import com.github.mikephil.charting.data.Entry;
 import net.sourceforge.jeval.EvaluationException;
 import net.sourceforge.jeval.Evaluator;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import static com.example.testgrafico.MathHelper.MathStringParser.isLeftDigit;
 import static com.example.testgrafico.MathHelper.MathStringParser.isLeftString;
@@ -77,7 +75,6 @@ public class getValueList {
             e.printStackTrace();
         }
 
-
         System.out.println("\n"+input+"\n");
 
         // I valori del ciclo for vengono dati dalla seekbar, grazie alla quale sarà possibile modificare i valori di precision
@@ -105,7 +102,6 @@ public class getValueList {
                         maxY = value;
                         maxX = (float) i;
                     } else if (value < minY) {
-                        System.out.println("\nValue is: " + value + " and minY is: " + minY);
                         minY = value;
                         minX = (float) i;
                     }
@@ -149,7 +145,5 @@ public class getValueList {
         MaxMin_Singleton.getInstance().setValues(mEm_coord);
 
     }
-
-
 
 }

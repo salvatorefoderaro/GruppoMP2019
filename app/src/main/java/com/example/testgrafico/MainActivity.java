@@ -42,9 +42,6 @@ public class MainActivity extends AppCompatActivity {
     private String clicked_editText;
     private FragmentManager fm = getSupportFragmentManager();
     private FragmentFunction fragment = new FragmentFunction();
-
-
-
     private FloatingActionButton drawGraph;
 
     public String getClicked_editText() {
