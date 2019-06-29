@@ -38,6 +38,8 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
         this.dialog = dialog;
     }
 
+    // Le chiamate a publishProgress() chiamano il metodo onProgressUpdate() presente nell'AsyncTask
+
     @Override
     protected ArrayList<Entry> doInBackground(ArrayList<Entry>... arrayLists) {
         float maxY = 0, minY = 0, maxX = 0, minX = 0, value;
@@ -167,6 +169,8 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
         return entries;
     }
 
+    // Ho spostato qua la chiamata ad error(), in quanto qui viene chiamato l'UI Thread e quindi posso fare l'aggiornamento.
+    // Farlo direttamente dalla parte sopra da errore in quanto si tratta di un Worker thread
     @Override
     protected void onProgressUpdate(String... values) {
         super.onProgressUpdate(values);
@@ -184,6 +188,5 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        System.out.println("Wewe");
     }
 }
