@@ -33,7 +33,6 @@ public class getValueList {
             return null;
         }
 
-        // Per evitare problemi con l'esponenziale, effettuo questa sostituzione
 
         while (input.contains("|")){
 
@@ -63,35 +62,37 @@ public class getValueList {
                 toRight = isRightString(rightString);
             }
 
-            System.out.println("To left is :" + toLeft + " To right is: " + toRight);
             input = input.replace(toLeft + "^" + toRight, "pow(" + toLeft + "," + toRight + ")");
         }
 
+        // Per evitare problemi con l'esponenziale, effettuo questa sostituzione
         input = input.replace("e", "exp(1)");
-
-        try {
-            mathEvaluator.evaluate("(pow(1,2) + 2)");
-        } catch (EvaluationException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("\n"+input+"\n");
 
         // I valori del ciclo for vengono dati dalla seekbar, grazie alla quale sarà possibile modificare i valori di precision
         for (double i = estremoA; i <= estremoB; i +=precision) {
 
             try {
 
+                String testValue = mathEvaluator.evaluate(input.replace("x_", Double.toString(i)));
+
                 // Controllo che il valore della funzione non sia NaN (non definito) o +/- infinito,
                 // lo faccio sostituendo ad x_ il valore assunto da i nel ciclo for
+
                 if (
-                        (!mathEvaluator.evaluate(input.replace("x_", Double.toString(i))).equals("NaN"))
+                        (!testValue.equals("NaN"))
                             && (!mathEvaluator.evaluate(input.replace("x_", Double.toString(i))).equals("-Infinity"))
                             && (!mathEvaluator.evaluate(input.replace("x_", Double.toString(i))).equals("+Infinity"))
                             && (!mathEvaluator.evaluate(input.replace("x_", Double.toString(i))).equals("Infinity"))
                 ) {
 
-                    value = Float.parseFloat(mathEvaluator.evaluate(input.replace("x_", Double.toString(i))));
+                    if (testValue.equals("-Infinity")){
+                        continue;
+                    }
+                    if (testValue.equals("+Infinity")){
+
+                    }
+
+                    value = Float.parseFloat(testValue);
 
                     // Trovo massimo e minimo
                     if (firstValue) {

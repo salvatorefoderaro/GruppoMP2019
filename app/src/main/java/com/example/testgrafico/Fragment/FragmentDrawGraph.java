@@ -157,13 +157,15 @@ public class FragmentDrawGraph extends DialogFragment {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            ArrayList<Entry> max = MaxMin_Singleton.getInstance().getValues().get(0);
-            ArrayList<Entry> min = MaxMin_Singleton.getInstance().getValues().get(1);
 
             if (entries1 == null) {
                 dismiss();
                 return;
             }
+
+            ArrayList<Entry> max = MaxMin_Singleton.getInstance().getValues().get(0);
+            ArrayList<Entry> min = MaxMin_Singleton.getInstance().getValues().get(1);
+
             LineDataSet dataSet = new LineDataSet(entries1, function1);
             LineDataSet max_c = new LineDataSet(max, "max");
             LineDataSet min_c = new LineDataSet(min, "min");
@@ -199,12 +201,15 @@ public class FragmentDrawGraph extends DialogFragment {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            ArrayList<Entry> max = MaxMin_Singleton.getInstance().getValues().get(0);
-            ArrayList<Entry> min = MaxMin_Singleton.getInstance().getValues().get(1);
+
             if (entries2 == null) {
                 dismiss();
                 return;
             }
+
+            ArrayList<Entry> max = MaxMin_Singleton.getInstance().getValues().get(0);
+            ArrayList<Entry> min = MaxMin_Singleton.getInstance().getValues().get(1);
+
             LineDataSet dataSet1 = new LineDataSet(entries2, function2);
             LineDataSet max_c = new LineDataSet(max, "max");
             LineDataSet min_c = new LineDataSet(min, "min");

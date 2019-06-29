@@ -52,7 +52,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
 
         if (!input.contains("x_")){
 
-            error(context, "Errore di sintassi nella funzione inserita!");
+            publishProgress( "Errore di sintassi nella funzione inserita!");
             return null;
         }
 
@@ -86,7 +86,6 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
                 toRight = isRightString(rightString);
             }
 
-            System.out.println("To left is :" + toLeft + " To right is: " + toRight);
             input = input.replace(toLeft + "^" + toRight, "pow(" + toLeft + "," + toRight + ")");
         }
 
@@ -98,24 +97,37 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
             e.printStackTrace();
         }
 
-
-        System.out.println("\n"+input+"\n");
-
         // I valori del ciclo for vengono dati dalla seekbar, grazie alla quale sarà possibile modificare i valori di precision
         for (double i = estremoA; i <= estremoB; i +=precision) {
 
             try {
 
+                String valueToParse = mathEvaluator.evaluate(input.replace("x_", Double.toString(i)));
+
                 // Controllo che il valore della funzione non sia NaN (non definito) o +/- infinito,
                 // lo faccio sostituendo ad x_ il valore assunto da i nel ciclo for
-                if (
-                        (!mathEvaluator.evaluate(input.replace("x_", Double.toString(i))).equals("NaN"))
-                                && (!mathEvaluator.evaluate(input.replace("x_", Double.toString(i))).equals("-Infinity"))
-                                && (!mathEvaluator.evaluate(input.replace("x_", Double.toString(i))).equals("+Infinity"))
-                                && (!mathEvaluator.evaluate(input.replace("x_", Double.toString(i))).equals("Infinity"))
-                ) {
+                if ( (!valueToParse.equals("NaN")) ) {
 
                     value = Float.parseFloat(mathEvaluator.evaluate(input.replace("x_", Double.toString(i))));
+
+                    if (valueToParse.equals("-Infinity")){
+                        entries.add(new Entry((float) i, minY - 99));
+                        minY = minY - 9999f;
+                        minX = (float)i;
+                        continue;
+                    }
+
+                    if (valueToParse.equals("+Infinity")){
+                        entries.add(new Entry((float) i, maxY + 99));
+                        maxY = maxY - 9999f;
+                        maxX = (float)i;
+                        continue;
+                    }
+
+                    if (valueToParse.equals("Infinity")){
+                        publishProgress( "Valore troppo grande!");
+                        return null;
+                    }
 
                     // Trovo massimo e minimo
                     if (firstValue) {
@@ -138,7 +150,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
                     getValueList.MaxMin(maxX, maxY, minX, minY);
 
                 } else {
-                    error(context, "Errore nel dominio o valore non calcolabile!");
+                    publishProgress( "Errore nel dominio della funzione!");
                     return null;
                 }
 
@@ -146,12 +158,19 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
                 e.printStackTrace();
                 // Errore di sintassi nella stringa inserita dall'utente,
                 // unico motivo per il quale jEval fallisce (quando non sa interpretare la stringa)
-                error(context, "Errore di sintassi nella funzione inserita!");
+
+                publishProgress("Errore di sintassi nella funzione inserita!");
                 return null;
             }
 
         }
         return entries;
+    }
+
+    @Override
+    protected void onProgressUpdate(String... values) {
+        super.onProgressUpdate(values);
+        error(context, values[0]);
     }
 
     // Al termine dell'esecuzione
