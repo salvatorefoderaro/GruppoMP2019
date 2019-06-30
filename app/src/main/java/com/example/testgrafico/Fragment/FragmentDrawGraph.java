@@ -24,28 +24,20 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
-import com.example.testgrafico.MainActivity;
-import com.example.testgrafico.MaxMin_Singleton;
+import com.example.testgrafico.MathHelper.MaxMin_Singleton;
 import com.example.testgrafico.R;
-import com.example.testgrafico.TestAsyncTask;
+import com.example.testgrafico.AsyncTask.TestAsyncTask;
 import com.github.mikephil.charting.charts.Chart;
-import com.github.mikephil.charting.components.IMarker;
 import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.github.mikephil.charting.listener.ChartTouchListener;
-import com.github.mikephil.charting.listener.OnChartGestureListener;
-import com.github.mikephil.charting.utils.MPPointD;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -53,10 +45,7 @@ import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
-
-import static com.example.testgrafico.MathHelper.getValueList.*;
 
 public class FragmentDrawGraph extends DialogFragment {
 
@@ -72,7 +61,7 @@ public class FragmentDrawGraph extends DialogFragment {
     private Toolbar toolbar;
     private Menu menuList;
     private TestAsyncTask task;
-    private ProgressDialog dialog;
+    private ProgressDialog dialogBar;
 
     @Override
     public void onAttach(Activity activity) {
@@ -89,6 +78,18 @@ public class FragmentDrawGraph extends DialogFragment {
             int height = ViewGroup.LayoutParams.MATCH_PARENT;
             dialog.getWindow().setLayout(width, height);
         }
+
+        this.dialogBar = new ProgressDialog(context);
+        this.dialogBar.setTitle("Aspetta...");
+        this.dialogBar.setMessage("Sto calcolando il valore della funzione...");
+        this.dialogBar.setCancelable(false);
+        this.dialogBar.setIndeterminate(true);
+        this.dialogBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        this.dialogBar.show();
+
+        // Se commento la linea di codice 91, la barra parte, altrimenti no!
+        drawExpression();
+
     }
 
     @Override
@@ -108,7 +109,6 @@ public class FragmentDrawGraph extends DialogFragment {
 
         // Imposto le funzioni per la seekbar
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-
             @Override
             public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser) {
                 precision = 0.1f - ((seekBar.getProgress() + 0.1f) * 0.01f);
@@ -130,9 +130,6 @@ public class FragmentDrawGraph extends DialogFragment {
         estremoA = getArguments().getInt("estremoA");
         estremoB = getArguments().getInt("estremoB");
 
-        // Procedo con la creazione del grafico
-        drawExpression();
-
         return view;
     }
 
@@ -147,10 +144,7 @@ public class FragmentDrawGraph extends DialogFragment {
         if (function1 != null) {
             ArrayList<Entry> entries1 = null;
             try {
-                dialog = new ProgressDialog(context);
-                dialog.setMessage("WEWE");
-                dialog.show();
-                task = (TestAsyncTask) new TestAsyncTask(context, function1, estremoA, estremoB, precision, dialog).execute();
+                task = (TestAsyncTask) new TestAsyncTask(context, function1, estremoA, estremoB, precision, this.dialogBar).execute();
                 entries1 = task.get();
             } catch (ExecutionException e) {
                 e.printStackTrace();
@@ -192,10 +186,7 @@ public class FragmentDrawGraph extends DialogFragment {
         if (function2 != null) {
             ArrayList<Entry> entries2 = null;
             try {
-                dialog = new ProgressDialog(context);
-                dialog.setMessage("WEWE");
-                dialog.show();
-                entries2 = new TestAsyncTask(context, function1, estremoA, estremoB, precision, dialog).execute().get();
+                entries2 = new TestAsyncTask(context, function1, estremoA, estremoB, precision, this.dialogBar).execute().get();
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
@@ -231,7 +222,6 @@ public class FragmentDrawGraph extends DialogFragment {
             dataSets.add(max_c);            //Aggiunngo massimo e minimo
             dataSets.add(min_c);
         }
-
 
         // Popolo il grafico e lo mostro
         LineData lineData = new LineData(dataSets);
@@ -291,11 +281,6 @@ public class FragmentDrawGraph extends DialogFragment {
 
             }
         });*/
-
-
-
-
-
 
     }
 

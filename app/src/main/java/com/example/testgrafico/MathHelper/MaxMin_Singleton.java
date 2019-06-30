@@ -1,6 +1,5 @@
-package com.example.testgrafico;
+package com.example.testgrafico.MathHelper;
 
-import com.example.testgrafico.MathHelper.getValueList;
 import com.github.mikephil.charting.data.Entry;
 
 import java.util.ArrayList;

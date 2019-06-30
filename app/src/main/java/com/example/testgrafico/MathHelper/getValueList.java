@@ -2,7 +2,6 @@ package com.example.testgrafico.MathHelper;
 
 import android.content.Context;
 
-import com.example.testgrafico.MaxMin_Singleton;
 import com.github.mikephil.charting.data.Entry;
 import net.sourceforge.jeval.EvaluationException;
 import net.sourceforge.jeval.Evaluator;
@@ -28,21 +27,18 @@ public class getValueList {
         input = input.replace(" ", "");
 
         if (!input.contains("x_")){
-
             error(context, "Errore di sintassi nella funzione inserita!");
             return null;
         }
 
 
         while (input.contains("|")){
-
             betweenAbs = input.substring(input.indexOf("|") + 1,
                     input.substring(input.indexOf("|") +1).indexOf("|") + input.indexOf("|")+1);
             input = input.replace("|" + betweenAbs + "|", "abs(" + betweenAbs + ")");
         }
 
         while(input.contains("^")) {
-
             // Trasformo tutti i "cappelletti", per poterli far digerire a jEval
             leftString = input.substring(0, input.indexOf("^"));
             rightString = input.substring(input.indexOf("^") + 1);
@@ -144,7 +140,6 @@ public class getValueList {
         mEm_coord.add(1, min);
 
         MaxMin_Singleton.getInstance().setValues(mEm_coord);
-
     }
 
 }

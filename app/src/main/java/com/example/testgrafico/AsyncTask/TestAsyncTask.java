@@ -1,4 +1,4 @@
-package com.example.testgrafico;
+package com.example.testgrafico.AsyncTask;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -53,7 +53,6 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
         input = input.replace(" ", "");
 
         if (!input.contains("x_")){
-
             publishProgress( "Errore di sintassi nella funzione inserita!");
             return null;
         }
@@ -61,9 +60,8 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
         // Per evitare problemi con l'esponenziale, effettuo questa sostituzione
 
         while (input.contains("|")){
-
             betweenAbs = input.substring(input.indexOf("|") + 1,
-                    input.substring(input.indexOf("|") +1).indexOf("|") + input.indexOf("|")+1);
+                        input.substring(input.indexOf("|") +1).indexOf("|") + input.indexOf("|")+1);
             input = input.replace("|" + betweenAbs + "|", "abs(" + betweenAbs + ")");
         }
 
@@ -92,25 +90,18 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
         }
 
         input = input.replace("e", "exp(1)");
-
-        try {
-            mathEvaluator.evaluate("(pow(1,2) + 2)");
-        } catch (EvaluationException e) {
-            e.printStackTrace();
-        }
-
+        System.out.println(input);
         // I valori del ciclo for vengono dati dalla seekbar, grazie alla quale sarà possibile modificare i valori di precision
         for (double i = estremoA; i <= estremoB; i +=precision) {
 
             try {
-
-                String valueToParse = mathEvaluator.evaluate(input.replace("x_", Double.toString(i)));
+                String valueToParse = mathEvaluator.evaluate(input.replace("x_", String.format("%.12f", i)));
 
                 // Controllo che il valore della funzione non sia NaN (non definito) o +/- infinito,
                 // lo faccio sostituendo ad x_ il valore assunto da i nel ciclo for
                 if ( (!valueToParse.equals("NaN")) ) {
 
-                    value = Float.parseFloat(mathEvaluator.evaluate(input.replace("x_", Double.toString(i))));
+                    value = Float.parseFloat(valueToParse);
 
                     if (valueToParse.equals("-Infinity")){
                         entries.add(new Entry((float) i, minY - 99));
@@ -181,6 +172,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
     @Override
     protected void onPostExecute(ArrayList<Entry> result) {
         // execution of result of Long time consuming operation
+        System.out.println("Ho terminato l'esecuzione!");
         this.dialog.dismiss();
     }
 
