@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.example.testgrafico.Fragment.FragmentDrawGraph;
 import com.example.testgrafico.MathHelper.getValueList;
 import com.github.mikephil.charting.data.Entry;
 
@@ -27,9 +28,10 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
     private int estremoA;
     private int estremoB;
     private float precision;
+    private FragmentDrawGraph istance;
 
     public TestAsyncTask(Context context, String input, int estremoA,
-                         int estremoB, float precision, ProgressDialog dialog) {
+                         int estremoB, float precision, ProgressDialog dialog, FragmentDrawGraph istance) {
         // list all the parameters like in normal class define
         this.context = context;
         this.input = input;
@@ -37,6 +39,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
         this.estremoB = estremoB;
         this.precision = precision;
         this.dialog = dialog;
+        this.istance = istance;
     }
 
     // Le chiamate a publishProgress() chiamano il metodo onProgressUpdate() presente nell'AsyncTask
@@ -140,7 +143,6 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
 
                     // Aggiungo il valore calcolato al grafico
                     entries.add(new Entry((float) i, value));
-
                     getValueList getValueList = new getValueList();
                     getValueList.MaxMin(maxX, maxY, minX, minY);
 
@@ -153,11 +155,9 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
                 e.printStackTrace();
                 // Errore di sintassi nella stringa inserita dall'utente,
                 // unico motivo per il quale jEval fallisce (quando non sa interpretare la stringa)
-
                 publishProgress("Errore di sintassi nella funzione inserita!");
                 return null;
             }
-
         }
         return entries;
     }
@@ -170,12 +170,12 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
         error(context, values[0]);
     }
 
-    // Al termine dell'esecuzione
+    // Al termine dell'esecuzione, chiamo il metodo all'interno del fragment per restituire la lista con i valori calcolati
     @Override
     protected void onPostExecute(ArrayList<Entry> result) {
         // execution of result of Long time consuming operation
         System.out.println("Ho terminato l'esecuzione!");
-        this.dialog.dismiss();
+        istance.getValueBack(result, this.input);
     }
 
     // Prima dell'esecuzione

@@ -45,7 +45,6 @@ import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.concurrent.ExecutionException;
 
 public class FragmentDrawGraph extends DialogFragment {
 
@@ -61,7 +60,11 @@ public class FragmentDrawGraph extends DialogFragment {
     private Toolbar toolbar;
     private Menu menuList;
     private TestAsyncTask task;
-    private ProgressDialog dialogBar;
+    private ProgressDialog progressDialog;
+    private ArrayList<ILineDataSet> dataSets;
+    private ArrayList<ILineDataSet> draw_Max;
+    private ArrayList<ILineDataSet> draw_Min;
+    private int toPlot;
 
     @Override
     public void onAttach(Activity activity) {
@@ -79,17 +82,17 @@ public class FragmentDrawGraph extends DialogFragment {
             dialog.getWindow().setLayout(width, height);
         }
 
-        this.dialogBar = new ProgressDialog(context);
-        this.dialogBar.setTitle("Aspetta...");
-        this.dialogBar.setMessage("Sto calcolando il valore della funzione...");
-        this.dialogBar.setCancelable(false);
-        this.dialogBar.setIndeterminate(true);
-        this.dialogBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        this.dialogBar.show();
+        // Mostro la ProgressDialog durante il calcolo dei valori numerici
+        this.progressDialog = new ProgressDialog(context);
+        this.progressDialog.setTitle("Aspetta...");
+        this.progressDialog.setMessage("Sto calcolando il valore della funzione...");
+        this.progressDialog.setCancelable(false);
+        this.progressDialog.setIndeterminate(true);
+        this.progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        this.progressDialog.show();
 
-        // Se commento la linea di codice 91, la barra parte, altrimenti no!
+        // Procedo con la funzione per l'avvio degli AsyncTask
         drawExpression();
-
     }
 
     @Override
@@ -133,108 +136,71 @@ public class FragmentDrawGraph extends DialogFragment {
         return view;
     }
 
+    public void getValueBack(ArrayList<Entry> resultList, String functionName){
+
+        // Se c'è stato un errore nel calcolo dei valori numerici, chiudo il Fragment
+        if (resultList == null) {
+            dismiss();
+            return;
+        }
+
+        draw_Max = new ArrayList<>();
+        draw_Min = new ArrayList<>();
+
+        ArrayList<Entry> max = MaxMin_Singleton.getInstance().getValues().get(0);
+        ArrayList<Entry> min = MaxMin_Singleton.getInstance().getValues().get(1);
+
+        LineDataSet dataSet = new LineDataSet(resultList, functionName);
+        LineDataSet max_c = new LineDataSet(max, "max");
+        LineDataSet min_c = new LineDataSet(min, "min");
+
+        max_c.setColor(Color.BLACK);
+        min_c.setColor(Color.GREEN);
+        max_c.setDrawCircles(true);
+        min_c.setDrawCircles(true);
+        max_c.setCircleColor(Color.BLACK);
+        min_c.setCircleColor(Color.GREEN);
+        max_c.setDrawValues(false);
+        min_c.setDrawValues(false);
+        draw_Max.add(max_c);
+        draw_Min.add(min_c);
+
+        dataSet.setColor(Color.RED);
+        dataSet.setDrawCircles(false);  //Disattivo i cerchi sui vari punti
+        dataSet.setDrawValues(false);
+
+        dataSets.add(dataSet);
+        dataSets.add(max_c);            //Aggiunngo massimo e minimo
+        dataSets.add(min_c);
+
+        // Controllo se ci sono altre funzioni di cui dover calcolare i valori numerici,
+        // in caso non ce ne siano altre procedo alla creazione del grafico
+        toPlot = toPlot - 1;
+        if (toPlot == 0){
+            plotGraph();
+        }
+
+    }
+
     public void drawExpression() {
 
-        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-        ArrayList<ILineDataSet> draw_Max = new ArrayList<>();
-        ArrayList<ILineDataSet> draw_Min = new ArrayList<>();
+        dataSets = new ArrayList<>();
 
-        // Controllo quante funzioni ho ricevuto dalla Main activity e, per le funzioni
-        // != null, ottengo i valori numerici da inserire nel grafico
+        // Imposto il numero di funzioni di cui devo disegnare il grafico
+        if (function1 != null && function2 != null){
+            toPlot = 2;
+        } else {
+            toPlot = 1;
+        }
+
+        // Faccio partire gli Async task per il calcolo dei valori
         if (function1 != null) {
-            ArrayList<Entry> entries1 = null;
-            try {
-                task = (TestAsyncTask) new TestAsyncTask(context, function1, estremoA, estremoB, precision, this.dialogBar).execute();
-                entries1 = task.get();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            if (entries1 == null) {
-                dismiss();
-                return;
-            }
-
-            ArrayList<Entry> max = MaxMin_Singleton.getInstance().getValues().get(0);
-            ArrayList<Entry> min = MaxMin_Singleton.getInstance().getValues().get(1);
-
-            LineDataSet dataSet = new LineDataSet(entries1, function1);
-            LineDataSet max_c = new LineDataSet(max, "max");
-            LineDataSet min_c = new LineDataSet(min, "min");
-
-            max_c.setColor(Color.BLACK);
-            min_c.setColor(Color.GREEN);
-            max_c.setDrawCircles(true);
-            min_c.setDrawCircles(true);
-            max_c.setCircleColor(Color.BLACK);
-            min_c.setCircleColor(Color.GREEN);
-            max_c.setDrawValues(false);
-            min_c.setDrawValues(false);
-            draw_Max.add(max_c);
-            draw_Min.add(min_c);
-
-            dataSet.setColor(Color.RED);
-            dataSet.setDrawCircles(false);  //Disattivo i cerchi sui vari punti
-            dataSet.setDrawValues(false);
-            dataSets.add(dataSet);
-            dataSets.add(max_c);            //Aggiunngo massimo e minimo
-            dataSets.add(min_c);
+            task = (TestAsyncTask) new TestAsyncTask(context, function1, estremoA, estremoB, precision, this.progressDialog, this).execute();
         }
 
         if (function2 != null) {
-            ArrayList<Entry> entries2 = null;
-            try {
-                entries2 = new TestAsyncTask(context, function1, estremoA, estremoB, precision, this.dialogBar).execute().get();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            if (entries2 == null) {
-                dismiss();
-                return;
-            }
-
-            ArrayList<Entry> max = MaxMin_Singleton.getInstance().getValues().get(0);
-            ArrayList<Entry> min = MaxMin_Singleton.getInstance().getValues().get(1);
-
-            LineDataSet dataSet1 = new LineDataSet(entries2, function2);
-            LineDataSet max_c = new LineDataSet(max, "max");
-            LineDataSet min_c = new LineDataSet(min, "min");
-
-            max_c.setColor(Color.BLACK);
-            min_c.setColor(Color.GREEN);
-            max_c.setDrawCircles(true);
-            min_c.setDrawCircles(true);
-            max_c.setCircleColor(Color.BLACK);
-            min_c.setCircleColor(Color.GREEN);
-            max_c.setDrawValues(false);
-            min_c.setDrawValues(false);
-            draw_Max.add(max_c);
-            draw_Min.add(min_c);
-
-            dataSet1.setDrawCircles(false);  //Disattivo i cerchi sui vari punti
-            dataSet1.setDrawValues(false);
-            dataSets.add(dataSet1);
-            dataSets.add(max_c);            //Aggiunngo massimo e minimo
-            dataSets.add(min_c);
+            task = (TestAsyncTask) new TestAsyncTask(context, function1, estremoA, estremoB, precision, this.progressDialog, this).execute();
         }
-
-        // Popolo il grafico e lo mostro
-        LineData lineData = new LineData(dataSets);
-
-        /*LineData draw_max = new LineData(max);
-        LineData draw_min = new LineData(min);*/
-
-        chart.setData(lineData);
-        chart.invalidate();
-        chart.getDescription().setEnabled(false);
-        chart.setScaleX(1.0f);
-        chart.setScaleY(1.0f);
-        chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
 
         /*chart.setOnChartGestureListener(new OnChartGestureListener() {
             @Override
@@ -282,6 +248,21 @@ public class FragmentDrawGraph extends DialogFragment {
             }
         });*/
 
+    }
+
+    // Procedo con la creazione del grafico
+    public void plotGraph(){
+
+        LineData lineData = new LineData(dataSets);
+        chart.setData(lineData);
+        chart.invalidate();
+        chart.getDescription().setEnabled(false);
+        chart.setScaleX(1.0f);
+        chart.setScaleY(1.0f);
+        chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+
+        // Nascondo la ProgressBar
+        this.progressDialog.dismiss();
     }
 
     // Permessi necessari per l'intent della condivisione e per il salvataggio del grafico in galleria
