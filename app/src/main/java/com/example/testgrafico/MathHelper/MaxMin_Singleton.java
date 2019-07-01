@@ -1,7 +1,6 @@
 package com.example.testgrafico.MathHelper;
 
 import com.github.mikephil.charting.data.Entry;
-
 import java.util.ArrayList;
 
 public class MaxMin_Singleton {

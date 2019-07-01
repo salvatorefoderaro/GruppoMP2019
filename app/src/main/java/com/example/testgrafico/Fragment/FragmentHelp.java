@@ -11,14 +11,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.testgrafico.R;
-
 
 public class FragmentHelp extends DialogFragment {
 
     private Toolbar toolbar;
-
 
     @Override
     public void onStart() {
