@@ -103,6 +103,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
 
                     value = Float.parseFloat(valueToParse);
 
+                    // Aggiunta una mezza cosa per gli asintoti
                     if (valueToParse.equals("-Infinity")){
                         entries.add(new Entry((float) i, minY - 99));
                         minY = minY - 9999f;

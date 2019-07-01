@@ -63,13 +63,12 @@ public class MainActivity extends AppCompatActivity {
 
         A = findViewById(R.id.name_text_input2);
         B = findViewById(R.id.name_text_input3);
-
-        estremoAText = A.getEditText();
-        estremoBText = B.getEditText();
         drawGraph = findViewById(R.id.fab);
         test = findViewById(R.id.name_text_input);
         test1 = findViewById(R.id.name_text_input1);
 
+        estremoAText = A.getEditText();
+        estremoBText = B.getEditText();
         editText = test.getEditText();
         editText1 = test1.getEditText();
 
