@@ -18,7 +18,6 @@ import com.example.testgrafico.R;
 public class FragmentFunction extends DialogFragment {
 
     private Toolbar toolbar2;
-    private Button button;
 
     @Override
     public void onStart() {
@@ -40,7 +39,6 @@ public class FragmentFunction extends DialogFragment {
         toolbar2.setTitle("Seleziona una funzione...");
 
         setHasOptionsMenu(true);
-
         return view;
     }
 
@@ -59,7 +57,6 @@ public class FragmentFunction extends DialogFragment {
             case R.id.close:
                 dismiss();
                 return true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }
