@@ -35,8 +35,6 @@ public class MathStringParser {
         return string.substring(indexToStart);
     }
 
-
-
     static public String isRightString(String string){
         if (string.contains("*")){
             string = string.substring(string.indexOf("*"));

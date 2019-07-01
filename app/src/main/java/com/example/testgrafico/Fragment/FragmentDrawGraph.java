@@ -3,6 +3,7 @@ package com.example.testgrafico.Fragment;
 import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -28,8 +29,11 @@ import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import com.example.testgrafico.MathHelper.MaxMin_Singleton;
 import com.example.testgrafico.R;
+import com.example.testgrafico.AsyncTask.TestAsyncTask;
 import com.github.mikephil.charting.charts.Chart;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -41,8 +45,7 @@ import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
-import static com.example.testgrafico.MathHelper.getValueList.getListValue;
+import java.util.concurrent.ExecutionException;
 
 public class FragmentDrawGraph extends DialogFragment {
 
@@ -57,6 +60,8 @@ public class FragmentDrawGraph extends DialogFragment {
     private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION = 1;
     private Toolbar toolbar;
     private Menu menuList;
+    private TestAsyncTask task;
+    private ProgressDialog dialogBar;
 
     @Override
     public void onAttach(Activity activity) {
@@ -73,6 +78,18 @@ public class FragmentDrawGraph extends DialogFragment {
             int height = ViewGroup.LayoutParams.MATCH_PARENT;
             dialog.getWindow().setLayout(width, height);
         }
+
+        this.dialogBar = new ProgressDialog(context);
+        this.dialogBar.setTitle("Aspetta...");
+        this.dialogBar.setMessage("Sto calcolando il valore della funzione...");
+        this.dialogBar.setCancelable(false);
+        this.dialogBar.setIndeterminate(true);
+        this.dialogBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        this.dialogBar.show();
+
+        // Se commento la linea di codice 91, la barra parte, altrimenti no!
+        drawExpression();
+
     }
 
     @Override
@@ -92,7 +109,6 @@ public class FragmentDrawGraph extends DialogFragment {
 
         // Imposto le funzioni per la seekbar
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-
             @Override
             public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser) {
                 precision = 0.1f - ((seekBar.getProgress() + 0.1f) * 0.01f);
@@ -114,47 +130,158 @@ public class FragmentDrawGraph extends DialogFragment {
         estremoA = getArguments().getInt("estremoA");
         estremoB = getArguments().getInt("estremoB");
 
-        // Procedo con la creazione del grafico
-        drawExpression();
-
         return view;
     }
 
     public void drawExpression() {
 
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+        ArrayList<ILineDataSet> draw_Max = new ArrayList<>();
+        ArrayList<ILineDataSet> draw_Min = new ArrayList<>();
 
         // Controllo quante funzioni ho ricevuto dalla Main activity e, per le funzioni
         // != null, ottengo i valori numerici da inserire nel grafico
         if (function1 != null) {
-            ArrayList<Entry> entries1 = getListValue(context, function1, estremoA, estremoB, precision);
+            ArrayList<Entry> entries1 = null;
+            try {
+                task = (TestAsyncTask) new TestAsyncTask(context, function1, estremoA, estremoB, precision, this.dialogBar).execute();
+                entries1 = task.get();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             if (entries1 == null) {
                 dismiss();
                 return;
             }
+
+            ArrayList<Entry> max = MaxMin_Singleton.getInstance().getValues().get(0);
+            ArrayList<Entry> min = MaxMin_Singleton.getInstance().getValues().get(1);
+
             LineDataSet dataSet = new LineDataSet(entries1, function1);
+            LineDataSet max_c = new LineDataSet(max, "max");
+            LineDataSet min_c = new LineDataSet(min, "min");
+
+            max_c.setColor(Color.BLACK);
+            min_c.setColor(Color.GREEN);
+            max_c.setDrawCircles(true);
+            min_c.setDrawCircles(true);
+            max_c.setCircleColor(Color.BLACK);
+            min_c.setCircleColor(Color.GREEN);
+            max_c.setDrawValues(false);
+            min_c.setDrawValues(false);
+            draw_Max.add(max_c);
+            draw_Min.add(min_c);
+
             dataSet.setColor(Color.RED);
-            dataSet.setCircleColor(Color.RED);
+            dataSet.setDrawCircles(false);  //Disattivo i cerchi sui vari punti
             dataSet.setDrawValues(false);
             dataSets.add(dataSet);
+            dataSets.add(max_c);            //Aggiunngo massimo e minimo
+            dataSets.add(min_c);
         }
 
         if (function2 != null) {
-            ArrayList<Entry> entries2 = getListValue(context, function2, estremoA, estremoB, precision);
+            ArrayList<Entry> entries2 = null;
+            try {
+                entries2 = new TestAsyncTask(context, function1, estremoA, estremoB, precision, this.dialogBar).execute().get();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             if (entries2 == null) {
                 dismiss();
                 return;
             }
+
+            ArrayList<Entry> max = MaxMin_Singleton.getInstance().getValues().get(0);
+            ArrayList<Entry> min = MaxMin_Singleton.getInstance().getValues().get(1);
+
             LineDataSet dataSet1 = new LineDataSet(entries2, function2);
+            LineDataSet max_c = new LineDataSet(max, "max");
+            LineDataSet min_c = new LineDataSet(min, "min");
+
+            max_c.setColor(Color.BLACK);
+            min_c.setColor(Color.GREEN);
+            max_c.setDrawCircles(true);
+            min_c.setDrawCircles(true);
+            max_c.setCircleColor(Color.BLACK);
+            min_c.setCircleColor(Color.GREEN);
+            max_c.setDrawValues(false);
+            min_c.setDrawValues(false);
+            draw_Max.add(max_c);
+            draw_Min.add(min_c);
+
+            dataSet1.setDrawCircles(false);  //Disattivo i cerchi sui vari punti
             dataSet1.setDrawValues(false);
             dataSets.add(dataSet1);
+            dataSets.add(max_c);            //Aggiunngo massimo e minimo
+            dataSets.add(min_c);
         }
 
         // Popolo il grafico e lo mostro
         LineData lineData = new LineData(dataSets);
+
+        /*LineData draw_max = new LineData(max);
+        LineData draw_min = new LineData(min);*/
+
         chart.setData(lineData);
         chart.invalidate();
         chart.getDescription().setEnabled(false);
+        chart.setScaleX(1.0f);
+        chart.setScaleY(1.0f);
+        chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+
+        /*chart.setOnChartGestureListener(new OnChartGestureListener() {
+            @Override
+            public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+
+            }
+
+            @Override
+            public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+
+            }
+
+            @Override
+            public void onChartLongPressed(MotionEvent me) {
+
+            }
+
+            @Override
+            public void onChartDoubleTapped(MotionEvent me) {
+
+            }
+
+            @Override
+            public void onChartSingleTapped(MotionEvent me) {
+
+                System.out.println(chart.getXAxis().getXOffset());
+
+
+
+            }
+
+            @Override
+            public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) {
+
+            }
+
+            @Override
+            public void onChartScale(MotionEvent me, float scaleX, float scaleY) {
+
+            }
+
+            @Override
+            public void onChartTranslate(MotionEvent me, float dX, float dY) {
+
+            }
+        });*/
+
     }
 
     // Permessi necessari per l'intent della condivisione e per il salvataggio del grafico in galleria
@@ -279,5 +406,6 @@ public class FragmentDrawGraph extends DialogFragment {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 
 }

@@ -1,21 +1,47 @@
-package com.example.testgrafico.MathHelper;
+package com.example.testgrafico.AsyncTask;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.AsyncTask;
 
+import com.example.testgrafico.MathHelper.getValueList;
 import com.github.mikephil.charting.data.Entry;
+
 import net.sourceforge.jeval.EvaluationException;
 import net.sourceforge.jeval.Evaluator;
+
 import java.util.ArrayList;
+
+import static com.example.testgrafico.MainActivity.error;
 import static com.example.testgrafico.MathHelper.MathStringParser.isLeftDigit;
 import static com.example.testgrafico.MathHelper.MathStringParser.isLeftString;
 import static com.example.testgrafico.MathHelper.MathStringParser.isRightDigit;
 import static com.example.testgrafico.MathHelper.MathStringParser.isRightString;
-import static com.example.testgrafico.MainActivity.error;
 
-public class getValueList {
+public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList<Entry>> {
 
-    static public ArrayList<Entry> getListValue(Context context, String input, int estremoA,
-                                                int estremoB, float precision){
+    private ProgressDialog dialog;
+    private Context context;
+    private String input;
+    private int estremoA;
+    private int estremoB;
+    private float precision;
+
+    public TestAsyncTask(Context context, String input, int estremoA,
+                         int estremoB, float precision, ProgressDialog dialog) {
+        // list all the parameters like in normal class define
+        this.context = context;
+        this.input = input;
+        this.estremoA = estremoA;
+        this.estremoB = estremoB;
+        this.precision = precision;
+        this.dialog = dialog;
+    }
+
+    // Le chiamate a publishProgress() chiamano il metodo onProgressUpdate() presente nell'AsyncTask
+
+    @Override
+    protected ArrayList<Entry> doInBackground(ArrayList<Entry>... arrayLists) {
         float maxY = 0, minY = 0, maxX = 0, minX = 0, value;
         boolean firstValue = true;
 
@@ -27,18 +53,20 @@ public class getValueList {
         input = input.replace(" ", "");
 
         if (!input.contains("x_")){
-            error(context, "Errore di sintassi nella funzione inserita!");
+            publishProgress( "Errore di sintassi nella funzione inserita!");
             return null;
         }
 
+        // Per evitare problemi con l'esponenziale, effettuo questa sostituzione
 
         while (input.contains("|")){
             betweenAbs = input.substring(input.indexOf("|") + 1,
-                    input.substring(input.indexOf("|") +1).indexOf("|") + input.indexOf("|")+1);
+                        input.substring(input.indexOf("|") +1).indexOf("|") + input.indexOf("|")+1);
             input = input.replace("|" + betweenAbs + "|", "abs(" + betweenAbs + ")");
         }
 
         while(input.contains("^")) {
+
             // Trasformo tutti i "cappelletti", per poterli far digerire a jEval
             leftString = input.substring(0, input.indexOf("^"));
             rightString = input.substring(input.indexOf("^") + 1);
@@ -61,34 +89,38 @@ public class getValueList {
             input = input.replace(toLeft + "^" + toRight, "pow(" + toLeft + "," + toRight + ")");
         }
 
-        // Per evitare problemi con l'esponenziale, effettuo questa sostituzione
         input = input.replace("e", "exp(1)");
-
+        System.out.println(input);
         // I valori del ciclo for vengono dati dalla seekbar, grazie alla quale sarà possibile modificare i valori di precision
         for (double i = estremoA; i <= estremoB; i +=precision) {
 
             try {
-
-                String testValue = mathEvaluator.evaluate(input.replace("x_", Double.toString(i)));
+                String valueToParse = mathEvaluator.evaluate(input.replace("x_", String.format("%.12f", i)));
 
                 // Controllo che il valore della funzione non sia NaN (non definito) o +/- infinito,
                 // lo faccio sostituendo ad x_ il valore assunto da i nel ciclo for
+                if ( (!valueToParse.equals("NaN")) ) {
 
-                if (
-                        (!testValue.equals("NaN"))
-                            && (!mathEvaluator.evaluate(input.replace("x_", Double.toString(i))).equals("-Infinity"))
-                            && (!mathEvaluator.evaluate(input.replace("x_", Double.toString(i))).equals("+Infinity"))
-                            && (!mathEvaluator.evaluate(input.replace("x_", Double.toString(i))).equals("Infinity"))
-                ) {
+                    value = Float.parseFloat(valueToParse);
 
-                    if (testValue.equals("-Infinity")){
+                    if (valueToParse.equals("-Infinity")){
+                        entries.add(new Entry((float) i, minY - 99));
+                        minY = minY - 9999f;
+                        minX = (float)i;
                         continue;
                     }
-                    if (testValue.equals("+Infinity")){
 
+                    if (valueToParse.equals("+Infinity")){
+                        entries.add(new Entry((float) i, maxY + 99));
+                        maxY = maxY - 9999f;
+                        maxX = (float)i;
+                        continue;
                     }
 
-                    value = Float.parseFloat(testValue);
+                    if (valueToParse.equals("Infinity")){
+                        publishProgress( "Valore troppo grande!");
+                        return null;
+                    }
 
                     // Trovo massimo e minimo
                     if (firstValue) {
@@ -99,6 +131,7 @@ public class getValueList {
                         maxY = value;
                         maxX = (float) i;
                     } else if (value < minY) {
+                        System.out.println("\nValue is: " + value + " and minY is: " + minY);
                         minY = value;
                         minX = (float) i;
                     }
@@ -110,7 +143,7 @@ public class getValueList {
                     getValueList.MaxMin(maxX, maxY, minX, minY);
 
                 } else {
-                    error(context, "Errore nel dominio o valore non calcolabile!");
+                    publishProgress( "Errore nel dominio della funzione!");
                     return null;
                 }
 
@@ -118,7 +151,8 @@ public class getValueList {
                 e.printStackTrace();
                 // Errore di sintassi nella stringa inserita dall'utente,
                 // unico motivo per il quale jEval fallisce (quando non sa interpretare la stringa)
-                error(context, "Errore di sintassi nella funzione inserita!");
+
+                publishProgress("Errore di sintassi nella funzione inserita!");
                 return null;
             }
 
@@ -126,20 +160,25 @@ public class getValueList {
         return entries;
     }
 
-    public void MaxMin(float maxX, float maxY, float minX, float minY){
-
-        ArrayList<Entry> max = new ArrayList<>();
-        ArrayList<Entry> min = new ArrayList<>();
-
-        ArrayList<ArrayList<Entry>> mEm_coord = new ArrayList<>();
-
-        max.add(new Entry(maxX, maxY));
-        min.add(new Entry(minX, minY));
-
-        mEm_coord.add(0, max);
-        mEm_coord.add(1, min);
-
-        MaxMin_Singleton.getInstance().setValues(mEm_coord);
+    // Ho spostato qua la chiamata ad error(), in quanto qui viene chiamato l'UI Thread e quindi posso fare l'aggiornamento.
+    // Farlo direttamente dalla parte sopra da errore in quanto si tratta di un Worker thread
+    @Override
+    protected void onProgressUpdate(String... values) {
+        super.onProgressUpdate(values);
+        error(context, values[0]);
     }
 
+    // Al termine dell'esecuzione
+    @Override
+    protected void onPostExecute(ArrayList<Entry> result) {
+        // execution of result of Long time consuming operation
+        System.out.println("Ho terminato l'esecuzione!");
+        this.dialog.dismiss();
+    }
+
+    // Prima dell'esecuzione
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+    }
 }
