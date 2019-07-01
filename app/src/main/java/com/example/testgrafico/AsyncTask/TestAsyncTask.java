@@ -11,6 +11,7 @@ import net.sourceforge.jeval.EvaluationException;
 import net.sourceforge.jeval.Evaluator;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import static com.example.testgrafico.MainActivity.error;
 import static com.example.testgrafico.MathHelper.MathStringParser.isLeftDigit;
@@ -95,7 +96,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
         for (double i = estremoA; i <= estremoB; i +=precision) {
 
             try {
-                String valueToParse = mathEvaluator.evaluate(input.replace("x_", String.format("%.12f", i)));
+                String valueToParse = mathEvaluator.evaluate(input.replace("x_", String.format(Locale.CANADA,"%.12f", i)));
 
                 // Controllo che il valore della funzione non sia NaN (non definito) o +/- infinito,
                 // lo faccio sostituendo ad x_ il valore assunto da i nel ciclo for
