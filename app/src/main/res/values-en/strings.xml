@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">iLoger - Graph Calculator</string>
+    <string name="AminB">A extreme must be closely lower than B extreme</string>
+    <string name="action_settings">Settings</string>
+    <string name="controllaParentesi">Insert a right number of parenthesis</string>
+    <string name="estremi">Insert extremes\' right valuse</string>
+    <string name="funzione_coseno">Cosine function</string>
+    <string name="funzione_seno">Sine function</string>
+    <string name="riempiCampi">You must fill all fields</string>
+    <string name="errore">Error</string>
+    <string name="syntaxError">Function syntax error</string>
+    <string name="domainError">Function domain error</string>
+    <string name="troppoGrande">Too high value</string>
+    <string name="grafico">Function Graph</string>
+    <string name="chooseApp">Choose an application…</string>
+    <string name="img_in_gallery">Image succesfully saved in your gallery</string>
+    <string name="chooseFun">Choose a function…</string>
+    <string name="help">Need help?</string>
+    <string name="wait">Wait…</string>
+    <string name="calc">Calculating…</string>
+    <string name="A_extreme">A extreme</string>
+    <string name="B_extreme">B extreme</string>
+    <string name="precisione">Modify precision</string>
+    <string name="help_text" translatable="false">\t THE FUNCTION \n\n
+        The function s variable must be followed by underscore: x_\n\n
+        We advice you to wrap every single variable in round brackets.\n\n
+        For example: (x_)^3.\n\n
+        You can insert two functions and compare their trends into a same domain range.\n\n\n
+        \t THE EXTREMES\n\n
+        A extreme and B extreme must be integers.\n\n
+        A extreme must be closely lower than B extreme.\n\n</string>
+</resources>

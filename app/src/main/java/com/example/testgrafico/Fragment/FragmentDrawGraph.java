@@ -97,14 +97,13 @@ public class FragmentDrawGraph extends DialogFragment {
             dialog.getWindow().setLayout(width, height);
         }
 
-        // Mostro la ProgressDialog durante il calcolo dei valori numerici
-        this.progressDialog = new ProgressDialog(context);
-        this.progressDialog.setTitle("Aspetta...");
-        this.progressDialog.setMessage("Sto calcolando il valore della funzione...");
-        this.progressDialog.setCancelable(false);
-        this.progressDialog.setIndeterminate(true);
-        this.progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        this.progressDialog.show();
+        this.dialogBar = new ProgressDialog(context);
+        this.dialogBar.setTitle(getText(R.string.wait).toString());
+        this.dialogBar.setMessage(getText(R.string.calc).toString());
+        this.dialogBar.setCancelable(false);
+        this.dialogBar.setIndeterminate(true);
+        this.dialogBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        this.dialogBar.show();
 
         // Procedo con la funzione per l'avvio degli AsyncTask
         drawExpression();
@@ -117,7 +116,7 @@ public class FragmentDrawGraph extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_app_bar, container);
         toolbar = view.findViewById(R.id.tb_func);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        toolbar.setTitle("Grafico di funzione");
+        toolbar.setTitle(getText(R.string.grafico).toString());
         setHasOptionsMenu(true);
 
         // Imposto i vari elementi dell'interfaccia grafica
@@ -341,7 +340,7 @@ public class FragmentDrawGraph extends DialogFragment {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         i.putExtra(Intent.EXTRA_STREAM, getImageUri(context, chart.getChartBitmap()));
         try {
-            startActivity(Intent.createChooser(i, "Seleziona un applicazione ..."));
+            startActivity(Intent.createChooser(i, getText(R.string.chooseApp).toString()));
         } catch (android.content.ActivityNotFoundException ex) {
             ex.printStackTrace();
         }
@@ -391,7 +390,7 @@ public class FragmentDrawGraph extends DialogFragment {
             context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
             MediaScannerConnection.scanFile(context, new String[]{file.toString()}, new String[]{file.getName()}, null);
             out.close();
-            Toast.makeText(context,"Immagine salvata correttamente in galleria!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,getText(R.string.img_in_gallery).toString(),Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
         }

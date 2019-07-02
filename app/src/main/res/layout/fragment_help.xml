@@ -17,8 +17,10 @@
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_height="461dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="@string/help_text"
+            android:textSize="18sp" />
 
     </LinearLayout>
 </ScrollView>

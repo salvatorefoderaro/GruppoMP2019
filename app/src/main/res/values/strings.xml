@@ -1,14 +1,47 @@
 <resources>
     <string name="app_name">iLoger - Graph Calculator</string>
-    <string name="action_settings">Settings</string>
-    <string name="cos">cos()</string>
+    <string name="action_settings">Impostazioni</string>
+    <string name="cos" translatable="false">cos()</string>
     <string name="funzione_coseno">Funzione Coseno</string>
-    <string name="sin">sin()</string>
+    <string name="sin" translatable="false">sin()</string>
     <string name="funzione_seno">Funzione Seno</string>
-    <string name="acos">Acos</string>
-    <string name="asin">Asin</string>
-    <string name="atan">Atan</string>
-    <string name="atan2">Atan2</string>
-    <string name="log">LOg</string>
-    <string name="tan">TAN</string>
+    <string name="acos" translatable="false">Acos</string>
+    <string name="asin" translatable="false">Asin</string>
+    <string name="atan" translatable="false">Atan</string>
+    <string name="atan2" translatable="false">Atan2</string>
+    <string name="log" translatable="false">LOg</string>
+    <string name="tan" translatable="false">TAN</string>
+
+    <string name="riempiCampi">Riempire tutti i campi</string>
+    <string name="controllaParentesi">Inserire un numero corretto di parentesi!</string>
+    <string name="AminB">L estremo A deve essere strettamente minore dell estremo B!</string>
+    <string name="estremi">Inserire valori corretti per gli estremi</string>
+
+    <string name="errore">Errore</string>
+    <string name="syntaxError">Errore di sintassi nella funzione</string>
+    <string name="domainError">Errore nel dominio della funzione</string>
+    <string name="troppoGrande">Il valore è troppo grande</string>
+    <string name="grafico">Grafico</string>
+
+    <string name="chooseApp">Scegli una applicazione…</string>
+    <string name="img_in_gallery">Immagine salvata correttamente nella galleria</string>
+    <string name="chooseFun">Scegli una funzione…</string>
+    <string name="help">Serve aiuto?</string>
+
+    <string name="wait">Aspetta…</string>
+    <string name="calc">Sto calcolando…</string>
+
+    <string name="A_extreme">Estremo A</string>
+    <string name="B_extreme">Estremo B</string>
+    <string name="precisione">Modifica precisione</string>
+
+    <string name="help_text">  \t LA FUNZIONE \n\n
+    La variabile della funzione da inserire deve essere seguita da trattino basso: x_\n\n
+        Si consiglia di racchiudere ogni variabile presente all interno di parentesi tonde.\n\n
+        Ad esempio: (x_)^3.\n\n
+        Si possono inserire due funzioni e confrontare i loro andamenti all interno di uno stesso intervallo.\n\n\n
+           \t GLI ESTREMI\n\n
+        L estremo A e l estremo B devono essere due interi.\n\n
+        L estremo A deve essere strettamente minore dell estremo B.\n\n
+    </string>
 </resources>
