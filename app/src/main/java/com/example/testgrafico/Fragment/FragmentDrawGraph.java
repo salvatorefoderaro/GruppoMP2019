@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -18,12 +19,15 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
@@ -33,18 +37,28 @@ import com.example.testgrafico.MathHelper.MaxMin_Singleton;
 import com.example.testgrafico.R;
 import com.example.testgrafico.AsyncTask.TestAsyncTask;
 import com.github.mikephil.charting.charts.Chart;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.MarkerView;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.listener.ChartTouchListener;
+import com.github.mikephil.charting.listener.OnChartGestureListener;
+import com.github.mikephil.charting.utils.MPPointD;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import static android.content.ContentValues.TAG;
 
 public class FragmentDrawGraph extends DialogFragment {
 
@@ -55,7 +69,8 @@ public class FragmentDrawGraph extends DialogFragment {
     private float precision = 0.1f;
     private Context context;
     private SeekBar seekBar;
-    private Chart<LineData> chart;
+    //private Chart<LineData> chart;
+    private LineChart chart;  //Ho cambiato il tipo di chart per avere più opzioni disponibili
     private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION = 1;
     private Toolbar toolbar;
     private Menu menuList;
@@ -144,6 +159,15 @@ public class FragmentDrawGraph extends DialogFragment {
             return;
         }
 
+        /*TODO
+        *
+        * Inserire label massimo e minimo
+        * Funzioni acos, atan ecc
+        * Doppio tap sul grafico
+        *
+        *
+        * */
+
         draw_Max = new ArrayList<>();
         draw_Min = new ArrayList<>();
 
@@ -160,8 +184,8 @@ public class FragmentDrawGraph extends DialogFragment {
         min_c.setDrawCircles(true);
         max_c.setCircleColor(Color.BLACK);
         min_c.setCircleColor(Color.GREEN);
-        max_c.setDrawValues(false);
-        min_c.setDrawValues(false);
+        max_c.setDrawValues(true);  // Disegno i valori di max e min
+        min_c.setDrawValues(true);
         draw_Max.add(max_c);
         draw_Min.add(min_c);
 
@@ -201,7 +225,26 @@ public class FragmentDrawGraph extends DialogFragment {
             task = (TestAsyncTask) new TestAsyncTask(context, function2, estremoA, estremoB, precision, this.progressDialog, this).execute();
         }
 
-        /*chart.setOnChartGestureListener(new OnChartGestureListener() {
+    }
+
+    // Procedo con la creazione del grafico
+    public void plotGraph(){
+
+        LineData lineData = new LineData(dataSets);
+
+        chart.setData(lineData);
+        chart.setPinchZoom(true);
+        chart.invalidate();
+        chart.getDescription().setEnabled(false);
+        chart.setScaleX(1.0f);
+        chart.setScaleY(1.0f);
+        chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        chart.setDoubleTapToZoomEnabled(false);
+
+        // Nascondo la ProgressBar
+        this.progressDialog.dismiss();
+
+        chart.setOnChartGestureListener(new OnChartGestureListener() {
             @Override
             public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
 
@@ -215,20 +258,41 @@ public class FragmentDrawGraph extends DialogFragment {
             @Override
             public void onChartLongPressed(MotionEvent me) {
 
+                AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+                alertDialog.setTitle("Info");
+                alertDialog.setMessage("Massimo: \n" + "\t X: " + Math.round(MaxMin_Singleton.getInstance().getMaxX()) + "\t Y: " + Math.round(MaxMin_Singleton.getInstance().getMaxY())
+                        + "\n\n Minimo: \n" + "\t X: " + Math.round(MaxMin_Singleton.getInstance().getMinX()) + "\t Y: " + Math.round(MaxMin_Singleton.getInstance().getMinY()));
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+
+                /*Nel singleton ho aggiunto le coordinate di massimo e minimo
+                * qua le riprendo e le approssimo*/
+
             }
 
             @Override
             public void onChartDoubleTapped(MotionEvent me) {
+
 
             }
 
             @Override
             public void onChartSingleTapped(MotionEvent me) {
 
-                System.out.println(chart.getXAxis().getXOffset());
+                float tappedX = me.getX();
+                float tappedY = me.getY();
+                MPPointD point = chart.getTransformer(YAxis.AxisDependency.LEFT).getValuesByTouchPoint(tappedX, tappedY);
+                DecimalFormat decimalFormat = new DecimalFormat("#.00");
 
 
+                Toast.makeText(context, "(x,y) = ( " + decimalFormat.format(point.x) + " , " + decimalFormat.format(point.y) + " )", Toast.LENGTH_LONG).show();
 
+                //Stampo in un toast le coordinate del punto cliccato
             }
 
             @Override
@@ -245,23 +309,7 @@ public class FragmentDrawGraph extends DialogFragment {
             public void onChartTranslate(MotionEvent me, float dX, float dY) {
 
             }
-        });*/
-
-    }
-
-    // Procedo con la creazione del grafico
-    public void plotGraph(){
-
-        LineData lineData = new LineData(dataSets);
-        chart.setData(lineData);
-        chart.invalidate();
-        chart.getDescription().setEnabled(false);
-        chart.setScaleX(1.0f);
-        chart.setScaleY(1.0f);
-        chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
-
-        // Nascondo la ProgressBar
-        this.progressDialog.dismiss();
+        });
     }
 
     // Permessi necessari per l'intent della condivisione e per il salvataggio del grafico in galleria
@@ -386,5 +434,10 @@ public class FragmentDrawGraph extends DialogFragment {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    /*public MPPointD getValuesByTouchPoint(float x, float y){
+
+    }*/
+
 
 }

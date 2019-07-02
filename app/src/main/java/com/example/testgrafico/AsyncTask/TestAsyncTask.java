@@ -129,6 +129,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
 
                     if (valueToParse.equals("Infinity")){
                         publishProgress( "Valore troppo grande!");
+                        dialog.dismiss();
                         return null;
                     }
 
@@ -141,7 +142,6 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
                         maxY = value;
                         maxX = (float) i;
                     } else if (value < minY) {
-                        System.out.println("\nValue is: " + value + " and minY is: " + minY);
                         minY = value;
                         minX = (float) i;
                     }
@@ -153,6 +153,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
 
                 } else {
                     publishProgress( "Errore nel dominio della funzione!");
+                    dialog.dismiss();
                     return null;
                 }
 
@@ -161,6 +162,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
                 // Errore di sintassi nella stringa inserita dall'utente,
                 // unico motivo per il quale jEval fallisce (quando non sa interpretare la stringa)
                 publishProgress("Errore di sintassi nella funzione inserita!");
+                dialog.dismiss();
                 return null;
             }
         }

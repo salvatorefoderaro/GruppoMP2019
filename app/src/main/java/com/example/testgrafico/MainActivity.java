@@ -331,30 +331,4 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }
     }
-
-    /*public void get_POS(View view) {
-
-        .setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                    //int size = series1.size();
-                    float screenX = event.getX();
-                    float screenY = event.getY();
-                    float width_x = v.getWidth();
-                    float viewX = screenX - v.getLeft();
-                    float viewY = screenY - v.getTop();
-                    float percent_x = (viewX / width_x);
-                  //  int pos = (int) (size * percent_x);
-
-                    System.out.println("X: " + viewX + " Y: " + viewY + " Percent = " + percent_x);
-                   // System.out.println("YVal = " + series1.getY(pos));
-                    //tvNum.setText(series1.getY(pos) + "");
-                    return true;
-                }
-                return false;
-            }
-        });
-
-    }*/
 }

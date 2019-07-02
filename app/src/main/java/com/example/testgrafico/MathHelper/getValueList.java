@@ -12,6 +12,11 @@ public class getValueList {
 
         ArrayList<ArrayList<Entry>> mEm_coord = new ArrayList<>();
 
+        MaxMin_Singleton.getInstance().setMaxX(maxX);
+        MaxMin_Singleton.getInstance().setMaxY(maxY);
+        MaxMin_Singleton.getInstance().setMinX(minX);
+        MaxMin_Singleton.getInstance().setMinY(minY);
+
         max.add(new Entry(maxX, maxY));
         min.add(new Entry(minX, minY));
 
