@@ -22,7 +22,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -36,15 +35,12 @@ import android.widget.Toast;
 import com.example.testgrafico.MathHelper.MaxMin_Singleton;
 import com.example.testgrafico.R;
 import com.example.testgrafico.AsyncTask.TestAsyncTask;
-import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.MarkerView;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
@@ -57,8 +53,6 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
-import static android.content.ContentValues.TAG;
 
 public class FragmentDrawGraph extends DialogFragment {
 
@@ -75,7 +69,7 @@ public class FragmentDrawGraph extends DialogFragment {
     private Toolbar toolbar;
     private Menu menuList;
     private TestAsyncTask task;
-    private ProgressDialog progressDialog;
+    private ProgressDialog dialogBar;
     private ArrayList<ILineDataSet> dataSets;
     private ArrayList<ILineDataSet> draw_Max;
     private ArrayList<ILineDataSet> draw_Min;
@@ -217,11 +211,11 @@ public class FragmentDrawGraph extends DialogFragment {
 
         // Faccio partire gli Async task per il calcolo dei valori
         if (function1 != null) {
-            task = (TestAsyncTask) new TestAsyncTask(context, function1, estremoA, estremoB, precision, this.progressDialog, this).execute();
+            task = (TestAsyncTask) new TestAsyncTask(context, function1, estremoA, estremoB, precision, this.dialogBar, this).execute();
         }
 
         if (function2 != null) {
-            task = (TestAsyncTask) new TestAsyncTask(context, function2, estremoA, estremoB, precision, this.progressDialog, this).execute();
+            task = (TestAsyncTask) new TestAsyncTask(context, function2, estremoA, estremoB, precision, this.dialogBar, this).execute();
         }
 
     }
@@ -241,7 +235,7 @@ public class FragmentDrawGraph extends DialogFragment {
         chart.setDoubleTapToZoomEnabled(false);
 
         // Nascondo la ProgressBar
-        this.progressDialog.dismiss();
+        this.dialogBar.dismiss();
 
         chart.setOnChartGestureListener(new OnChartGestureListener() {
             @Override
