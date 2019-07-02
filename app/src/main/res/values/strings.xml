@@ -34,4 +34,14 @@
     <string name="A_extreme">Estremo A</string>
     <string name="B_extreme">Estremo B</string>
     <string name="precisione">Modifica precisione</string>
+
+    <string name="help_text">  \t LA FUNZIONE \n\n
+    La variabile della funzione da inserire deve essere seguita da trattino basso: x_\n\n
+        Si consiglia di racchiudere ogni variabile presente all interno di parentesi tonde.\n\n
+        Ad esempio: (x_)^3.\n\n
+        Si possono inserire due funzioni e confrontare i loro andamenti all interno di uno stesso intervallo.\n\n\n
+           \t GLI ESTREMI\n\n
+        L estremo A e l estremo B devono essere due interi.\n\n
+        L estremo A deve essere strettamente minore dell estremo B.\n\n
+    </string>
 </resources>

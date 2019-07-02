@@ -22,4 +22,12 @@
     <string name="A_extreme">A extreme</string>
     <string name="B_extreme">B extreme</string>
     <string name="precisione">Modify precision</string>
+    <string name="help_text" translatable="false">\t THE FUNCTION \n\n
+        The function s variable must be followed by underscore: x_\n\n
+        We advice you to wrap every single variable in round brackets.\n\n
+        For example: (x_)^3.\n\n
+        You can insert two functions and compare their trends into a same domain range.\n\n\n
+        \t THE EXTREMES\n\n
+        A extreme and B extreme must be integers.\n\n
+        A extreme must be closely lower than B extreme.\n\n</string>
 </resources>
