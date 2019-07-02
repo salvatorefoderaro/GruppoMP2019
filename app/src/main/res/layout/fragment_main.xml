@@ -34,7 +34,7 @@
         android:layout_width="132dp"
         android:layout_height="24dp"
         android:layout_marginTop="8dp"
-        android:text="Modifica precisione"
+        android:text="@string/precisione"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.05"
         app:layout_constraintHorizontal_bias="0.498"

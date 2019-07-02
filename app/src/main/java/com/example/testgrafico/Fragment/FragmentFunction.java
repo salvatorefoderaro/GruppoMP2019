@@ -36,7 +36,7 @@ public class FragmentFunction extends DialogFragment {
         View view = inflater.inflate(R.layout.function_fragment, container);
         toolbar2 = view.findViewById(R.id.toolbar2);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar2);
-        toolbar2.setTitle("Seleziona una funzione...");
+        toolbar2.setTitle(getText(R.string.chooseFun).toString());
 
         setHasOptionsMenu(true);
         return view;

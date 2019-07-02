@@ -3,6 +3,9 @@ package com.example.testgrafico;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
@@ -12,12 +15,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.view.GestureDetector;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -25,9 +30,9 @@ import com.example.testgrafico.Fragment.FragmentDrawGraph;
 import com.example.testgrafico.Fragment.FragmentFunction;
 import com.example.testgrafico.Fragment.FragmentHelp;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
-
-
 
     private EditText editText;
     private EditText editText1;
@@ -58,7 +63,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+
+        Button ita = findViewById(R.id.bttn_ita);
+        Button eng = findViewById(R.id.bttn_en);
+        //setAppLocale(language);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -74,24 +84,43 @@ public class MainActivity extends AppCompatActivity {
         editText = test.getEditText();
         editText1 = test1.getEditText();
 
+       ///////////////////////////////////////LANGUAGE////////////////////////////////////////
+
+        eng.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setAppLocale("US");
+            }
+        });
+
+        ita.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setAppLocale("values");
+            }
+        });
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+
         // Aggiungo tutti quanti i controlli per i vari input una volta premuto il FAB
         drawGraph.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
         if ((estremoAText.getText().toString().isEmpty() || estremoBText.getText().toString().isEmpty())){
-            error(MainActivity.this, "Riempire tutti i campi");
+            error(MainActivity.this, getText(R.string.riempiCampi).toString());
             return;
         }
 
         if ((editText.getText().toString().isEmpty() && editText1.getText().toString().isEmpty())){
-            error(MainActivity.this, "Riempire tutti i campi");
+            error(MainActivity.this, getText(R.string.riempiCampi).toString());
             return;
         }
 
         if (!editText.getText().toString().isEmpty()){
             String input = editText.getText().toString();
             if ((input.length() - input.replace(")", "").length()) - (input.length() - input.replace("(", "").length()) != 0){
-                error(MainActivity.this, "Funzione 1\n\nInserire un numero corretto di parentesi!");
+                error(MainActivity.this, "Func 1\n\n" + getText(R.string.controllaParentesi).toString());
                 return;
             }
         }
@@ -99,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         if (!editText1.getText().toString().isEmpty()){
             String input = editText1.getText().toString();
             if ((input.length() - input.replace(")", "").length()) - (input.length() - input.replace("(", "").length()) != 0){
-                error(MainActivity.this, "Funzione 2\n\nInserire un numero corretto di parentesi!");
+                error(MainActivity.this, "Func 2\n\n" + getText(R.string.controllaParentesi).toString());
                 return;
             }
         }
@@ -108,11 +137,11 @@ public class MainActivity extends AppCompatActivity {
             estremoA = Integer.parseInt(estremoAText.getText().toString());
             estremoB = Integer.parseInt(estremoBText.getText().toString());
             if (estremoA >= estremoB){
-                error(MainActivity.this, "L'estremo A deve essere strettamente minore di B!");
+                error(MainActivity.this, getText(R.string.AminB).toString());
                 return;
             }
         } catch (NumberFormatException n){
-            error(MainActivity.this, "Inserire valori estremi corretti!");
+            error(MainActivity.this, getText(R.string.estremi).toString());
             return;
         }
 
@@ -200,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
     public static void error(Context context, String msg){
 
         AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-        alertDialog.setTitle("Errore!");
+        alertDialog.setTitle(R.string.errore);
         alertDialog.setMessage(msg);
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                 new DialogInterface.OnClickListener() {
@@ -362,4 +391,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }*/
+
+    private void setAppLocale(String localCode){
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.setLocale(new Locale(localCode.toLowerCase()));
+        res.updateConfiguration(conf, dm);
+    }
 }

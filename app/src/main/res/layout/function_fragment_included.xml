@@ -17,22 +17,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="12dp"
         android:onClick="func_Acos"
         android:text="@string/acos"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCos2" />
+        app:layout_constraintStart_toEndOf="@+id/btnAsin2"
+        app:layout_constraintTop_toTopOf="@+id/btnAsin2" />
 
     <Button
         android:id="@+id/btnSin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="376dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="60dp"
         android:onClick="func_Seno"
         android:text="@string/sin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,54 +38,49 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="316dp"
         android:onClick="func_Atan2"
         android:text="@string/atan2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/btnLog2"
+        app:layout_constraintTop_toTopOf="@+id/btnLog2" />
 
     <Button
         android:id="@+id/btnTan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="256dp"
+        android:layout_marginTop="60dp"
         android:onClick="func_tan"
         android:text="@string/tan"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/btnAsin2"
+        app:layout_constraintTop_toBottomOf="@+id/btnAsin2" />
 
     <Button
         android:id="@+id/btnLog2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="196dp"
+        android:layout_marginTop="60dp"
         android:onClick="func_log"
         android:text="@string/log"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/btnTan"
+        app:layout_constraintTop_toBottomOf="@+id/btnTan" />
 
     <Button
         android:id="@+id/btnAtan3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="136dp"
         android:onClick="func_Atan"
         android:text="@string/atan"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/btnTan"
+        app:layout_constraintTop_toTopOf="@+id/btnTan" />
 
     <Button
         android:id="@+id/btnAsin2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="316dp"
-        android:layout_marginEnd="292dp"
+        android:layout_marginTop="60dp"
         android:onClick="func_Asin"
         android:text="@string/asin"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btnSin"
         app:layout_constraintTop_toBottomOf="@+id/btnSin" />
 
     <Button
@@ -96,11 +88,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="80dp"
         android:onClick="func_Coseno"
         android:text="@string/cos"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.141"
+        app:layout_constraintStart_toEndOf="@+id/btnSin"
+        app:layout_constraintTop_toTopOf="@+id/btnSin" />
 
 </android.support.constraint.ConstraintLayout>
 </ScrollView>

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.example.testgrafico.MathHelper.getValueList;
+import com.example.testgrafico.R;
 import com.github.mikephil.charting.data.Entry;
 
 import net.sourceforge.jeval.EvaluationException;
@@ -54,7 +55,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
         input = input.replace(" ", "");
 
         if (!input.contains("x_")){
-            publishProgress( "Errore di sintassi nella funzione inserita!");
+            publishProgress(this.context.getText(R.string.syntaxError).toString());
             return null;
         }
 
@@ -120,7 +121,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
                     }
 
                     if (valueToParse.equals("Infinity")){
-                        publishProgress( "Valore troppo grande!");
+                        publishProgress( this.context.getText(R.string.troppoGrande).toString());
                         return null;
                     }
 
@@ -145,7 +146,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
                     getValueList.MaxMin(maxX, maxY, minX, minY);
 
                 } else {
-                    publishProgress( "Errore nel dominio della funzione!");
+                    publishProgress(this.context.getText(R.string.domainError).toString());
                     return null;
                 }
 
@@ -154,7 +155,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
                 // Errore di sintassi nella stringa inserita dall'utente,
                 // unico motivo per il quale jEval fallisce (quando non sa interpretare la stringa)
 
-                publishProgress("Errore di sintassi nella funzione inserita!");
+                publishProgress(this.context.getText(R.string.syntaxError).toString());
                 return null;
             }
 
