@@ -29,6 +29,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
     private int estremoB;
     private float precision;
     private FragmentDrawGraph istance;
+    private String valueToParse;
 
     public TestAsyncTask(Context context, String input, int estremoA,
                          int estremoB, float precision, ProgressDialog dialog, FragmentDrawGraph istance) {
@@ -55,11 +56,6 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
         String toLeft, toRight, leftString, rightString, betweenAbs;
 
         input = input.replace(" ", "");
-
-        if (!input.contains("x_")){
-            publishProgress( "Errore di sintassi nella funzione inserita!");
-            return null;
-        }
 
         // Per evitare problemi con l'esponenziale, effettuo questa sostituzione
 
@@ -98,8 +94,15 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
         // I valori del ciclo for vengono dati dalla seekbar, grazie alla quale sarà possibile modificare i valori di precision
         for (double i = estremoA; i <= estremoB; i +=precision) {
 
+
+
             try {
-                String valueToParse = mathEvaluator.evaluate(input.replace("x_", String.format(Locale.CANADA,"%.12f", i)));
+                if (!input.contains("x_")){
+                    valueToParse = mathEvaluator.evaluate(input);
+                } else {
+                    valueToParse = mathEvaluator.evaluate(input.replace("x_", String.format(Locale.CANADA,"%.12f", i)));
+
+                }
 
                 // Controllo che il valore della funzione non sia NaN (non definito) o +/- infinito,
                 // lo faccio sostituendo ad x_ il valore assunto da i nel ciclo for
