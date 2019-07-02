@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.example.testgrafico.Fragment.FragmentDrawGraph;
+import com.example.testgrafico.MathHelper.MaxMin_Singleton;
 import com.example.testgrafico.MathHelper.getValueList;
 import com.example.testgrafico.R;
 import com.github.mikephil.charting.data.Entry;
@@ -28,9 +30,13 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
     private int estremoA;
     private int estremoB;
     private float precision;
+    private FragmentDrawGraph istance;
+    private String valueToParse;
+    private ArrayList<Entry> max;
+    private ArrayList<Entry> min;
 
     public TestAsyncTask(Context context, String input, int estremoA,
-                         int estremoB, float precision, ProgressDialog dialog) {
+                         int estremoB, float precision, ProgressDialog dialog, FragmentDrawGraph istance) {
         // list all the parameters like in normal class define
         this.context = context;
         this.input = input;
@@ -38,6 +44,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
         this.estremoB = estremoB;
         this.precision = precision;
         this.dialog = dialog;
+        this.istance = istance;
     }
 
     // Le chiamate a publishProgress() chiamano il metodo onProgressUpdate() presente nell'AsyncTask
@@ -96,8 +103,14 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
         // I valori del ciclo for vengono dati dalla seekbar, grazie alla quale sarà possibile modificare i valori di precision
         for (double i = estremoA; i <= estremoB; i +=precision) {
 
+
+
             try {
-                String valueToParse = mathEvaluator.evaluate(input.replace("x_", String.format(Locale.CANADA,"%.12f", i)));
+                if (!input.contains("x_")){
+                    valueToParse = mathEvaluator.evaluate(input);
+                } else {
+                    valueToParse = mathEvaluator.evaluate(input.replace("x_", String.format(Locale.CANADA,"%.12f", i)));
+                }
 
                 // Controllo che il valore della funzione non sia NaN (non definito) o +/- infinito,
                 // lo faccio sostituendo ad x_ il valore assunto da i nel ciclo for
@@ -107,14 +120,14 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
 
                     // Aggiunta una mezza cosa per gli asintoti
                     if (valueToParse.equals("-Infinity")){
-                        entries.add(new Entry((float) i, minY - 99));
+                        entries.add(new Entry((float) i, minY - 50));
                         minY = minY - 9999f;
                         minX = (float)i;
                         continue;
                     }
 
                     if (valueToParse.equals("+Infinity")){
-                        entries.add(new Entry((float) i, maxY + 99));
+                        entries.add(new Entry((float) i, maxY + 50));
                         maxY = maxY - 9999f;
                         maxX = (float)i;
                         continue;
@@ -122,6 +135,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
 
                     if (valueToParse.equals("Infinity")){
                         publishProgress( this.context.getText(R.string.troppoGrande).toString());
+                        dialog.dismiss();
                         return null;
                     }
 
@@ -134,19 +148,18 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
                         maxY = value;
                         maxX = (float) i;
                     } else if (value < minY) {
-                        System.out.println("\nValue is: " + value + " and minY is: " + minY);
                         minY = value;
                         minX = (float) i;
                     }
 
                     // Aggiungo il valore calcolato al grafico
                     entries.add(new Entry((float) i, value));
-
                     getValueList getValueList = new getValueList();
                     getValueList.MaxMin(maxX, maxY, minX, minY);
 
                 } else {
                     publishProgress(this.context.getText(R.string.domainError).toString());
+                    dialog.dismiss();
                     return null;
                 }
 
@@ -156,9 +169,9 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
                 // unico motivo per il quale jEval fallisce (quando non sa interpretare la stringa)
 
                 publishProgress(this.context.getText(R.string.syntaxError).toString());
+                dialog.dismiss();
                 return null;
             }
-
         }
         return entries;
     }
@@ -171,12 +184,12 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
         error(context, values[0]);
     }
 
-    // Al termine dell'esecuzione
+    // Al termine dell'esecuzione, chiamo il metodo all'interno del fragment per restituire la lista con i valori calcolati
     @Override
     protected void onPostExecute(ArrayList<Entry> result) {
         // execution of result of Long time consuming operation
         System.out.println("Ho terminato l'esecuzione!");
-        this.dialog.dismiss();
+        istance.getValueBack(result, this.input);
     }
 
     // Prima dell'esecuzione
