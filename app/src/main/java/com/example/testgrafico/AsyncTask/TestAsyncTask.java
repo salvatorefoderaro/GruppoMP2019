@@ -33,10 +33,6 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
     private String valueToParse;
     private ArrayList<Entry> max;
     private ArrayList<Entry> min;
-    private Boolean isPlusInfinity = false;
-    private Float plusInfinityX;
-    private Boolean isMinusInfinity = false;
-    private Float minusInfinityX;
 
     public TestAsyncTask(Context context, String input, int estremoA,
                          int estremoB, float precision, ProgressDialog dialog, FragmentDrawGraph istance) {
@@ -118,20 +114,14 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
 
                     // Aggiunta una mezza cosa per gli asintoti
                     if (valueToParse.equals("-Infinity")){
-                        isMinusInfinity = true;
-                        minusInfinityX = (float)i;
-
-                        entries.add(new Entry((float) i, minY - 99));
+                        entries.add(new Entry((float) i, minY - 50));
                         minY = minY - 9999f;
                         minX = (float)i;
                         continue;
                     }
 
                     if (valueToParse.equals("+Infinity")){
-                        isPlusInfinity = true;
-                        plusInfinityX = (float)i;
-
-                        entries.add(new Entry((float) i, maxY + 99));
+                        entries.add(new Entry((float) i, maxY + 50));
                         maxY = maxY - 9999f;
                         maxX = (float)i;
                         continue;
@@ -174,17 +164,6 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
                 return null;
             }
         }
-
-        if(isMinusInfinity){
-            entries.add(new Entry(minusInfinityX, minY - 5));
-        }
-
-        if(isPlusInfinity){
-            entries.add(new Entry(plusInfinityX, maxY + 5));
-        }
-
-        max = MaxMin_Singleton.getInstance().getValues().get(0);
-        min = MaxMin_Singleton.getInstance().getValues().get(1);
         return entries;
     }
 
@@ -201,7 +180,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
     protected void onPostExecute(ArrayList<Entry> result) {
         // execution of result of Long time consuming operation
         System.out.println("Ho terminato l'esecuzione!");
-        istance.getValueBack(result, max, min, this.input);
+        istance.getValueBack(result, this.input);
     }
 
     // Prima dell'esecuzione

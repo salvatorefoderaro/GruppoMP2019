@@ -136,7 +136,7 @@ public class FragmentDrawGraph extends DialogFragment {
         return view;
     }
 
-    public void getValueBack(ArrayList<Entry> resultList, ArrayList<Entry> max, ArrayList<Entry> min, String functionName){
+    public void getValueBack(ArrayList<Entry> resultList, String functionName){
 
         // Se c'è stato un errore nel calcolo dei valori numerici, chiudo il Fragment
         if (resultList == null) {
@@ -146,6 +146,9 @@ public class FragmentDrawGraph extends DialogFragment {
 
         draw_Max = new ArrayList<>();
         draw_Min = new ArrayList<>();
+
+        ArrayList<Entry> max = MaxMin_Singleton.getInstance().getValues().get(0);
+        ArrayList<Entry> min = MaxMin_Singleton.getInstance().getValues().get(1);
 
         LineDataSet dataSet = new LineDataSet(resultList, functionName);
         LineDataSet max_c = new LineDataSet(max, "max");
