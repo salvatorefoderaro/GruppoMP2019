@@ -71,8 +71,6 @@ public class FragmentDrawGraph extends DialogFragment {
     private TestAsyncTask task;
     private ProgressDialog dialogBar;
     private ArrayList<ILineDataSet> dataSets;
-    private ArrayList<ILineDataSet> draw_Max;
-    private ArrayList<ILineDataSet> draw_Min;
     private int toPlot;
 
     @Override
@@ -152,6 +150,9 @@ public class FragmentDrawGraph extends DialogFragment {
             return;
         }
 
+        ArrayList<ILineDataSet> draw_Max = new ArrayList<>();
+        ArrayList<ILineDataSet> draw_Min = new ArrayList<>();
+
         /*TODO
         *
         * Inserire label massimo e minimo
@@ -161,15 +162,12 @@ public class FragmentDrawGraph extends DialogFragment {
         *
         * */
 
-        draw_Max = new ArrayList<>();
-        draw_Min = new ArrayList<>();
-
         ArrayList<Entry> max = MaxMin_Singleton.getInstance().getValues().get(0);
         ArrayList<Entry> min = MaxMin_Singleton.getInstance().getValues().get(1);
 
         LineDataSet dataSet = new LineDataSet(resultList, functionName);
-        LineDataSet max_c = new LineDataSet(max, "max");
-        LineDataSet min_c = new LineDataSet(min, "min");
+        LineDataSet max_c = new LineDataSet(max, "max(" + functionName + ")");
+        LineDataSet min_c = new LineDataSet(min, "min(" + functionName + ")");
 
         max_c.setColor(Color.BLACK);
         min_c.setColor(Color.GREEN);
@@ -223,6 +221,7 @@ public class FragmentDrawGraph extends DialogFragment {
     // Procedo con la creazione del grafico
     public void plotGraph(){
 
+        System.out.println(dataSets.size());
         LineData lineData = new LineData(dataSets);
 
         chart.setData(lineData);
@@ -253,8 +252,8 @@ public class FragmentDrawGraph extends DialogFragment {
 
                 AlertDialog alertDialog = new AlertDialog.Builder(context).create();
                 alertDialog.setTitle("Info");
-                alertDialog.setMessage("Massimo: \n" + "\t X: " + Math.round(MaxMin_Singleton.getInstance().getMaxX()) + "\t Y: " + Math.round(MaxMin_Singleton.getInstance().getMaxY())
-                        + "\n\n Minimo: \n" + "\t X: " + Math.round(MaxMin_Singleton.getInstance().getMinX()) + "\t Y: " + Math.round(MaxMin_Singleton.getInstance().getMinY()));
+                alertDialog.setMessage(context.getText(R.string.troppoGrande).toString()+" : \n" + "\t X: " + Math.round(MaxMin_Singleton.getInstance().getMaxX()) + "\t Y: " + Math.round(MaxMin_Singleton.getInstance().getMaxY())
+                        + "\n\n"+ context.getText(R.string.troppoGrande).toString()+ " : \n" + "\t X: " + Math.round(MaxMin_Singleton.getInstance().getMinX()) + "\t Y: " + Math.round(MaxMin_Singleton.getInstance().getMinY()));
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -313,9 +312,9 @@ public class FragmentDrawGraph extends DialogFragment {
         if (requestCode == REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION) {
             int grantResultsLength = grantResults.length;
             if (grantResultsLength > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(context, "You grant write external storage permission. Please click original button again to continue.", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, context.getResources().getString(R.string.okExternalPermission), Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(context, "You denied write external storage permission.", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, context.getResources().getString(R.string.noExternalPermission), Toast.LENGTH_LONG).show();
             }
         }
 

@@ -190,7 +190,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //-------------------------------------------------------------------------------------------------------------//
-
     }
 
     // Aggiungo le icone al menù
@@ -394,10 +393,11 @@ public class MainActivity extends AppCompatActivity {
     }*/
 
     private void setAppLocale(String localCode){
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration conf = res.getConfiguration();
-        conf.setLocale(new Locale(localCode.toLowerCase()));
-        res.updateConfiguration(conf, dm);
+
+        Locale locale2 = new Locale(localCode);
+        Locale.setDefault(locale2);
+        Configuration config2 = new Configuration();
+        config2.locale = locale2;
+
     }
 }

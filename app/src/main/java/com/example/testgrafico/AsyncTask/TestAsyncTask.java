@@ -61,11 +61,6 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
 
         input = input.replace(" ", "");
 
-        if (!input.contains("x_")){
-            publishProgress(this.context.getText(R.string.syntaxError).toString());
-            return null;
-        }
-
         // Per evitare problemi con l'esponenziale, effettuo questa sostituzione
 
         while (input.contains("|")){
@@ -102,8 +97,6 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
         System.out.println(input);
         // I valori del ciclo for vengono dati dalla seekbar, grazie alla quale sarà possibile modificare i valori di precision
         for (double i = estremoA; i <= estremoB; i +=precision) {
-
-
 
             try {
                 if (!input.contains("x_")){
@@ -188,7 +181,6 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
     @Override
     protected void onPostExecute(ArrayList<Entry> result) {
         // execution of result of Long time consuming operation
-        System.out.println("Ho terminato l'esecuzione!");
         istance.getValueBack(result, this.input);
     }
 

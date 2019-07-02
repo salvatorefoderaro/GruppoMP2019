@@ -30,4 +30,8 @@
         \t THE EXTREMES\n\n
         A extreme and B extreme must be integers.\n\n
         A extreme must be closely lower than B extreme.\n\n</string>
+    <string name="max">Max value is</string>
+    <string name="min">Min valus is</string>
+    <string name="noExternalPermission">You denied write external storage permission!</string>
+    <string name="okExternalPermission">You grant write external storage permission!</string>
 </resources>

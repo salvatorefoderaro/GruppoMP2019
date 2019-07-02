@@ -9,7 +9,7 @@
     <string name="asin" translatable="false">Asin</string>
     <string name="atan" translatable="false">Atan</string>
     <string name="atan2" translatable="false">Atan2</string>
-    <string name="log" translatable="false">LOg</string>
+    <string name="log" translatable="false">Log</string>
     <string name="tan" translatable="false">TAN</string>
 
     <string name="riempiCampi">Riempire tutti i campi</string>
@@ -44,4 +44,8 @@
         L estremo A e l estremo B devono essere due interi.\n\n
         L estremo A deve essere strettamente minore dell estremo B.\n\n
     </string>
+    <string name="max">Massimo</string>
+    <string name="min">Minimo</string>
+    <string name="noExternalPermission">Non hai concesso i permessi per lo storage esterno!</string>
+    <string name="okExternalPermission">Hai concesso i permessi per lo storage esterno!</string>
 </resources>
