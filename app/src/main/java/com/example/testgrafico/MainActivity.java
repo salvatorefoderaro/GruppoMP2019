@@ -12,6 +12,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.Toolbar;
 
 import android.text.Editable;
@@ -85,23 +86,27 @@ public class MainActivity extends AppCompatActivity {
         editText = test.getEditText();
         editText1 = test1.getEditText();
 
-       ///////////////////////////////////////LANGUAGE////////////////////////////////////////
-
-        eng.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setAppLocale("US");
-            }
-        });
-
-        ita.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setAppLocale("values");
-            }
-        });
-
-        //////////////////////////////////////////////////////////////////////////////////////////
+//       ///////////////////////////////////////LANGUAGE////////////////////////////////////////
+//
+//        eng.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//               setAppLocale("en_GB");
+//
+//            }
+//        });
+//
+//        ita.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                    System.out.println(getResources().getConfiguration().getLocales());
+//                    setAppLocale("it_IT");
+//                }
+//            }
+//        });
+//
+//        //////////////////////////////////////////////////////////////////////////////////////////
 
 
         // Aggiungo tutti quanti i controlli per i vari input una volta premuto il FAB
@@ -392,12 +397,44 @@ public class MainActivity extends AppCompatActivity {
 
     }*/
 
-    private void setAppLocale(String localCode){
+    /*private void setAppLocale(String localCode){
 
         Locale locale2 = new Locale(localCode);
         Locale.setDefault(locale2);
         Configuration config2 = new Configuration();
         config2.locale = locale2;
+
+    }*/
+
+//    private void setAppLocale(String localCode){
+//        Resources res = getResources();
+//        DisplayMetrics dm = res.getDisplayMetrics();
+//        Configuration conf = res.getConfiguration();
+//        conf.setLocale(new Locale(localCode));
+//        res.updateConfiguration(conf, dm);
+//        conf.setTo(conf);
+//        }
+
+    @Override
+    public void onBackPressed(){
+        // setup the alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AppTheme));
+        builder.setTitle(getString(R.string.closeApp));
+        builder.setMessage(getString(R.string.exitFromApp));
+
+        // add the buttons
+        builder.setPositiveButton(getString(R.string.confirmExit), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                System.exit(1);
+            }
+        });
+        builder.setNegativeButton(getString(R.string.noExit), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
 
     }
 }
