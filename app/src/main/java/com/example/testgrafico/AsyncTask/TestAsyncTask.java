@@ -26,16 +26,16 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
     private Context context;
     private String input;
     private String originFunction;
-    private int estremoA;
-    private int estremoB;
+    private float estremoA;
+    private float estremoB;
     private float precision;
     private FragmentDrawGraph istance;
     private String valueToParse;
     private ArrayList<Entry> max;
     private ArrayList<Entry> min;
     private float maxY = 0, minY = 0, maxX = 0, minX = 0;
-    public TestAsyncTask(Context context, String input, int estremoA,
-                         int estremoB, float precision, ProgressDialog dialog, FragmentDrawGraph istance) {
+    public TestAsyncTask(Context context, String input, float estremoA,
+                         float estremoB, float precision, ProgressDialog dialog, FragmentDrawGraph istance) {
         // list all the parameters like in normal class define
         this.context = context;
         this.input = this.originFunction = input;
@@ -93,8 +93,8 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
         input = input.replace("e", "exp(1)");
         System.out.println(input);
         // I valori del ciclo for vengono dati dalla seekbar, grazie alla quale sarà possibile modificare i valori di precision
-        for (double i = estremoA; i <= estremoB; i +=precision) {
-
+        for (float i = estremoA; i <= estremoB + 0.1; i +=precision) {
+            System.out.println(i);
             try {
                 if (!input.contains("x_")){
                     valueToParse = mathEvaluator.evaluate(input);

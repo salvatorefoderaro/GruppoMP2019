@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Fragment.FragmentDrawGraph">
 
-    <group android:id="@+id/action_bar_group">
 
         <item
             android:id="@+id/close"
@@ -11,5 +10,4 @@
             android:orderInCategory="300"
             android:title=""
             app:showAsAction="always" />
-    </group>
 </menu>
