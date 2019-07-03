@@ -34,7 +34,7 @@ public class FragmentHelp extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_help_include, container);
         toolbar = view.findViewById(R.id.tb_func);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        toolbar.setTitle("Serve un aiuto?");
+        toolbar.setTitle(this.getString(R.string.needHelp));
 
         setHasOptionsMenu(true);
 
