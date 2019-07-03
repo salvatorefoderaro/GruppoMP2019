@@ -232,14 +232,19 @@ public class FragmentDrawGraph extends DialogFragment {
                 AlertDialog alertDialog = new AlertDialog.Builder(context).create();
                 alertDialog.setTitle(context.getText(R.string.graphInfo).toString());
 
-                String message = context.getText(R.string.function) + ": " + wewe.get(0) + "\n" +
-                        context.getText(R.string.max).toString()+": \n" + "\t X: " + wewe.get(1) + "\t Y: " + wewe.get(2)
-                                + "\n"+ context.getText(R.string.min).toString()+ ": \n" + "\t X: " + wewe.get(3) + "\t Y: " + wewe.get(4);
+                DecimalFormat decimalFormat = new DecimalFormat("#.00");
 
-                if (!wewe.get(5).toString().isEmpty()){
-                    message = message + "\n\n" + context.getText(R.string.function) + ": " + wewe.get(5) + "\n" + context.getText(R.string.max).toString()+": \n" + "\t X: " + wewe.get(6) + "\t Y: " + wewe.get(7)
-                            + "\n"+ context.getText(R.string.min).toString()+ ": \n" + "\t X: " + wewe.get(8) + "\t Y: " + wewe.get(9);
+                String message = context.getText(R.string.function) + ": " + wewe.get(0) + "\n\n" +
+                        context.getText(R.string.max).toString()+": \n" + "\t X: " + decimalFormat.format(wewe.get(1)) + "\t Y: " + decimalFormat.format(wewe.get(2))
+                                + "\n"+ context.getText(R.string.min).toString()+ ": \n" + "\t X: " + decimalFormat.format(wewe.get(3)) + "\t Y: " + decimalFormat.format(wewe.get(4));
+
+                if ((wewe.size() > 5)){
+                    message = message + "\n\n" + context.getText(R.string.function) + ": " + wewe.get(5) + "\n\n" + context.getText(R.string.max).toString()+": \n" +
+                            "\t X: " + decimalFormat.format(wewe.get(6)) + "\t Y: " +decimalFormat.format(wewe.get(7))
+                            + "\n"+ context.getText(R.string.min).toString()+ ": \n" + "\t X: " + decimalFormat.format(wewe.get(8)) + "\t Y: " + decimalFormat.format(wewe.get(9));
                 }
+
+
 
                 alertDialog.setMessage(message);
 
