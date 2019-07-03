@@ -29,10 +29,8 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SeekBar;
 import android.widget.Toast;
 
-import com.example.testgrafico.MathHelper.MaxMin_Singleton;
 import com.example.testgrafico.R;
 import com.example.testgrafico.AsyncTask.TestAsyncTask;
 import com.github.mikephil.charting.charts.LineChart;
@@ -62,8 +60,6 @@ public class FragmentDrawGraph extends DialogFragment {
     private int estremoB;
     private float precision = 0.1f;
     private Context context;
-    private SeekBar seekBar;
-    //private Chart<LineData> chart;
     private LineChart chart;  //Ho cambiato il tipo di chart per avere più opzioni disponibili
     private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION = 1;
     private Toolbar toolbar;
@@ -72,6 +68,7 @@ public class FragmentDrawGraph extends DialogFragment {
     private ProgressDialog dialogBar;
     private ArrayList<ILineDataSet> dataSets;
     private int toPlot;
+    private ArrayList<Object> wewe = new ArrayList<>();
 
     @Override
     public void onAttach(Activity activity) {
@@ -113,25 +110,6 @@ public class FragmentDrawGraph extends DialogFragment {
 
         // Imposto i vari elementi dell'interfaccia grafica
         chart = view.findViewById(R.id.chart);
-        seekBar = view.findViewById(R.id.seekBar);
-        seekBar.setProgress(0);
-
-        // Imposto le funzioni per la seekbar
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser) {
-                precision = 0.1f - ((seekBar.getProgress() + 0.1f) * 0.01f);
-                drawExpression();
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
-        });
 
         // Ottengo le funzioni passate dalla main Activity
         function1 = getArguments().getString("function1");
@@ -142,7 +120,7 @@ public class FragmentDrawGraph extends DialogFragment {
         return view;
     }
 
-    public void getValueBack(ArrayList<Entry> resultList, String functionName){
+    public void getValueBack(ArrayList<Entry> resultList, String functionName, float maxX, float maxY, float minX, float minY){
 
         // Se c'è stato un errore nel calcolo dei valori numerici, chiudo il Fragment
         if (resultList == null) {
@@ -150,8 +128,11 @@ public class FragmentDrawGraph extends DialogFragment {
             return;
         }
 
-        ArrayList<ILineDataSet> draw_Max = new ArrayList<>();
-        ArrayList<ILineDataSet> draw_Min = new ArrayList<>();
+        wewe.add(functionName);
+        wewe.add(maxX);
+        wewe.add(maxY);
+        wewe.add(minX);
+        wewe.add(minY);
 
         /*TODO
         *
@@ -161,13 +142,14 @@ public class FragmentDrawGraph extends DialogFragment {
         *
         *
         * */
-
-        ArrayList<Entry> max = MaxMin_Singleton.getInstance().getValues().get(0);
-        ArrayList<Entry> min = MaxMin_Singleton.getInstance().getValues().get(1);
+        ArrayList<Entry> max = new ArrayList<Entry>();
+        ArrayList<Entry> min = new ArrayList<Entry>();
+        max.add(new Entry(maxX, maxY));
+        min.add(new Entry(minX, minY));
 
         LineDataSet dataSet = new LineDataSet(resultList, functionName);
-        LineDataSet max_c = new LineDataSet(max, "max(" + functionName + ")");
-        LineDataSet min_c = new LineDataSet(min, "min(" + functionName + ")");
+        LineDataSet max_c = new LineDataSet(max, "max");
+        LineDataSet min_c =  new LineDataSet(min,  "min");
 
         max_c.setColor(Color.BLACK);
         min_c.setColor(Color.GREEN);
@@ -177,8 +159,6 @@ public class FragmentDrawGraph extends DialogFragment {
         min_c.setCircleColor(Color.GREEN);
         max_c.setDrawValues(true);  // Disegno i valori di max e min
         min_c.setDrawValues(true);
-        draw_Max.add(max_c);
-        draw_Min.add(min_c);
 
         dataSet.setColor(Color.RED);
         dataSet.setDrawCircles(false);  //Disattivo i cerchi sui vari punti
@@ -221,7 +201,6 @@ public class FragmentDrawGraph extends DialogFragment {
     // Procedo con la creazione del grafico
     public void plotGraph(){
 
-        System.out.println(dataSets.size());
         LineData lineData = new LineData(dataSets);
 
         chart.setData(lineData);
@@ -251,9 +230,20 @@ public class FragmentDrawGraph extends DialogFragment {
             public void onChartLongPressed(MotionEvent me) {
 
                 AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-                alertDialog.setTitle("Info");
-                alertDialog.setMessage(context.getText(R.string.troppoGrande).toString()+" : \n" + "\t X: " + Math.round(MaxMin_Singleton.getInstance().getMaxX()) + "\t Y: " + Math.round(MaxMin_Singleton.getInstance().getMaxY())
-                        + "\n\n"+ context.getText(R.string.troppoGrande).toString()+ " : \n" + "\t X: " + Math.round(MaxMin_Singleton.getInstance().getMinX()) + "\t Y: " + Math.round(MaxMin_Singleton.getInstance().getMinY()));
+                alertDialog.setTitle(context.getText(R.string.graphInfo).toString());
+
+                String message = context.getText(R.string.function) + ": " + wewe.get(0) + "\n" +
+                        context.getText(R.string.max).toString()+": \n" + "\t X: " + wewe.get(1) + "\t Y: " + wewe.get(2)
+                                + "\n"+ context.getText(R.string.min).toString()+ ": \n" + "\t X: " + wewe.get(3) + "\t Y: " + wewe.get(4);
+
+                if (!wewe.get(5).toString().isEmpty()){
+                    message = message + "\n\n" + context.getText(R.string.function) + ": " + wewe.get(5) + "\n" + context.getText(R.string.max).toString()+": \n" + "\t X: " + wewe.get(6) + "\t Y: " + wewe.get(7)
+                            + "\n"+ context.getText(R.string.min).toString()+ ": \n" + "\t X: " + wewe.get(8) + "\t Y: " + wewe.get(9);
+                }
+
+                alertDialog.setMessage(message);
+
+
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -262,15 +252,10 @@ public class FragmentDrawGraph extends DialogFragment {
                         });
                 alertDialog.show();
 
-                /*Nel singleton ho aggiunto le coordinate di massimo e minimo
-                * qua le riprendo e le approssimo*/
-
             }
 
             @Override
             public void onChartDoubleTapped(MotionEvent me) {
-
-
             }
 
             @Override
@@ -425,6 +410,11 @@ public class FragmentDrawGraph extends DialogFragment {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialogInterface){
+        this.dialogBar.dismiss();
     }
 
     /*public MPPointD getValuesByTouchPoint(float x, float y){

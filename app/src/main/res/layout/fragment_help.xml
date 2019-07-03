@@ -17,10 +17,14 @@
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
-            android:layout_height="461dp"
-            android:fontFamily="sans-serif-condensed-medium"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
             android:text="@string/help_text"
-            android:textSize="18sp" />
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="18sp"
+            android:typeface="monospace" />
 
     </LinearLayout>
 </ScrollView>
