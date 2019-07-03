@@ -62,8 +62,6 @@ public class FragmentDrawGraph extends DialogFragment {
     private int estremoB;
     private float precision = 0.1f;
     private Context context;
-    private SeekBar seekBar;
-    //private Chart<LineData> chart;
     private LineChart chart;  //Ho cambiato il tipo di chart per avere più opzioni disponibili
     private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION = 1;
     private Toolbar toolbar;
@@ -113,25 +111,6 @@ public class FragmentDrawGraph extends DialogFragment {
 
         // Imposto i vari elementi dell'interfaccia grafica
         chart = view.findViewById(R.id.chart);
-        seekBar = view.findViewById(R.id.seekBar);
-        seekBar.setProgress(0);
-
-        // Imposto le funzioni per la seekbar
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser) {
-                precision = 0.1f - ((seekBar.getProgress() + 0.1f) * 0.01f);
-                drawExpression();
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
-        });
 
         // Ottengo le funzioni passate dalla main Activity
         function1 = getArguments().getString("function1");
@@ -150,9 +129,6 @@ public class FragmentDrawGraph extends DialogFragment {
             return;
         }
 
-        ArrayList<ILineDataSet> draw_Max = new ArrayList<>();
-        ArrayList<ILineDataSet> draw_Min = new ArrayList<>();
-
         /*TODO
         *
         * Inserire label massimo e minimo
@@ -166,8 +142,8 @@ public class FragmentDrawGraph extends DialogFragment {
         ArrayList<Entry> min = MaxMin_Singleton.getInstance().getValues().get(1);
 
         LineDataSet dataSet = new LineDataSet(resultList, functionName);
-        LineDataSet max_c = new LineDataSet(max, "max(" + functionName + ")");
-        LineDataSet min_c = new LineDataSet(min, "min(" + functionName + ")");
+        LineDataSet max_c = new LineDataSet(max, "max");
+        LineDataSet min_c = new LineDataSet(min,  "min");
 
         max_c.setColor(Color.BLACK);
         min_c.setColor(Color.GREEN);
@@ -177,8 +153,6 @@ public class FragmentDrawGraph extends DialogFragment {
         min_c.setCircleColor(Color.GREEN);
         max_c.setDrawValues(true);  // Disegno i valori di max e min
         min_c.setDrawValues(true);
-        draw_Max.add(max_c);
-        draw_Min.add(min_c);
 
         dataSet.setColor(Color.RED);
         dataSet.setDrawCircles(false);  //Disattivo i cerchi sui vari punti
@@ -251,9 +225,9 @@ public class FragmentDrawGraph extends DialogFragment {
             public void onChartLongPressed(MotionEvent me) {
 
                 AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-                alertDialog.setTitle("Info");
-                alertDialog.setMessage(context.getText(R.string.troppoGrande).toString()+" : \n" + "\t X: " + Math.round(MaxMin_Singleton.getInstance().getMaxX()) + "\t Y: " + Math.round(MaxMin_Singleton.getInstance().getMaxY())
-                        + "\n\n"+ context.getText(R.string.troppoGrande).toString()+ " : \n" + "\t X: " + Math.round(MaxMin_Singleton.getInstance().getMinX()) + "\t Y: " + Math.round(MaxMin_Singleton.getInstance().getMinY()));
+                alertDialog.setTitle(context.getText(R.string.graphInfo).toString());
+                alertDialog.setMessage(context.getText(R.string.max).toString()+": \n" + "\t X: " + Math.round(MaxMin_Singleton.getInstance().getMaxX()) + "\t Y: " + Math.round(MaxMin_Singleton.getInstance().getMaxY())
+                        + "\n\n"+ context.getText(R.string.min).toString()+ ": \n" + "\t X: " + Math.round(MaxMin_Singleton.getInstance().getMinX()) + "\t Y: " + Math.round(MaxMin_Singleton.getInstance().getMinY()));
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -425,6 +399,11 @@ public class FragmentDrawGraph extends DialogFragment {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialogInterface){
+        this.dialogBar.dismiss();
     }
 
     /*public MPPointD getValuesByTouchPoint(float x, float y){

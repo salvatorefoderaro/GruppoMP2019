@@ -48,4 +48,5 @@
     <string name="min">Minimo</string>
     <string name="noExternalPermission">Non hai concesso i permessi per lo storage esterno!</string>
     <string name="okExternalPermission">Hai concesso i permessi per lo storage esterno!</string>
+    <string name="graphInfo">Informazioni sul grafico</string>
 </resources>

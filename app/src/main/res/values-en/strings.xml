@@ -34,4 +34,5 @@
     <string name="min">Min valus is</string>
     <string name="noExternalPermission">You denied write external storage permission!</string>
     <string name="okExternalPermission">You grant write external storage permission!</string>
+    <string name="graphInfo">Graph info</string>
 </resources>
