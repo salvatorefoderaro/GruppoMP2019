@@ -5,8 +5,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.example.testgrafico.Fragment.FragmentDrawGraph;
-import com.example.testgrafico.MathHelper.MaxMin_Singleton;
-import com.example.testgrafico.MathHelper.getValueList;
 import com.example.testgrafico.R;
 import com.github.mikephil.charting.data.Entry;
 
@@ -27,6 +25,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
     private ProgressDialog dialog;
     private Context context;
     private String input;
+    private String originFunction;
     private int estremoA;
     private int estremoB;
     private float precision;
@@ -34,12 +33,12 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
     private String valueToParse;
     private ArrayList<Entry> max;
     private ArrayList<Entry> min;
-
+    private float maxY = 0, minY = 0, maxX = 0, minX = 0;
     public TestAsyncTask(Context context, String input, int estremoA,
                          int estremoB, float precision, ProgressDialog dialog, FragmentDrawGraph istance) {
         // list all the parameters like in normal class define
         this.context = context;
-        this.input = input;
+        this.input = this.originFunction = input;
         this.estremoA = estremoA;
         this.estremoB = estremoB;
         this.precision = precision;
@@ -48,17 +47,15 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
     }
 
     // Le chiamate a publishProgress() chiamano il metodo onProgressUpdate() presente nell'AsyncTask
-
     @Override
     protected ArrayList<Entry> doInBackground(ArrayList<Entry>... arrayLists) {
-        float maxY = 0, minY = 0, maxX = 0, minX = 0, value;
+        float value;
         boolean firstValue = true;
 
         Evaluator mathEvaluator = new Evaluator();
         ArrayList<Entry> entries = new ArrayList<Entry>();
 
         String toLeft, toRight, leftString, rightString, betweenAbs;
-
         input = input.replace(" ", "");
 
         // Per evitare problemi con l'esponenziale, effettuo questa sostituzione
@@ -147,8 +144,6 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
 
                     // Aggiungo il valore calcolato al grafico
                     entries.add(new Entry((float) i, value));
-                    getValueList getValueList = new getValueList();
-                    getValueList.MaxMin(maxX, maxY, minX, minY);
 
                 } else {
                     publishProgress(this.context.getText(R.string.domainError).toString());
@@ -181,7 +176,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
     @Override
     protected void onPostExecute(ArrayList<Entry> result) {
         // execution of result of Long time consuming operation
-        istance.getValueBack(result, this.input);
+        istance.getValueBack(result, this.originFunction, maxX, maxY, minX, minY);
     }
 
     // Prima dell'esecuzione

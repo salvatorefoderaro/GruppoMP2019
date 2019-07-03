@@ -50,4 +50,5 @@
     <string name="graphInfo">Informazioni sul grafico</string>
     <string name="f_x">f(x_)</string>
     <string name="needHelp">Serve un aiuto?</string>
+    <string name="function">Funzione</string>
 </resources>

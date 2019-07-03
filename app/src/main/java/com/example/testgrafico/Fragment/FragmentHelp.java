@@ -35,9 +35,7 @@ public class FragmentHelp extends DialogFragment {
         toolbar = view.findViewById(R.id.tb_func);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         toolbar.setTitle(this.getString(R.string.needHelp));
-
         setHasOptionsMenu(true);
-
         return view;
     }
 

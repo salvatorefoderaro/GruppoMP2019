@@ -37,4 +37,5 @@
     <string name="graphInfo">Graph info</string>
     <string name="f_x">f(x_)</string>
     <string name="needHelp">Need help?</string>
+    <string name="function">Function</string>
 </resources>

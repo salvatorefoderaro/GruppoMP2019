@@ -29,10 +29,8 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SeekBar;
 import android.widget.Toast;
 
-import com.example.testgrafico.MathHelper.MaxMin_Singleton;
 import com.example.testgrafico.R;
 import com.example.testgrafico.AsyncTask.TestAsyncTask;
 import com.github.mikephil.charting.charts.LineChart;
@@ -70,6 +68,7 @@ public class FragmentDrawGraph extends DialogFragment {
     private ProgressDialog dialogBar;
     private ArrayList<ILineDataSet> dataSets;
     private int toPlot;
+    private ArrayList<Object> wewe = new ArrayList<>();
 
     @Override
     public void onAttach(Activity activity) {
@@ -121,13 +120,19 @@ public class FragmentDrawGraph extends DialogFragment {
         return view;
     }
 
-    public void getValueBack(ArrayList<Entry> resultList, String functionName){
+    public void getValueBack(ArrayList<Entry> resultList, String functionName, float maxX, float maxY, float minX, float minY){
 
         // Se c'è stato un errore nel calcolo dei valori numerici, chiudo il Fragment
         if (resultList == null) {
             dismiss();
             return;
         }
+
+        wewe.add(functionName);
+        wewe.add(maxX);
+        wewe.add(maxY);
+        wewe.add(minX);
+        wewe.add(minY);
 
         /*TODO
         *
@@ -137,13 +142,14 @@ public class FragmentDrawGraph extends DialogFragment {
         *
         *
         * */
-
-        ArrayList<Entry> max = MaxMin_Singleton.getInstance().getValues().get(0);
-        ArrayList<Entry> min = MaxMin_Singleton.getInstance().getValues().get(1);
+        ArrayList<Entry> max = new ArrayList<Entry>();
+        ArrayList<Entry> min = new ArrayList<Entry>();
+        max.add(new Entry(maxX, maxY));
+        min.add(new Entry(minX, minY));
 
         LineDataSet dataSet = new LineDataSet(resultList, functionName);
         LineDataSet max_c = new LineDataSet(max, "max");
-        LineDataSet min_c = new LineDataSet(min,  "min");
+        LineDataSet min_c =  new LineDataSet(min,  "min");
 
         max_c.setColor(Color.BLACK);
         min_c.setColor(Color.GREEN);
@@ -195,7 +201,6 @@ public class FragmentDrawGraph extends DialogFragment {
     // Procedo con la creazione del grafico
     public void plotGraph(){
 
-        System.out.println(dataSets.size());
         LineData lineData = new LineData(dataSets);
 
         chart.setData(lineData);
@@ -226,8 +231,19 @@ public class FragmentDrawGraph extends DialogFragment {
 
                 AlertDialog alertDialog = new AlertDialog.Builder(context).create();
                 alertDialog.setTitle(context.getText(R.string.graphInfo).toString());
-                alertDialog.setMessage(context.getText(R.string.max).toString()+": \n" + "\t X: " + Math.round(MaxMin_Singleton.getInstance().getMaxX()) + "\t Y: " + Math.round(MaxMin_Singleton.getInstance().getMaxY())
-                        + "\n\n"+ context.getText(R.string.min).toString()+ ": \n" + "\t X: " + Math.round(MaxMin_Singleton.getInstance().getMinX()) + "\t Y: " + Math.round(MaxMin_Singleton.getInstance().getMinY()));
+
+                String message = context.getText(R.string.function) + ": " + wewe.get(0) + "\n" +
+                        context.getText(R.string.max).toString()+": \n" + "\t X: " + wewe.get(1) + "\t Y: " + wewe.get(2)
+                                + "\n"+ context.getText(R.string.min).toString()+ ": \n" + "\t X: " + wewe.get(3) + "\t Y: " + wewe.get(4);
+
+                if (!wewe.get(5).toString().isEmpty()){
+                    message = message + "\n\n" + context.getText(R.string.function) + ": " + wewe.get(5) + "\n" + context.getText(R.string.max).toString()+": \n" + "\t X: " + wewe.get(6) + "\t Y: " + wewe.get(7)
+                            + "\n"+ context.getText(R.string.min).toString()+ ": \n" + "\t X: " + wewe.get(8) + "\t Y: " + wewe.get(9);
+                }
+
+                alertDialog.setMessage(message);
+
+
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -236,15 +252,10 @@ public class FragmentDrawGraph extends DialogFragment {
                         });
                 alertDialog.show();
 
-                /*Nel singleton ho aggiunto le coordinate di massimo e minimo
-                * qua le riprendo e le approssimo*/
-
             }
 
             @Override
             public void onChartDoubleTapped(MotionEvent me) {
-
-
             }
 
             @Override
