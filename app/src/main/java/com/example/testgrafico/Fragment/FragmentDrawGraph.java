@@ -232,7 +232,7 @@ public class FragmentDrawGraph extends DialogFragment {
                 AlertDialog alertDialog = new AlertDialog.Builder(context).create();
                 alertDialog.setTitle(context.getText(R.string.graphInfo).toString());
 
-                DecimalFormat decimalFormat = new DecimalFormat("#.00");
+                DecimalFormat decimalFormat = new DecimalFormat("#0.00");
 
                 String message = context.getText(R.string.function) + ": " + wewe.get(0) + "\n\n" +
                         context.getText(R.string.max).toString()+": \n" + "\t X: " + decimalFormat.format(wewe.get(1)) + "\t Y: " + decimalFormat.format(wewe.get(2))
