@@ -22,14 +22,16 @@
     <string name="A_extreme">A extreme</string>
     <string name="B_extreme">B extreme</string>
     <string name="precisione">Modify precision</string>
-    <string name="help_text" translatable="false">\t\n\n THE FUNCTION \n\n
-        The function s variable must be followed by underscore: x_\n\n
-        We advice you to wrap every single variable in round brackets.\n\n
-        For example: (x_)^3.\n\n
-        You can insert two functions and compare their trends into a same domain range.\n\n\n
-        \t THE EXTREMES\n\n
+    <string name="help_text" translatable="false">\tTHE FUNCTION \n\n</string>
+    <string name="help_text_2">The function s variable must be followed by underscore, e.g.: x_\n\n
+        We advice you to wrap every single variable in round brackets, e.g.: (x_)^3\n\n
+        You can insert two functions and compare their trends into a same domain range.\n\n
+        You can also use already typed functions by double-tapping function edit-text.\n\n</string>
+    <string name="help_text_3">\t THE EXTREMES\n\n</string>
+    <string name="help_text_4">Extremes are required.\n\n
         A extreme and B extreme must be integers.\n\n
         A extreme must be closely lower than B extreme.\n</string>
+
     <string name="max">Max value is</string>
     <string name="min">Min valus is</string>
     <string name="noExternalPermission">You denied write external storage permission!</string>
@@ -38,4 +40,9 @@
     <string name="f_x">f(x_)</string>
     <string name="needHelp">Need help?</string>
     <string name="function">Function</string>
+
+    <string name="closeApp">Application closing</string>
+    <string name="exitFromApp">Do you really want to exit?</string>
+    <string name="confirmExit">Yes.</string>
+    <string name="noExit">No.</string>
 </resources>
