@@ -38,7 +38,7 @@
     <string name="help_text">\tLA FUNZIONE\n\n</string>
 
     <string name="help_text_2">La variabile della funzione da inserire deve essere seguita da trattino basso, es: x_\n\n
-        Si consiglia di racchiudere ogni variabile presente all interno di parentesi tonde, es: (x_)^3\n\n
+        Si consiglia di racchiudere ogni variabile presente all interno di parentesi tonde, es: ((x_)^3)\n\n
         Si possono inserire due funzioni e confrontare i loro andamenti all interno di uno stesso intervallo.\n\n\n
         È possibile accedere a funzioni già esistenti con un doppio tocco sul campo della funzione.</string>
 

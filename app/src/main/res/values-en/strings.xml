@@ -24,7 +24,7 @@
     <string name="precisione">Modify precision</string>
     <string name="help_text" translatable="false">\tTHE FUNCTION \n\n</string>
     <string name="help_text_2">The function s variable must be followed by underscore, e.g.: x_\n\n
-        We advice you to wrap every single variable in round brackets, e.g.: (x_)^3\n\n
+        We advice you to wrap every single variable in round brackets, e.g.: ((x_)^3)\n\n
         You can insert two functions and compare their trends into a same domain range.\n\n
         You can also use already typed functions by double-tapping function edit-text.\n\n</string>
     <string name="help_text_3">\t THE EXTREMES\n\n</string>
