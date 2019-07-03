@@ -269,7 +269,7 @@ public class FragmentDrawGraph extends DialogFragment {
                 float tappedX = me.getX();
                 float tappedY = me.getY();
                 MPPointD point = chart.getTransformer(YAxis.AxisDependency.LEFT).getValuesByTouchPoint(tappedX, tappedY);
-                DecimalFormat decimalFormat = new DecimalFormat("#.00");
+                DecimalFormat decimalFormat = new DecimalFormat("#0.00");
 
 
                 Toast.makeText(context, "(x,y) = ( " + decimalFormat.format(point.x) + " , " + decimalFormat.format(point.y) + " )", Toast.LENGTH_LONG).show();
