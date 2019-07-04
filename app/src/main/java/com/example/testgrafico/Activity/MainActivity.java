@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
 
         final GestureDetector gestureDetector1 = new GestureDetector(getApplicationContext(), new GestureDetector.SimpleOnGestureListener() {
             public boolean onDoubleTap(MotionEvent e) {
-                // start activity
+
                 setClicked_editText("editText1");
                 cursor_position = editText1.getSelectionStart();
                 fragment.show(fm, "func");
@@ -238,9 +238,9 @@ public class MainActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.help:
-
+                Context context = this;
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                LayoutInflater inflater = (this).getLayoutInflater();
+                LayoutInflater inflater = getLayoutInflater();
                 builder.setCancelable(false);
                 builder.setView(inflater.inflate(R.layout.fragment_help, null));
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {

@@ -113,13 +113,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
         }
 
         input = input.replace("exp", "exp(1)");
-        System.out.println(input);
 
-        try {
-            System.out.println(mathEvaluator.evaluate("atan2(1, 2)"));
-        } catch (EvaluationException e) {
-            e.printStackTrace();
-        }
 
         // I valori del ciclo for vengono dati dalla seekbar, grazie alla quale sarà possibile modificare i valori di precision
         for (float i = estremoA; i <= estremoB; i +=precision) {
@@ -135,7 +129,6 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
                 if ( (!valueToParse.equals("NaN")) ) {
 
                     value = Float.parseFloat(valueToParse);
-                    System.out.println(value + " " + valueToParse);
 
                     // Aggiunta una mezza cosa per gli asintoti
                     if (valueToParse.equals("-Infinity")){
@@ -192,7 +185,6 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
                 return null;
             }
         }
-        System.out.println(entries.size());
         return entries;
     }
 

@@ -4,105 +4,111 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+    android:layout_height="wrap_content"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    app:layout_constraintHeight_default="wrap">
 
-<android.support.constraint.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <Button
-        android:id="@+id/btnAcos3"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.40"
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="20dp"
-        android:onClick="func_Acos"
-        android:text="@string/acos"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCos2" />
+        app:layout_constraintHeight_default="wrap">
 
-    <Button
-        android:id="@+id/btnSin"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.40"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:onClick="func_Seno"
-        android:text="@string/sin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/btnAcos3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="20dp"
+            android:onClick="func_Acos"
+            android:text="@string/acos"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnCos2"
+            app:layout_constraintWidth_percent="0.40" />
 
-    <Button
-        android:id="@+id/btnAtan2"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.40"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="20dp"
-        android:onClick="func_Atan2"
-        android:text="@string/atan2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAtan3" />
+        <Button
+            android:id="@+id/btnSin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:onClick="func_Seno"
+            android:text="@string/sin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.40" />
 
-    <Button
-        android:id="@+id/btnTan"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.40"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:onClick="func_tan"
-        android:text="@string/tan"
-        app:layout_constraintStart_toStartOf="@+id/btnAsin2"
-        app:layout_constraintTop_toBottomOf="@+id/btnAsin2" />
+        <Button
+            android:id="@+id/btnAtan2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:onClick="func_Atan2"
+            android:text="@string/atan2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnAtan3"
+            app:layout_constraintWidth_percent="0.40" />
 
-    <Button
-        android:id="@+id/btnLog2"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.40"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:onClick="func_log"
-        android:text="@string/log"
-        app:layout_constraintStart_toStartOf="@+id/btnTan"
-        app:layout_constraintTop_toBottomOf="@+id/btnTan" />
+        <Button
+            android:id="@+id/btnTan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:onClick="func_tan"
+            android:text="@string/tan"
+            app:layout_constraintStart_toStartOf="@+id/btnAsin2"
+            app:layout_constraintTop_toBottomOf="@+id/btnAsin2"
+            app:layout_constraintWidth_percent="0.40" />
 
-    <Button
-        android:id="@+id/btnAtan3"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.40"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="20dp"
-        android:onClick="func_Atan"
-        android:text="@string/atan"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAcos3" />
+        <Button
+            android:id="@+id/btnLog2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
+            android:onClick="func_log"
+            android:text="@string/log"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/btnTan"
+            app:layout_constraintTop_toBottomOf="@+id/btnTan"
+            app:layout_constraintWidth_percent="0.40" />
 
-    <Button
-        android:id="@+id/btnAsin2"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.40"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:onClick="func_Asin"
-        android:text="@string/asin"
-        app:layout_constraintStart_toStartOf="@+id/btnSin"
-        app:layout_constraintTop_toBottomOf="@+id/btnSin" />
+        <Button
+            android:id="@+id/btnAtan3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="20dp"
+            android:onClick="func_Atan"
+            android:text="@string/atan"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnAcos3"
+            app:layout_constraintWidth_percent="0.40" />
 
-    <Button
-        android:id="@+id/btnCos2"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.40"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:onClick="func_Coseno"
-        android:text="@string/cos"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/btnAsin2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:onClick="func_Asin"
+            android:text="@string/asin"
+            app:layout_constraintStart_toStartOf="@+id/btnSin"
+            app:layout_constraintTop_toBottomOf="@+id/btnSin"
+            app:layout_constraintWidth_percent="0.40" />
 
-</android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/btnCos2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:onClick="func_Coseno"
+            android:text="@string/cos"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.40" />
+
+    </android.support.constraint.ConstraintLayout>
 </ScrollView>
