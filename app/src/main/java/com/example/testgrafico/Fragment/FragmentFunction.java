@@ -45,9 +45,6 @@ public class FragmentFunction extends DialogFragment {
         menu.clear();
         inflater.inflate(R.menu.menu_fragment_help, menu);
         super.onCreateOptionsMenu(menu, inflater);
-        menu.findItem(R.id.help).setVisible(false);
-        menu.findItem(R.id.save).setVisible(false);
-        menu.findItem(R.id.share).setVisible(false);
     }
 
     @Override

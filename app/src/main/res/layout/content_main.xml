@@ -8,16 +8,6 @@
     tools:context=".Activity.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <Button
-        android:id="@+id/bttn_ita"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="ITA"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <android.support.design.widget.TextInputLayout
         android:id="@+id/name_text_input"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
@@ -91,15 +81,5 @@
             android:hint="@string/B_extreme"
             android:inputType="numberSigned" />
     </android.support.design.widget.TextInputLayout>
-
-    <Button
-        android:id="@+id/bttn_en"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="ENG"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/bttn_ita" />
 
 </android.support.constraint.ConstraintLayout>

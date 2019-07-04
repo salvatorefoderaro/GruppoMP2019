@@ -4,8 +4,15 @@
     tools:context=".Activity.MainActivity">
 
         <item
-            android:id="@+id/close"
-            android:icon="@drawable/close"
+            android:id="@+id/italyButton"
+            android:icon="@drawable/ic_italy_flag"
+            android:orderInCategory="300"
+            android:title=""
+            app:showAsAction="always" />
+
+        <item
+            android:id="@+id/engButton"
+            android:icon="@drawable/ic_united_states_flag"
             android:orderInCategory="300"
             android:title=""
             app:showAsAction="always" />
@@ -17,18 +24,5 @@
             android:title=""
             app:showAsAction="always" />
 
-        <item
-            android:id="@+id/share"
-            android:icon="@drawable/share_vector"
-            android:orderInCategory="300"
-            android:title=""
-            app:showAsAction="always" />
-
-        <item
-            android:id="@+id/save"
-            android:icon="@drawable/save"
-            android:orderInCategory="300"
-            android:title=""
-            app:showAsAction="always" />
 
 </menu>

@@ -67,10 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        Button ita = findViewById(R.id.bttn_ita);
-        Button eng = findViewById(R.id.bttn_en);
-        //setAppLocale(language);
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -84,27 +80,6 @@ public class MainActivity extends AppCompatActivity {
         estremoBText = B.getEditText();
         editText = test.getEditText();
         editText1 = test1.getEditText();
-
-//       ///////////////////////////////////////LANGUAGE////////////////////////////////////////
-//
-        eng.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               setLocale("en");
-                recreate();
-            }
-        });
-
-        ita.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setLocale("it");
-                recreate();
-            }
-        });
-
-//        //////////////////////////////////////////////////////////////////////////////////////////
-
 
         // Aggiungo tutti quanti i controlli per i vari input una volta premuto il FAB
         drawGraph.setOnClickListener(new View.OnClickListener() {
@@ -200,9 +175,22 @@ public class MainActivity extends AppCompatActivity {
         this.menuList = menu;
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
-        menuList.findItem(R.id.save).setVisible(false);
-        menuList.findItem(R.id.share).setVisible(false);
-        menuList.findItem(R.id.close).setVisible(false);
+
+        SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        if (prefs.getString("My_Lang", "").isEmpty()){
+            if (this.getResources().getConfiguration().locale.toString().equals("it_IT")){
+                menu.findItem(R.id.italyButton).setVisible(false);
+            } else {
+                menu.findItem(R.id.engButton).setVisible(false);
+            }
+        } else {
+            System.out.println("Entro qui?");
+            if (prefs.getString("My_Lang", "").toString().equals("it")){
+                menu.findItem(R.id.italyButton).setVisible(false);
+            } else {
+                menu.findItem(R.id.engButton).setVisible(false);
+            }
+        }
         return true;
     }
 
@@ -266,7 +254,18 @@ public class MainActivity extends AppCompatActivity {
                 builder.create();
                 builder.show();
                 return true;
-
+            case R.id.italyButton:
+                setLocale("it");
+                menuList.findItem(R.id.italyButton).setVisible(false);
+                menuList.findItem(R.id.engButton).setVisible(true);
+                recreate();
+                return true;
+            case R.id.engButton:
+                setLocale("en");
+                menuList.findItem(R.id.italyButton).setVisible(true);
+                menuList.findItem(R.id.engButton).setVisible(false);
+                recreate();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
