@@ -1,8 +1,11 @@
 package com.example.testgrafico.Activity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
@@ -25,6 +28,8 @@ import android.widget.EditText;
 import com.example.testgrafico.Fragment.FragmentDrawGraph;
 import com.example.testgrafico.Fragment.FragmentFunction;
 import com.example.testgrafico.R;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -58,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        loadLocale();
+
         setContentView(R.layout.activity_main);
 
         Button ita = findViewById(R.id.bttn_ita);
@@ -80,24 +87,22 @@ public class MainActivity extends AppCompatActivity {
 
 //       ///////////////////////////////////////LANGUAGE////////////////////////////////////////
 //
-//        eng.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//               setAppLocale("en_GB");
-//
-//            }
-//        });
-//
-//        ita.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                    System.out.println(getResources().getConfiguration().getLocales());
-//                    setAppLocale("it_IT");
-//                }
-//            }
-//        });
-//
+        eng.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               setLocale("en");
+                recreate();
+            }
+        });
+
+        ita.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setLocale("it");
+                recreate();
+            }
+        });
+
 //        //////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -422,6 +427,25 @@ public class MainActivity extends AppCompatActivity {
 //        res.updateConfiguration(conf, dm);
 //        conf.setTo(conf);
 //        }
+
+    private void setLocale(String localCode){
+        Locale locale = new Locale(localCode);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        //salvo nelle sharedPreferences
+        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+        editor.putString("My_Lang", localCode);
+        editor.apply();
+    }
+
+    //carico la lingua salvata nelle SharedPreferences
+    public void loadLocale(){
+        SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = prefs.getString("My_Lang", "");
+        setLocale(language);
+    }
 
     @Override
     public void onBackPressed(){
