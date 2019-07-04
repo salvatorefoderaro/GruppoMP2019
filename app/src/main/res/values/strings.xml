@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">iLoger - Graph Calculator</string>
+    <string name="app_name">Graph Calculator</string>
     <string name="action_settings">Impostazioni</string>
     <string name="cos" translatable="false">cos()</string>
     <string name="funzione_coseno">Funzione Coseno</string>
