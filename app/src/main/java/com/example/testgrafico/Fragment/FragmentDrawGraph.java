@@ -390,10 +390,10 @@ public class FragmentDrawGraph extends DialogFragment {
     // Creazione del menù
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
         this.menuList = menu;
         inflater.inflate(R.menu.menu_fragment, menu);
         super.onCreateOptionsMenu(menu, inflater);
-        menuList.findItem(R.id.help).setVisible(false);
     }
 
     @Override
