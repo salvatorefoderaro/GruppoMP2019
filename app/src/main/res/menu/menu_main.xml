@@ -12,7 +12,7 @@
 
         <item
             android:id="@+id/engButton"
-            android:icon="@drawable/ic_united_states_flag"
+            android:icon="@drawable/ic_united_kingdom_flag"
             android:orderInCategory="300"
             android:title=""
             app:showAsAction="always" />
