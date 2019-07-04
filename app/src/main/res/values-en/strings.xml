@@ -43,6 +43,8 @@
 
     <string name="closeApp">Application closing</string>
     <string name="exitFromApp">Do you really want to exit?</string>
-    <string name="confirmExit">Yes.</string>
-    <string name="noExit">No.</string>
+    <string name="confirmExit">Yes, exit!</string>
+    <string name="noExit">No</string>
+    <string name="localCode">en</string>
+
 </resources>

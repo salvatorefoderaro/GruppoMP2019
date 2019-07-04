@@ -22,7 +22,6 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.testgrafico.Fragment.FragmentDrawGraph;
@@ -64,11 +63,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         loadLocale();
-
         setContentView(R.layout.activity_main);
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+
+        System.out.println("AAAAAAAAAAA" + this.getResources().getConfiguration().locale.toString() + this.getResources().getString(R.string.localCode));
+        System.out.println("Default value is: " + prefs.getString("My_Lang", ""));
+        if (prefs.getString("My_Lang", "").isEmpty()){
+            System.out.println("E' vuoto?");
+        }
+        this.menuList = toolbar.getMenu();
+        onCreateOptionsMenu(this.menuList);
 
         A = findViewById(R.id.name_text_input2);
         B = findViewById(R.id.name_text_input3);
@@ -172,20 +178,17 @@ public class MainActivity extends AppCompatActivity {
     // Aggiungo le icone al menù
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        this.menuList = menu;
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
-
         SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
         if (prefs.getString("My_Lang", "").isEmpty()){
-            if (this.getResources().getConfiguration().locale.toString().equals("it_IT")){
+            if (this.getResources().getString(R.string.localCode).equals("it")){
                 menu.findItem(R.id.italyButton).setVisible(false);
             } else {
                 menu.findItem(R.id.engButton).setVisible(false);
             }
         } else {
-            System.out.println("Entro qui?");
-            if (prefs.getString("My_Lang", "").toString().equals("it")){
+            if (this.getResources().getString(R.string.localCode).equals("it")){
                 menu.findItem(R.id.italyButton).setVisible(false);
             } else {
                 menu.findItem(R.id.engButton).setVisible(false);
@@ -237,15 +240,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.help:
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                // Get the layout inflater
                 LayoutInflater inflater = (this).getLayoutInflater();
-                // Inflate and set the layout for the dialog
-                // Pass null as the parent view because its going in the
-                // dialog layout
-                // builder.setTitle(this.getString(R.string.needHelp));
                 builder.setCancelable(false);
                 builder.setView(inflater.inflate(R.layout.fragment_help, null));
-                        // Add action buttons
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
@@ -254,18 +251,21 @@ public class MainActivity extends AppCompatActivity {
                 builder.create();
                 builder.show();
                 return true;
+
             case R.id.italyButton:
                 setLocale("it");
                 menuList.findItem(R.id.italyButton).setVisible(false);
                 menuList.findItem(R.id.engButton).setVisible(true);
                 recreate();
                 return true;
+
             case R.id.engButton:
                 setLocale("en");
                 menuList.findItem(R.id.italyButton).setVisible(true);
                 menuList.findItem(R.id.engButton).setVisible(false);
                 recreate();
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

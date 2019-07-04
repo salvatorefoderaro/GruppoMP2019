@@ -92,8 +92,6 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
 
         input = input.replace("e", "exp(1)");
 
-        System.out.println(input);
-
         // I valori del ciclo for vengono dati dalla seekbar, grazie alla quale sarà possibile modificare i valori di precision
         for (float i = estremoA; i <= estremoB + 0.1; i +=precision) {
             try {
