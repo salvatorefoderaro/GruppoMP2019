@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Graph Calculator</string>
     <string name="action_settings">Impostazioni</string>
-    <string name="cos" translatable="false">cos()</string>
+    <string name="cos" translatable="false">cos</string>
     <string name="funzione_coseno">Funzione Coseno</string>
-    <string name="sin" translatable="false">sin()</string>
+    <string name="sin" translatable="false">sin</string>
     <string name="funzione_seno">Funzione Seno</string>
     <string name="acos" translatable="false">Acos</string>
     <string name="asin" translatable="false">Asin</string>
