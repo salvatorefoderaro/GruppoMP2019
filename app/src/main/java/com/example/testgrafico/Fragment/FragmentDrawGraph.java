@@ -135,38 +135,34 @@ public class FragmentDrawGraph extends DialogFragment {
         wewe.add(minY);
 
         /*TODO
-        *
-        * Inserire label massimo e minimo
-        * Funzioni acos, atan ecc
-        * Doppio tap sul grafico
-        *
-        *
-        * */
+        * LineData: */
         ArrayList<Entry> max = new ArrayList<Entry>();
         ArrayList<Entry> min = new ArrayList<Entry>();
         max.add(new Entry(maxX, maxY));
         min.add(new Entry(minX, minY));
 
-        LineDataSet dataSet = new LineDataSet(resultList, functionName);
-        LineDataSet max_c = new LineDataSet(max, "max");
-        LineDataSet min_c =  new LineDataSet(min,  "min");
+        LineDataSet lineDataSet = new LineDataSet(resultList, functionName);
+        LineDataSet lineDataSet_max_c = new LineDataSet(max, "max");
+        LineDataSet lineDataSet_min_c =  new LineDataSet(min,  "min");
 
-        max_c.setColor(Color.BLACK);
-        min_c.setColor(Color.GREEN);
-        max_c.setDrawCircles(true);
-        min_c.setDrawCircles(true);
-        max_c.setCircleColor(Color.BLACK);
-        min_c.setCircleColor(Color.GREEN);
-        max_c.setDrawValues(true);  // Disegno i valori di max e min
-        min_c.setDrawValues(true);
 
-        dataSet.setColor(Color.RED);
-        dataSet.setDrawCircles(false);  //Disattivo i cerchi sui vari punti
-        dataSet.setDrawValues(false);
+        lineDataSet_max_c.setColor(Color.BLACK);
+        lineDataSet_min_c.setColor(Color.GREEN);
+        lineDataSet_max_c.setDrawCircles(true);
+        lineDataSet_min_c.setDrawCircles(true);
+        lineDataSet_max_c.setCircleColor(Color.BLACK);
+        lineDataSet_min_c.setCircleColor(Color.GREEN);
+        lineDataSet_max_c.setDrawValues(true);  // Disegno i valori di max e min
+        lineDataSet_min_c.setDrawValues(true);
 
-        dataSets.add(dataSet);
-        dataSets.add(max_c);            //Aggiunngo massimo e minimo
-        dataSets.add(min_c);
+        lineDataSet.setColor(Color.RED);
+        lineDataSet.setDrawCircles(false);  //Disattivo i cerchi sui vari punti
+        lineDataSet.setDrawValues(false);
+
+
+        dataSets.add(lineDataSet);
+        dataSets.add(lineDataSet_max_c);            //Aggiunngo massimo e minimo
+        dataSets.add(lineDataSet_min_c);
 
         // Controllo se ci sono altre funzioni di cui dover calcolare i valori numerici,
         // in caso non ce ne siano altre procedo alla creazione del grafico
@@ -176,9 +172,12 @@ public class FragmentDrawGraph extends DialogFragment {
         }
     }
 
+    //praticamente: Specifica il tipo di DataClass che verrà passata al grafico
+    //
+
     public void drawExpression() {
 
-        dataSets = new ArrayList<>();
+        dataSets = new ArrayList<>();  //private ArrayList<ILineDataSet> dataSets;
 
         // Imposto il numero di funzioni di cui devo disegnare il grafico
         if (function1 != null && function2 != null){
@@ -207,6 +206,11 @@ public class FragmentDrawGraph extends DialogFragment {
         chart.setPinchZoom(true);
         chart.invalidate();
         chart.getDescription().setEnabled(false);
+        YAxis yAxis = chart.getAxisLeft();
+        yAxis.setDrawZeroLine(true);
+        yAxis.setZeroLineColor(Color.BLACK);
+        yAxis.setZeroLineWidth(1.5f);
+        chart.getAxisRight().setEnabled(false);
         chart.setScaleX(1.0f);
         chart.setScaleY(1.0f);
         chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
