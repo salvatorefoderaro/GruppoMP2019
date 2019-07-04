@@ -91,6 +91,9 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
         }
 
         input = input.replace("e", "exp(1)");
+
+        System.out.println(input);
+
         // I valori del ciclo for vengono dati dalla seekbar, grazie alla quale sarà possibile modificare i valori di precision
         for (float i = estremoA; i <= estremoB + 0.1; i +=precision) {
             try {
@@ -109,14 +112,14 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
                     // Aggiunta una mezza cosa per gli asintoti
                     if (valueToParse.equals("-Infinity")){
                         entries.add(new Entry((float) i, minY - 50));
-                        minY = minY - 9999f;
+                        minY = minY - 50;
                         minX = (float)i;
                         continue;
                     }
 
                     if (valueToParse.equals("+Infinity")){
                         entries.add(new Entry((float) i, maxY + 50));
-                        maxY = maxY - 9999f;
+                        maxY = maxY + 50;
                         maxX = (float)i;
                         continue;
                     }
