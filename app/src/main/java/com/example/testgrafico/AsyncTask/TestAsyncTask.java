@@ -14,7 +14,7 @@ import net.sourceforge.jeval.Evaluator;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import static com.example.testgrafico.MainActivity.error;
+import static com.example.testgrafico.Activity.MainActivity.error;
 import static com.example.testgrafico.MathHelper.MathStringParser.isLeftDigit;
 import static com.example.testgrafico.MathHelper.MathStringParser.isLeftString;
 import static com.example.testgrafico.MathHelper.MathStringParser.isRightDigit;

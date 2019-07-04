@@ -1,11 +1,8 @@
-package com.example.testgrafico;
+package com.example.testgrafico.Activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
@@ -15,11 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.Toolbar;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.DisplayMetrics;
-
 import android.view.GestureDetector;
+import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -30,9 +24,7 @@ import android.widget.EditText;
 
 import com.example.testgrafico.Fragment.FragmentDrawGraph;
 import com.example.testgrafico.Fragment.FragmentFunction;
-import com.example.testgrafico.Fragment.FragmentHelp;
-
-import java.util.Locale;
+import com.example.testgrafico.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -250,10 +242,26 @@ public class MainActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.help:
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentHelp fragment = new FragmentHelp();
-                fragment.show(fm, "dialog_fragment");
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                // Get the layout inflater
+                LayoutInflater inflater = (this).getLayoutInflater();
+                // Inflate and set the layout for the dialog
+                // Pass null as the parent view because its going in the
+                // dialog layout
+                // builder.setTitle(this.getString(R.string.needHelp));
+                builder.setCancelable(false);
+                builder.setView(inflater.inflate(R.layout.fragment_help, null));
+                        // Add action buttons
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                            }
+                        });
+                builder.create();
+                builder.show();
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
