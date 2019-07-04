@@ -12,9 +12,13 @@ import net.sourceforge.jeval.EvaluationException;
 import net.sourceforge.jeval.Evaluator;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import static com.example.testgrafico.Activity.MainActivity.error;
+import static com.example.testgrafico.MathHelper.MathStringParser.containsAcos;
+import static com.example.testgrafico.MathHelper.MathStringParser.containsAsin;
+import static com.example.testgrafico.MathHelper.MathStringParser.containsAtan;
 import static com.example.testgrafico.MathHelper.MathStringParser.isLeftDigit;
 import static com.example.testgrafico.MathHelper.MathStringParser.isLeftString;
 import static com.example.testgrafico.MathHelper.MathStringParser.isRightDigit;
@@ -66,6 +70,24 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
             input = input.replace("|" + betweenAbs + "|", "abs(" + betweenAbs + ")");
         }
 
+        while (input.contains("a_sin")) {
+            input = containsAsin(input);
+        }
+
+        while (input.contains("a_cos")) {
+            input = containsAcos(input);
+        }
+
+        while (input.contains("a_tan")) {
+            input = containsAtan(input);
+        }
+
+        while (input.contains("|")){
+            betweenAbs = input.substring(input.indexOf("|") + 1,
+                    input.substring(input.indexOf("|") +1).indexOf("|") + input.indexOf("|")+1);
+            input = input.replace("|" + betweenAbs + "|", "abs(" + betweenAbs + ")");
+        }
+
         while(input.contains("^")) {
 
             // Trasformo tutti i "cappelletti", per poterli far digerire a jEval
@@ -90,10 +112,17 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
             input = input.replace(toLeft + "^" + toRight, "pow(" + toLeft + "," + toRight + ")");
         }
 
-        input = input.replace("e", "exp(1)");
+        input = input.replace("exp", "exp(1)");
+        System.out.println(input);
+
+        try {
+            System.out.println(mathEvaluator.evaluate("atan2(1, 2)"));
+        } catch (EvaluationException e) {
+            e.printStackTrace();
+        }
 
         // I valori del ciclo for vengono dati dalla seekbar, grazie alla quale sarà possibile modificare i valori di precision
-        for (float i = estremoA; i <= estremoB + 0.1; i +=precision) {
+        for (float i = estremoA; i <= estremoB; i +=precision) {
             try {
                 if (!input.contains("x_")){
                     valueToParse = mathEvaluator.evaluate(input);
@@ -106,6 +135,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
                 if ( (!valueToParse.equals("NaN")) ) {
 
                     value = Float.parseFloat(valueToParse);
+                    System.out.println(value + " " + valueToParse);
 
                     // Aggiunta una mezza cosa per gli asintoti
                     if (valueToParse.equals("-Infinity")){
@@ -122,7 +152,9 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
                         continue;
                     }
 
-                    if (valueToParse.equals("Infinity")){
+                    //  toDegrees(acos(toRadians(x_)))
+
+                    if (String.valueOf(value).equals("Infinity") || String.valueOf(value).equals("-Infinity")){
                         publishProgress( this.context.getText(R.string.troppoGrande).toString());
                         dialog.dismiss();
                         return null;
@@ -160,6 +192,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
                 return null;
             }
         }
+        System.out.println(entries.size());
         return entries;
     }
 

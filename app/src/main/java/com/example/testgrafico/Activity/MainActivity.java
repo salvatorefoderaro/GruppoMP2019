@@ -303,12 +303,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (getClicked_editText().equals("editText")){
             //editText.append("cos()");
-            editText.getText().insert(cursor_position, "(acos(x_))");
+            editText.getText().insert(cursor_position, "(a_cos(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
 
         }else if (getClicked_editText().equals("editText1")){
             //editText1.append("cos()");
-            editText1.getText().insert(cursor_position, "(acos(x_))");
+            editText1.getText().insert(cursor_position, "(a_cos(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }
     }
@@ -317,12 +317,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (getClicked_editText().equals("editText")){
             //editText.append("cos()");
-            editText.getText().insert(cursor_position, "(asin(x_))");
+            editText.getText().insert(cursor_position, "(a_sin(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
 
         }else if (getClicked_editText().equals("editText1")){
             //editText1.append("cos()");
-            editText1.getText().insert(cursor_position, "(asin(x_))");
+            editText1.getText().insert(cursor_position, "(a_sin(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }
     }
@@ -331,12 +331,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (getClicked_editText().equals("editText")){
             //editText.append("cos()");
-            editText.getText().insert(cursor_position, "(atan(x_))");
+            editText.getText().insert(cursor_position, "(a_tan(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
 
         }else if (getClicked_editText().equals("editText1")){
             //editText1.append("cos()");
-            editText1.getText().insert(cursor_position, "(atan(x_))");
+            editText1.getText().insert(cursor_position, "(a_tan(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }
     }
@@ -345,12 +345,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (getClicked_editText().equals("editText")){
             //editText.append("cos()");
-            editText.getText().insert(cursor_position, "(atan2(x_))");
+            editText.getText().insert(cursor_position, "(atan2(x_, y))");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
 
         }else if (getClicked_editText().equals("editText1")){
             //editText1.append("cos()");
-            editText1.getText().insert(cursor_position, "(atan2(x_))");
+            editText1.getText().insert(cursor_position, "(atan2(x_, y))");
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }
     }
