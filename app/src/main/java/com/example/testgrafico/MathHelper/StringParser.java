@@ -64,7 +64,7 @@ public class StringParser {
              input = input.replace(toLeft + "^" + toRight, "pow(" + toLeft + "," + toRight + ")");
          }
 
-         input = input.replace("exp", "exp(1)");
+         input = input.replace("e_", "exp(1)");
          return input;
      }
 }
