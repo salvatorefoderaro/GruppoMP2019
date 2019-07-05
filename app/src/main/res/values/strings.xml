@@ -39,8 +39,11 @@
 
     <string name="help_text_2">La variabile della funzione da inserire deve essere seguita da trattino basso, es: x_\n\n
         Si consiglia di racchiudere ogni variabile presente all interno di parentesi tonde, es: ((x_)^3)\n\n
-        Si possono inserire due funzioni e confrontare i loro andamenti all interno di uno stesso intervallo.\n\n\n
-        È possibile accedere a funzioni già esistenti con un doppio tocco sul campo della funzione.</string>
+        Il numero di Nepero "e" ha la seguente sintassi: e_\n\n
+        Le funzioni arcoseno, arcocoseno e arcotangente hanno rispettivamente la seguente sintassi:\n\n
+        \t\t a_sin(), a_cos(), a_tan().\n\n
+        Si possono inserire due funzioni e confrontare i loro andamenti all interno di uno stesso intervallo.\n\n
+        È possibile accedere a funzioni già esistenti con un doppio tocco sul campo della funzione.\n\n\n</string>
 
     <string name="help_text_3">\tGLI ESTREMI\n\n</string>
 
