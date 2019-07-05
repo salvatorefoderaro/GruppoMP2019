@@ -56,8 +56,8 @@ public class FragmentDrawGraph extends DialogFragment {
 
     private String function1 = null;
     private String function2 = null;
-    private int estremoA;
-    private int estremoB;
+    private float estremoA;
+    private float estremoB;
     private float precision = 0.1f;
     private Context context;
     private LineChart chart;  //Ho cambiato il tipo di chart per avere più opzioni disponibili
@@ -114,8 +114,8 @@ public class FragmentDrawGraph extends DialogFragment {
         // Ottengo le funzioni passate dalla main Activity
         function1 = getArguments().getString("function1");
         function2 = getArguments().getString("function2");
-        estremoA = getArguments().getInt("estremoA");
-        estremoB = getArguments().getInt("estremoB");
+        estremoA = getArguments().getFloat("estremoA");
+        estremoB = getArguments().getFloat("estremoB");
 
         return view;
     }
@@ -134,17 +134,14 @@ public class FragmentDrawGraph extends DialogFragment {
         wewe.add(minX);
         wewe.add(minY);
 
-        /*TODO
-        * LineData: */
-        ArrayList<Entry> max = new ArrayList<Entry>();
-        ArrayList<Entry> min = new ArrayList<Entry>();
+        ArrayList<Entry> max = new ArrayList<>();
+        ArrayList<Entry> min = new ArrayList<>();
         max.add(new Entry(maxX, maxY));
         min.add(new Entry(minX, minY));
 
         LineDataSet lineDataSet = new LineDataSet(resultList, functionName);
         LineDataSet lineDataSet_max_c = new LineDataSet(max, "max");
         LineDataSet lineDataSet_min_c =  new LineDataSet(min,  "min");
-
 
         lineDataSet_max_c.setColor(Color.BLACK);
         lineDataSet_min_c.setColor(Color.GREEN);
@@ -156,12 +153,11 @@ public class FragmentDrawGraph extends DialogFragment {
         lineDataSet_min_c.setDrawValues(true);
 
         lineDataSet.setColor(Color.RED);
-        lineDataSet.setDrawCircles(false);  //Disattivo i cerchi sui vari punti
+        lineDataSet.setDrawCircles(false);  // Disattivo i cerchi sui vari punti
         lineDataSet.setDrawValues(false);
 
-
         dataSets.add(lineDataSet);
-        dataSets.add(lineDataSet_max_c);            //Aggiunngo massimo e minimo
+        dataSets.add(lineDataSet_max_c);            // Aggiunngo massimo e minimo
         dataSets.add(lineDataSet_min_c);
 
         // Controllo se ci sono altre funzioni di cui dover calcolare i valori numerici,
@@ -172,8 +168,7 @@ public class FragmentDrawGraph extends DialogFragment {
         }
     }
 
-    //praticamente: Specifica il tipo di DataClass che verrà passata al grafico
-    //
+    // Specifica il tipo di DataClass che verrà passata al grafico
 
     public void drawExpression() {
 
@@ -194,7 +189,6 @@ public class FragmentDrawGraph extends DialogFragment {
         if (function2 != null) {
             task = (TestAsyncTask) new TestAsyncTask(context, function2, estremoA, estremoB, precision, this.dialogBar, this).execute();
         }
-
     }
 
     // Procedo con la creazione del grafico

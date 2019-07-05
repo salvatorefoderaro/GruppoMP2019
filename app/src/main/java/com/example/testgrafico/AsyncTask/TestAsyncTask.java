@@ -24,6 +24,8 @@ import static com.example.testgrafico.MathHelper.MathStringParser.isLeftDigit;
 import static com.example.testgrafico.MathHelper.MathStringParser.isLeftString;
 import static com.example.testgrafico.MathHelper.MathStringParser.isRightDigit;
 import static com.example.testgrafico.MathHelper.MathStringParser.isRightString;
+import static java.lang.Float.NEGATIVE_INFINITY;
+import static java.lang.Float.POSITIVE_INFINITY;
 
 public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList<Entry>> {
 
@@ -39,6 +41,8 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
     private ArrayList<Entry> max;
     private ArrayList<Entry> min;
     private float maxY = 0, minY = 0, maxX = 0, minX = 0;
+    private boolean plusInfinity, minusInfinity = false;
+
     public TestAsyncTask(Context context, String input, float estremoA,
                          float estremoB, float precision, ProgressDialog dialog, FragmentDrawGraph istance) {
         // list all the parameters like in normal class define
@@ -121,8 +125,9 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
 
             // Utilizzo il BigDecimal per risolvere il problema della somma dei float che non viene "precisa"
             BigDecimal testBigDecimal = new BigDecimal(i);
-            testBigDecimal = testBigDecimal.setScale(5, BigDecimal.ROUND_HALF_UP);
+            testBigDecimal = testBigDecimal.setScale(3, BigDecimal.ROUND_HALF_UP);
             i = testBigDecimal.floatValue();
+            System.out.println(i);
 
             try {
                 if (!input.contains("x_")){
@@ -141,18 +146,24 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
                     if (valueToParse.equals("-Infinity")){
                         entries.add(new Entry((float) i, minY - 50));
                         minY = minY - 50;
-                        minX = (float)i;
+                        minX = i;
+                        minusInfinity = true;
+                        if (i == estremoA){
+                            firstValue = false;
+                        }
                         continue;
                     }
 
                     if (valueToParse.equals("+Infinity")){
                         entries.add(new Entry((float) i, maxY + 50));
                         maxY = maxY + 50;
-                        maxX = (float)i;
+                        maxX = i;
+                        plusInfinity = true;
+                        if (i == estremoA){
+                            firstValue = false;
+                        }
                         continue;
                     }
-
-                    //  toDegrees(acos(toRadians(x_)))
 
                     if (String.valueOf(value).equals("Infinity") || String.valueOf(value).equals("-Infinity")){
                         publishProgress( this.context.getText(R.string.troppoGrande).toString());
@@ -164,17 +175,20 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
                     if (firstValue) {
                         minY = maxY = value;
                         maxX = minX = (float) i ;
-                        firstValue = false;
                     } else if (value > maxY) {
                         maxY = value;
-                        maxX = (float) i;
+                        maxX = i;
                     } else if (value < minY) {
                         minY = value;
-                        minX = (float) i;
+                        minX = i;
                     }
 
                     // Aggiungo il valore calcolato al grafico
                     entries.add(new Entry((float) i, value));
+
+                    if (i == estremoA){
+                        firstValue = false;
+                    }
 
                 } else {
                     publishProgress(this.context.getText(R.string.domainError).toString());
@@ -207,6 +221,15 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
     @Override
     protected void onPostExecute(ArrayList<Entry> result) {
         // execution of result of Long time consuming operation
+
+        /* if (plusInfinity){
+            maxY = POSITIVE_INFINITY;
+        }
+
+        if (minusInfinity){
+            minY = NEGATIVE_INFINITY;
+        } */
+
         istance.getValueBack(result, this.originFunction, maxX, maxY, minX, minY);
     }
 
