@@ -73,7 +73,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
                     valueToParse = mathEvaluator.evaluate(input);
                 } else {
                     mathEvaluator.putVariable("x_", Float.toString(i));
-                    valueToParse = mathEvaluator.evaluate(input);
+                    valueToParse = mathEvaluator.evaluate(input.replace("x_", "#{x_}"));
                 }
 
                 // Controllo che il valore della funzione non sia NaN (non definito) o +/- infinito,

@@ -16,8 +16,6 @@ public class StringParser {
 
          input = input.replace(" ", "");
 
-         input = input.replace("x_", "#{x_}");
-
          while (input.contains("|")) {
              betweenAbs = input.substring(input.indexOf("|") + 1,
                      input.substring(input.indexOf("|") + 1).indexOf("|") + input.indexOf("|") + 1);
