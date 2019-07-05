@@ -60,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/A_extreme"
-            android:inputType="numberSigned" />
+            android:inputType="numberDecimal|numberSigned" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -79,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/B_extreme"
-            android:inputType="numberSigned" />
+            android:inputType="numberDecimal|numberSigned" />
     </android.support.design.widget.TextInputLayout>
 
 </android.support.constraint.ConstraintLayout>

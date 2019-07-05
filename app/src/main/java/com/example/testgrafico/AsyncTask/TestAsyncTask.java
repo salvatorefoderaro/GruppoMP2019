@@ -11,6 +11,7 @@ import com.github.mikephil.charting.data.Entry;
 import net.sourceforge.jeval.EvaluationException;
 import net.sourceforge.jeval.Evaluator;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -116,7 +117,13 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
 
 
         // I valori del ciclo for vengono dati dalla seekbar, grazie alla quale sarà possibile modificare i valori di precision
-        for (float i = estremoA; i <= estremoB; i +=precision) {
+        for (Float i = estremoA; i <= estremoB; i +=precision) {
+
+            // Utilizzo il BigDecimal per risolvere il problema della somma dei float che non viene "precisa"
+            BigDecimal testBigDecimal = new BigDecimal(i);
+            testBigDecimal = testBigDecimal.setScale(5, BigDecimal.ROUND_HALF_UP);
+            i = testBigDecimal.floatValue();
+
             try {
                 if (!input.contains("x_")){
                     valueToParse = mathEvaluator.evaluate(input);
