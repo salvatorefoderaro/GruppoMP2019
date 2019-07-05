@@ -420,9 +420,7 @@ public class FragmentDrawGraph extends DialogFragment {
         this.dialogBar.dismiss();
     }
 
-    /*public MPPointD getValuesByTouchPoint(float x, float y){
 
-    }*/
 
 
 }

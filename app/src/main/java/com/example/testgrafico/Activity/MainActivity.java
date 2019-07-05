@@ -154,8 +154,6 @@ public class MainActivity extends AppCompatActivity {
         }
     });
 
-        //-----------------------------------DOUBLE TAP---------------------------------------------------------//
-
         final GestureDetector gestureDetector = new GestureDetector(getApplicationContext(), new GestureDetector.SimpleOnGestureListener() {
             public boolean onDoubleTap(MotionEvent e) {
                 setClicked_editText("editText");   //Memorizzo l'editTex su cui viene fatto il doppio tap
@@ -174,7 +172,6 @@ public class MainActivity extends AppCompatActivity {
 
         final GestureDetector gestureDetector1 = new GestureDetector(getApplicationContext(), new GestureDetector.SimpleOnGestureListener() {
             public boolean onDoubleTap(MotionEvent e) {
-
                 setClicked_editText("editText1");
                 cursor_position = editText1.getSelectionStart();
                 fragment.show(fm, "func");
@@ -189,7 +186,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //-------------------------------------------------------------------------------------------------------------//
     }
 
     // Aggiungo le icone al menù
@@ -363,12 +359,10 @@ public class MainActivity extends AppCompatActivity {
 
         Fragment fragmentToClose = getSupportFragmentManager().findFragmentByTag("func");
         if (getClicked_editText().equals("editText")){
-            //editText.append("cos()");
             editText.getText().insert(cursor_position, "(a_tan(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
 
         }else if (getClicked_editText().equals("editText1")){
-            //editText1.append("cos()");
             editText1.getText().insert(cursor_position, "(a_tan(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
         } else {
@@ -380,12 +374,10 @@ public class MainActivity extends AppCompatActivity {
 
         Fragment fragmentToClose = getSupportFragmentManager().findFragmentByTag("func");
         if (getClicked_editText().equals("editText")){
-            //editText.append("cos()");
             editText.getText().insert(cursor_position, "(atan2(x_, y))");
             getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
 
         }else if (getClicked_editText().equals("editText1")){
-            //editText1.append("cos()");
             editText1.getText().insert(cursor_position, "(atan2(x_, y))");
             getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
         } else {
@@ -397,12 +389,10 @@ public class MainActivity extends AppCompatActivity {
 
         Fragment fragmentToClose = getSupportFragmentManager().findFragmentByTag("func");
         if (getClicked_editText().equals("editText")){
-            //editText.append("cos()");
             editText.getText().insert(cursor_position, "(log(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
 
         }else if (getClicked_editText().equals("editText1")){
-            //editText1.append("cos()");
             editText1.getText().insert(cursor_position, "(log(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
         } else {
@@ -414,62 +404,16 @@ public class MainActivity extends AppCompatActivity {
 
         Fragment fragmentToClose = getSupportFragmentManager().findFragmentByTag("func");
         if (getClicked_editText().equals("editText")){
-            //editText.append("cos()");
             editText.getText().insert(cursor_position, "(tan(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
 
         }else if (getClicked_editText().equals("editText1")){
-            //editText1.append("cos()");
             editText1.getText().insert(cursor_position, "(tan(x_)(");
             getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
         } else {
             getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
         }
     }
-
-    /*public void get_POS(View view) {
-
-        .setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                    //int size = series1.size();
-                    float screenX = event.getX();
-                    float screenY = event.getY();
-                    float width_x = v.getWidth();
-                    float viewX = screenX - v.getLeft();
-                    float viewY = screenY - v.getTop();
-                    float percent_x = (viewX / width_x);
-                  //  int pos = (int) (size * percent_x);
-
-                    System.out.println("X: " + viewX + " Y: " + viewY + " Percent = " + percent_x);
-                   // System.out.println("YVal = " + series1.getY(pos));
-                    //tvNum.setText(series1.getY(pos) + "");
-                    return true;
-                }
-                return false;
-            }
-        });
-
-    }*/
-
-    /*private void setAppLocale(String localCode){
-
-        Locale locale2 = new Locale(localCode);
-        Locale.setDefault(locale2);
-        Configuration config2 = new Configuration();
-        config2.locale = locale2;
-
-    }*/
-
-//    private void setAppLocale(String localCode){
-//        Resources res = getResources();
-//        DisplayMetrics dm = res.getDisplayMetrics();
-//        Configuration conf = res.getConfiguration();
-//        conf.setLocale(new Locale(localCode));
-//        res.updateConfiguration(conf, dm);
-//        conf.setTo(conf);
-//        }
 
     private void setLocale(String localCode){
         Locale locale = new Locale(localCode);
@@ -510,6 +454,5 @@ public class MainActivity extends AppCompatActivity {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
-
     }
 }

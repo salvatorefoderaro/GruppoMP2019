@@ -17,14 +17,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.80">
+        app:layout_constraintWidth_percent="0.80"
+        android:inputType="textNoSuggestions|textVisiblePassword"
+        >
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/name_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/f_x"
-            android:inputType="textNoSuggestions"  />
+            android:inputType="textNoSuggestions|textVisiblePassword"  />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -43,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/f_x"
-            android:inputType="textNoSuggestions"  />
+            android:inputType="textNoSuggestions|textVisiblePassword"  />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -62,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/A_extreme"
-            android:inputType="numberDecimal|numberSigned|textNoSuggestions" />
+            android:inputType="numberDecimal|numberSigned|textNoSuggestions|textVisiblePassword" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -81,7 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/B_extreme"
-            android:inputType="numberDecimal|numberSigned|textNoSuggestions" />
+            android:inputType="numberDecimal|numberSigned|textNoSuggestions|textVisiblePassword" />
     </android.support.design.widget.TextInputLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -3,7 +3,7 @@ package com.example.testgrafico.MathHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MathStringParser {
+public class MathFunctionParser {
 
     static public String isLeftDigit(String string){
         if (string.contains("(")){

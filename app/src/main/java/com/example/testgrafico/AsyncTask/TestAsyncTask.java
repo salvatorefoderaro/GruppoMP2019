@@ -13,19 +13,9 @@ import net.sourceforge.jeval.Evaluator;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 import static com.example.testgrafico.Activity.MainActivity.error;
-import static com.example.testgrafico.MathHelper.MathStringParser.containsAcos;
-import static com.example.testgrafico.MathHelper.MathStringParser.containsAsin;
-import static com.example.testgrafico.MathHelper.MathStringParser.containsAtan;
-import static com.example.testgrafico.MathHelper.MathStringParser.isLeftDigit;
-import static com.example.testgrafico.MathHelper.MathStringParser.isLeftString;
-import static com.example.testgrafico.MathHelper.MathStringParser.isRightDigit;
-import static com.example.testgrafico.MathHelper.MathStringParser.isRightString;
-import static java.lang.Float.NEGATIVE_INFINITY;
-import static java.lang.Float.POSITIVE_INFINITY;
+import static com.example.testgrafico.MathHelper.StringParser.parseString;
 
 public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList<Entry>> {
 
@@ -58,82 +48,32 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
     // Le chiamate a publishProgress() chiamano il metodo onProgressUpdate() presente nell'AsyncTask
     @Override
     protected ArrayList<Entry> doInBackground(ArrayList<Entry>... arrayLists) {
+
         float value;
         boolean firstValue = true;
+        boolean constantValue = false;
 
         Evaluator mathEvaluator = new Evaluator();
         ArrayList<Entry> entries = new ArrayList<Entry>();
 
-        String toLeft, toRight, leftString, rightString, betweenAbs;
-        input = input.replace(" ", "");
-
-        // Per evitare problemi con l'esponenziale, effettuo questa sostituzione
-
-        while (input.contains("|")){
-            betweenAbs = input.substring(input.indexOf("|") + 1,
-                        input.substring(input.indexOf("|") +1).indexOf("|") + input.indexOf("|")+1);
-            input = input.replace("|" + betweenAbs + "|", "abs(" + betweenAbs + ")");
+        input = parseString(input);
+        if (input.contains("#{x_}")){
+            constantValue = true;
         }
 
-        while (input.contains("a_sin")) {
-            input = containsAsin(input);
-        }
-
-        while (input.contains("a_cos")) {
-            input = containsAcos(input);
-        }
-
-        while (input.contains("a_tan")) {
-            input = containsAtan(input);
-        }
-
-        while (input.contains("|")){
-            betweenAbs = input.substring(input.indexOf("|") + 1,
-                    input.substring(input.indexOf("|") +1).indexOf("|") + input.indexOf("|")+1);
-            input = input.replace("|" + betweenAbs + "|", "abs(" + betweenAbs + ")");
-        }
-
-        while(input.contains("^")) {
-
-            // Trasformo tutti i "cappelletti", per poterli far digerire a jEval
-            leftString = input.substring(0, input.indexOf("^"));
-            rightString = input.substring(input.indexOf("^") + 1);
-
-            if (leftString.length() == 0 || rightString.length() == 0){
-                return null;
-            }
-
-            if (leftString.charAt(leftString.length() - 1) != ')') {
-                toLeft = isLeftDigit(leftString);
-            } else {
-                toLeft = isLeftString(leftString);
-            }
-            if (rightString.charAt(0) != '(') {
-                toRight = isRightDigit(rightString);
-            } else {
-                toRight = isRightString(rightString);
-            }
-
-            input = input.replace(toLeft + "^" + toRight, "pow(" + toLeft + "," + toRight + ")");
-        }
-
-        input = input.replace("exp", "exp(1)");
-
-
-        // I valori del ciclo for vengono dati dalla seekbar, grazie alla quale sarà possibile modificare i valori di precision
         for (Float i = estremoA; i <= estremoB; i +=precision) {
 
             // Utilizzo il BigDecimal per risolvere il problema della somma dei float che non viene "precisa"
             BigDecimal testBigDecimal = new BigDecimal(i);
             testBigDecimal = testBigDecimal.setScale(3, BigDecimal.ROUND_HALF_UP);
             i = testBigDecimal.floatValue();
-            System.out.println(i);
 
             try {
-                if (!input.contains("x_")){
+                if (constantValue){
                     valueToParse = mathEvaluator.evaluate(input);
                 } else {
-                    valueToParse = mathEvaluator.evaluate(input.replace("x_", String.format(Locale.CANADA,"%.12f", i)));
+                    mathEvaluator.putVariable("x_", Float.toString(i));
+                    valueToParse = mathEvaluator.evaluate(input);
                 }
 
                 // Controllo che il valore della funzione non sia NaN (non definito) o +/- infinito,
@@ -220,16 +160,6 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
     // Al termine dell'esecuzione, chiamo il metodo all'interno del fragment per restituire la lista con i valori calcolati
     @Override
     protected void onPostExecute(ArrayList<Entry> result) {
-        // execution of result of Long time consuming operation
-
-        /* if (plusInfinity){
-            maxY = POSITIVE_INFINITY;
-        }
-
-        if (minusInfinity){
-            minY = NEGATIVE_INFINITY;
-        } */
-
         istance.getValueBack(result, this.originFunction, maxX, maxY, minX, minY);
     }
 
