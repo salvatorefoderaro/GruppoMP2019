@@ -22,6 +22,6 @@
 
     <include
         layout="@layout/function_fragment_included"
-        android:layout_height="match_parent" />
+        android:layout_width="match_parent" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -35,7 +35,7 @@
     <string name="B_extreme">Estremo B</string>
     <string name="precisione">Modifica precisione</string>
 
-    <string name="help_text">\tLA FUNZIONE\n\n</string>
+    <string name="help_text">\tLA FUNZIONE\n</string>
 
     <string name="help_text_2">La variabile della funzione da inserire deve essere seguita da trattino basso, es: x_\n\n
         Si consiglia di racchiudere ogni variabile presente all interno di parentesi tonde, es: ((x_)^3)\n\n
@@ -43,9 +43,9 @@
         Le funzioni arcoseno, arcocoseno e arcotangente hanno rispettivamente la seguente sintassi:\n\n
         \t\t a_sin(), a_cos(), a_tan().\n\n
         Si possono inserire due funzioni e confrontare i loro andamenti all interno di uno stesso intervallo.\n\n
-        È possibile accedere a funzioni già esistenti con un doppio tocco sul campo della funzione.\n\n\n</string>
+        È possibile accedere a funzioni già esistenti con un doppio tocco sul campo della funzione.\n</string>
 
-    <string name="help_text_3">\tGLI ESTREMI\n\n</string>
+    <string name="help_text_3">\tGLI ESTREMI\n</string>
 
     <string name="help_text_4">È obbligatorio inserire gli estremi.\n\n
         L estremo A e l estremo B devono essere due interi.\n\n
@@ -65,4 +65,6 @@
     <string name="confirmExit">Sì, esci!</string>
     <string name="noExit">No</string>
     <string name="localCode">it</string>
+    <string name="e" translatable="false">e</string>
+    <string name="abs" translatable="false">|x|</string>
 </resources>

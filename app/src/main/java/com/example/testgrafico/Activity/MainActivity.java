@@ -15,16 +15,14 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.Toolbar;
-
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Menu;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.testgrafico.Fragment.FragmentDrawGraph;
 import com.example.testgrafico.Fragment.FragmentFunction;
@@ -328,6 +326,40 @@ public class MainActivity extends AppCompatActivity {
         }else if (getClicked_editText().equals("editText1")){
             //editText1.append("cos()");
             editText1.getText().insert(cursor_position, "(a_cos(x_))");
+            getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
+        } else {
+            getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
+        }
+    }
+
+    public void func_E(View view) {
+
+        Fragment fragmentToClose = getSupportFragmentManager().findFragmentByTag("func");
+        if (getClicked_editText().equals("editText")){
+            //editText.append("cos()");
+            editText.getText().insert(cursor_position, "(exp(1))");
+            getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
+
+        }else if (getClicked_editText().equals("editText1")){
+            //editText1.append("cos()");
+            editText1.getText().insert(cursor_position, "(exp(1))");
+            getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
+        } else {
+            getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
+        }
+    }
+
+    public void func_Abs(View view) {
+
+        Fragment fragmentToClose = getSupportFragmentManager().findFragmentByTag("func");
+        if (getClicked_editText().equals("editText")){
+            //editText.append("cos()");
+            editText.getText().insert(cursor_position, "(|x_|)");
+            getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
+
+        }else if (getClicked_editText().equals("editText1")){
+            //editText1.append("cos()");
+            editText1.getText().insert(cursor_position, "(|x_|)");
             getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
         } else {
             getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
