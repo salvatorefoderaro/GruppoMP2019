@@ -65,6 +65,6 @@
     <string name="confirmExit">Sì, esci!</string>
     <string name="noExit">No</string>
     <string name="localCode">it</string>
-    <string name="e" translatable="false">e</string>
+    <string name="e" translatable="false">e^x</string>
     <string name="abs" translatable="false">|x|</string>
 </resources>

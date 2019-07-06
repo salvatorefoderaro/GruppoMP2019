@@ -344,12 +344,12 @@ public class MainActivity extends AppCompatActivity {
         }
         if (getClicked_editText().equals("editText")){
             //editText.append("cos()");
-            editText.getText().insert(cursor_position, "(exp(1))");
+            editText.getText().insert(cursor_position, "(exp(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
 
         }else if (getClicked_editText().equals("editText1")){
             //editText1.append("cos()");
-            editText1.getText().insert(cursor_position, "(exp(1))");
+            editText1.getText().insert(cursor_position, "(exp(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
         } else {
             getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
