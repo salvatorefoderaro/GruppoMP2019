@@ -11,11 +11,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.example.testgrafico.R;
 
 public class FragmentFunction extends DialogFragment {
-
-    private Toolbar toolbar2;
 
     @Override
     public void onStart() {
@@ -32,7 +31,7 @@ public class FragmentFunction extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.function_fragment, container);
-        toolbar2 = view.findViewById(R.id.toolbar2);
+        Toolbar toolbar2 = view.findViewById(R.id.toolbar2);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar2);
         toolbar2.setTitle(getText(R.string.chooseFun).toString());
 
@@ -49,12 +48,10 @@ public class FragmentFunction extends DialogFragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.close:
-                dismiss();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.close) {
+            dismiss();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 }

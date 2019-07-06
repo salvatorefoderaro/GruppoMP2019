@@ -19,19 +19,16 @@ import static com.example.testgrafico.MathHelper.StringParser.parseString;
 
 public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList<Entry>> {
 
-    private ProgressDialog dialog;
-    private Context context;
+    private final ProgressDialog dialog;
+    private final Context context;
     private String input;
-    private String originFunction;
-    private float estremoA;
-    private float estremoB;
-    private float precision;
-    private FragmentDrawGraph istance;
+    private final String originFunction;
+    private final float estremoA;
+    private final float estremoB;
+    private final float precision;
+    private final FragmentDrawGraph istance;
     private String valueToParse;
-    private ArrayList<Entry> max;
-    private ArrayList<Entry> min;
     private float maxY = 0, minY = 0, maxX = 0, minX = 0;
-    private boolean plusInfinity, minusInfinity = false;
 
     public TestAsyncTask(Context context, String input, float estremoA,
                          float estremoB, float precision, ProgressDialog dialog, FragmentDrawGraph istance) {
@@ -54,12 +51,13 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
         boolean constantValue = false;
 
         Evaluator mathEvaluator = new Evaluator();
-        ArrayList<Entry> entries = new ArrayList<Entry>();
+        ArrayList<Entry> entries = new ArrayList<>();
 
         input = parseString(input);
         if (input.contains("#{x_}")){
             constantValue = true;
         }
+
 
         for (Float i = estremoA; i <= estremoB; i +=precision) {
 
@@ -84,10 +82,9 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
 
                     // Aggiunta una mezza cosa per gli asintoti
                     if (valueToParse.equals("-Infinity")){
-                        entries.add(new Entry((float) i, minY - 50));
+                        entries.add(new Entry(i, minY - 50));
                         minY = minY - 50;
                         minX = i;
-                        minusInfinity = true;
                         if (i == estremoA){
                             firstValue = false;
                         }
@@ -95,10 +92,9 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
                     }
 
                     if (valueToParse.equals("+Infinity")){
-                        entries.add(new Entry((float) i, maxY + 50));
+                        entries.add(new Entry(i, maxY + 50));
                         maxY = maxY + 50;
                         maxX = i;
-                        plusInfinity = true;
                         if (i == estremoA){
                             firstValue = false;
                         }
@@ -114,7 +110,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
                     // Trovo massimo e minimo
                     if (firstValue) {
                         minY = maxY = value;
-                        maxX = minX = (float) i ;
+                        maxX = minX = i;
                     } else if (value > maxY) {
                         maxY = value;
                         maxX = i;
@@ -124,7 +120,7 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
                     }
 
                     // Aggiungo il valore calcolato al grafico
-                    entries.add(new Entry((float) i, value));
+                    entries.add(new Entry(i, value));
 
                     if (i == estremoA){
                         firstValue = false;
@@ -163,9 +159,4 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
         istance.getValueBack(result, this.originFunction, maxX, maxY, minX, minY);
     }
 
-    // Prima dell'esecuzione
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-    }
 }

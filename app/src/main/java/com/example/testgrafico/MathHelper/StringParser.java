@@ -1,8 +1,6 @@
 package com.example.testgrafico.MathHelper;
 
-import static com.example.testgrafico.MathHelper.MathFunctionParser.containsAcos;
-import static com.example.testgrafico.MathHelper.MathFunctionParser.containsAsin;
-import static com.example.testgrafico.MathHelper.MathFunctionParser.containsAtan;
+import static com.example.testgrafico.MathHelper.MathFunctionParser.containsA;
 import static com.example.testgrafico.MathHelper.MathFunctionParser.isLeftDigit;
 import static com.example.testgrafico.MathHelper.MathFunctionParser.isLeftString;
 import static com.example.testgrafico.MathHelper.MathFunctionParser.isRightDigit;
@@ -14,8 +12,6 @@ public class StringParser {
 
          String toLeft, toRight, leftString, rightString, betweenAbs;
 
-         input = input.replace(" ", "");
-
          while (input.contains("|")) {
              betweenAbs = input.substring(input.indexOf("|") + 1,
                      input.substring(input.indexOf("|") + 1).indexOf("|") + input.indexOf("|") + 1);
@@ -23,15 +19,15 @@ public class StringParser {
          }
 
          while (input.contains("a_sin")) {
-             input = containsAsin(input);
+             input = containsA(input, "a_sin", "asin");
          }
 
          while (input.contains("a_cos")) {
-             input = containsAcos(input);
+             input = containsA(input, "a_cos", "acos");
          }
 
          while (input.contains("a_tan")) {
-             input = containsAtan(input);
+             input = containsA(input, "a_tan", "atan");
          }
 
          while (input.contains("|")) {

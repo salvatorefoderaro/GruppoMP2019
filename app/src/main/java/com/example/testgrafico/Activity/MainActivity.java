@@ -86,11 +86,6 @@ public class MainActivity extends AppCompatActivity {
         fragment = new FragmentFunction();
         fm = getSupportFragmentManager();
 
-        System.out.println("AAAAAAAAAAA" + this.getResources().getConfiguration().locale.toString() + this.getResources().getString(R.string.localCode));
-        System.out.println("Default value is: " + prefs.getString("My_Lang", ""));
-        if (prefs.getString("My_Lang", "").isEmpty()){
-            System.out.println("E' vuoto?");
-        }
         this.menuList = toolbar.getMenu();
         onCreateOptionsMenu(this.menuList);
 
@@ -284,6 +279,9 @@ public class MainActivity extends AppCompatActivity {
     public void func_Coseno(View view) {
 
         Fragment fragmentToClose = getSupportFragmentManager().findFragmentByTag("func");
+        if (fragmentToClose == null) {
+            return;
+        }
         if (getClicked_editText().equals("editText")){
             //editText.append("cos()");
             editText.getText().insert(cursor_position, "(cos(x_))");
@@ -301,6 +299,9 @@ public class MainActivity extends AppCompatActivity {
     public void func_Seno(View view) {
 
         Fragment fragmentToClose = getSupportFragmentManager().findFragmentByTag("func");
+        if (fragmentToClose == null) {
+            return;
+        }
         if (getClicked_editText().equals("editText")){
             //editText.append("cos()");
             editText.getText().insert(cursor_position, "(sin(x_))");
@@ -318,6 +319,9 @@ public class MainActivity extends AppCompatActivity {
     public void func_Acos(View view) {
 
         Fragment fragmentToClose = getSupportFragmentManager().findFragmentByTag("func");
+        if (fragmentToClose == null) {
+            return;
+        }
         if (getClicked_editText().equals("editText")){
             //editText.append("cos()");
             editText.getText().insert(cursor_position, "(a_cos(x_))");
@@ -335,6 +339,9 @@ public class MainActivity extends AppCompatActivity {
     public void func_E(View view) {
 
         Fragment fragmentToClose = getSupportFragmentManager().findFragmentByTag("func");
+        if (fragmentToClose == null) {
+            return;
+        }
         if (getClicked_editText().equals("editText")){
             //editText.append("cos()");
             editText.getText().insert(cursor_position, "(exp(1))");
@@ -352,6 +359,9 @@ public class MainActivity extends AppCompatActivity {
     public void func_Abs(View view) {
 
         Fragment fragmentToClose = getSupportFragmentManager().findFragmentByTag("func");
+        if (fragmentToClose == null) {
+            return;
+        }
         if (getClicked_editText().equals("editText")){
             //editText.append("cos()");
             editText.getText().insert(cursor_position, "(|x_|)");
@@ -369,20 +379,20 @@ public class MainActivity extends AppCompatActivity {
     public void func_Asin(View view) {
 
         Fragment fragmentToClose = getSupportFragmentManager().findFragmentByTag("func");
+        if (fragmentToClose == null) {
+            return;
+        }
         if (getClicked_editText().equals("editText")){
             //editText.append("cos()");
-            System.out.println("Parto1");
             editText.getText().insert(cursor_position, "(a_sin(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
 
         }else if (getClicked_editText().equals("editText1")){
             //editText1.append("cos()");
-            System.out.println("Parto2");
 
             editText1.getText().insert(cursor_position, "(a_sin(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
         } else {
-            System.out.println("Parto3");
             getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
         }
     }
@@ -390,6 +400,9 @@ public class MainActivity extends AppCompatActivity {
     public void func_Atan(View view) {
 
         Fragment fragmentToClose = getSupportFragmentManager().findFragmentByTag("func");
+        if (fragmentToClose == null) {
+            return;
+        }
         if (getClicked_editText().equals("editText")){
             editText.getText().insert(cursor_position, "(a_tan(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
@@ -405,6 +418,9 @@ public class MainActivity extends AppCompatActivity {
     public void func_Atan2(View view) {
 
         Fragment fragmentToClose = getSupportFragmentManager().findFragmentByTag("func");
+        if (fragmentToClose == null) {
+            return;
+        }
         if (getClicked_editText().equals("editText")){
             editText.getText().insert(cursor_position, "(atan2(x_, y))");
             getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
@@ -420,6 +436,9 @@ public class MainActivity extends AppCompatActivity {
     public void func_log(View view) {
 
         Fragment fragmentToClose = getSupportFragmentManager().findFragmentByTag("func");
+        if (fragmentToClose == null) {
+            return;
+        }
         if (getClicked_editText().equals("editText")){
             editText.getText().insert(cursor_position, "(log(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
@@ -435,6 +454,9 @@ public class MainActivity extends AppCompatActivity {
     public void func_tan(View view) {
 
         Fragment fragmentToClose = getSupportFragmentManager().findFragmentByTag("func");
+        if (fragmentToClose == null) {
+            return;
+        }
         if (getClicked_editText().equals("editText")){
             editText.getText().insert(cursor_position, "(tan(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();

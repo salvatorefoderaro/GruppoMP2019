@@ -31,8 +31,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.testgrafico.R;
 import com.example.testgrafico.AsyncTask.TestAsyncTask;
+import com.example.testgrafico.R;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -58,17 +58,14 @@ public class FragmentDrawGraph extends DialogFragment {
     private String function2 = null;
     private float estremoA;
     private float estremoB;
-    private float precision = 0.1f;
+    private final float precision = 0.1f;
     private Context context;
     private LineChart chart;  //Ho cambiato il tipo di chart per avere più opzioni disponibili
     private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION = 1;
-    private Toolbar toolbar;
-    private Menu menuList;
-    private TestAsyncTask task;
     private ProgressDialog dialogBar;
     private ArrayList<ILineDataSet> dataSets;
     private int toPlot;
-    private ArrayList<Object> wewe = new ArrayList<>();
+    private final ArrayList<Object> wewe = new ArrayList<>();
 
     @Override
     public void onAttach(Activity activity) {
@@ -103,7 +100,7 @@ public class FragmentDrawGraph extends DialogFragment {
 
         // Aggiungo le icone al menù
         View view = inflater.inflate(R.layout.fragment_app_bar, container);
-        toolbar = view.findViewById(R.id.tb_func);
+        Toolbar toolbar = view.findViewById(R.id.tb_func);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         toolbar.setTitle(getText(R.string.grafico).toString());
         setHasOptionsMenu(true);
@@ -170,7 +167,7 @@ public class FragmentDrawGraph extends DialogFragment {
 
     // Specifica il tipo di DataClass che verrà passata al grafico
 
-    public void drawExpression() {
+    private void drawExpression() {
 
         dataSets = new ArrayList<>();  //private ArrayList<ILineDataSet> dataSets;
 
@@ -182,6 +179,7 @@ public class FragmentDrawGraph extends DialogFragment {
         }
 
         // Faccio partire gli Async task per il calcolo dei valori
+        TestAsyncTask task;
         if (function1 != null) {
             task = (TestAsyncTask) new TestAsyncTask(context, function1, estremoA, estremoB, precision, this.dialogBar, this).execute();
         }
@@ -192,7 +190,7 @@ public class FragmentDrawGraph extends DialogFragment {
     }
 
     // Procedo con la creazione del grafico
-    public void plotGraph(){
+    private void plotGraph() {
 
         LineData lineData = new LineData(dataSets);
 
@@ -310,7 +308,7 @@ public class FragmentDrawGraph extends DialogFragment {
 
     // Condividi grafico
 
-    public void shareGraph() {
+    private void shareGraph() {
         int writeExternalStoragePermission = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (writeExternalStoragePermission != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION);
@@ -327,7 +325,7 @@ public class FragmentDrawGraph extends DialogFragment {
         }
     }
 
-    public Uri getImageUri(Context inContext, Bitmap inImage) {
+    private Uri getImageUri(Context inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
@@ -336,7 +334,7 @@ public class FragmentDrawGraph extends DialogFragment {
 
     // Salva immagine
 
-    public void saveTempBitmap(Bitmap bitmap) {
+    private void saveTempBitmap(Bitmap bitmap) {
         if (isExternalStorageWritable()) {
             saveImage(bitmap);
         }else {
@@ -377,19 +375,16 @@ public class FragmentDrawGraph extends DialogFragment {
         }
     }
 
-    public boolean isExternalStorageWritable() {
+    private boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            return true;
-        }
-        return false;
+        return Environment.MEDIA_MOUNTED.equals(state);
     }
 
     // Creazione del menù
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
-        this.menuList = menu;
+        Menu menuList = menu;
         inflater.inflate(R.menu.menu_fragment, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
