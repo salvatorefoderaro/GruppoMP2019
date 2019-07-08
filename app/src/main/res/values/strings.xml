@@ -51,6 +51,13 @@
         L estremo A e l estremo B devono essere due interi.\n\n
         L estremo A deve essere strettamente minore dell estremo B.\n</string>
 
+    <string name="help_text_6">\tIL GRAFICO\n</string>
+
+    <string name="help_text_7">Toccare il pulsante in basso per ottenere il grafico.\n\n
+    Una volta mostrato il grafico:\n\n
+    \t-tocca in un punto del grafico per ottenere la coppia di valori (x, y),\n\n
+    \t-fai un tocco prolungato per ottenere i punti speciali della funzione.\n</string>
+
     <string name="max">Massimo</string>
     <string name="min">Minimo</string>
     <string name="noExternalPermission">Non hai concesso i permessi per lo storage esterno!</string>

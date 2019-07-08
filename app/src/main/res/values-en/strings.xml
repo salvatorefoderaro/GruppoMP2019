@@ -14,7 +14,7 @@
     <string name="troppoGrande">Too high value</string>
     <string name="grafico">Function Graph</string>
     <string name="chooseApp">Choose an application…</string>
-    <string name="img_in_gallery">Image succesfully saved in your gallery</string>
+    <string name="img_in_gallery">Image successfully saved in your gallery</string>
     <string name="chooseFun">Choose a function…</string>
     <string name="help">Need help?</string>
     <string name="wait">Wait…</string>
@@ -34,6 +34,12 @@
     <string name="help_text_4">Extremes are required.\n\n
         A extreme and B extreme must be integers.\n\n
         A extreme must be closely lower than B extreme.\n</string>
+    <string name="help_text_6">\tTHE GRAPH\n</string>
+    <string name="help_text_7">Tap the botton below to show the graph.\n\n
+    Once the graph is showed:\n\n
+        \t-tap everywhere to get the couple of values (x, y) tapped, \n\n
+        \t-long press to get special points of the graph.\n
+    </string>
 
     <string name="max">Max value is</string>
     <string name="min">Min valus is</string>
