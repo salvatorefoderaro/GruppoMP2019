@@ -16,7 +16,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -51,7 +50,6 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Objects;
 
 public class FragmentDrawGraph extends DialogFragment {
 
@@ -66,6 +64,7 @@ public class FragmentDrawGraph extends DialogFragment {
     private ProgressDialog dialogBar;
     private ArrayList<ILineDataSet> dataSets;
     private int toPlot;
+    private int requested;
     private final ArrayList<Object> wewe = new ArrayList<>();
 
     @Override
@@ -180,7 +179,6 @@ public class FragmentDrawGraph extends DialogFragment {
         }
 
         // Faccio partire gli Async task per il calcolo dei valori
-        TestAsyncTask task;
         if (function1 != null) {
             new TestAsyncTask(context, function1, estremoA, estremoB, precision, this.dialogBar, this).execute();
         }
@@ -294,14 +292,21 @@ public class FragmentDrawGraph extends DialogFragment {
     // Permessi necessari per l'intent della condivisione e per il salvataggio del grafico in galleria
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION) {
-            int grantResultsLength = grantResults.length;
-            if (grantResultsLength > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(context, context.getResources().getString(R.string.okExternalPermission), Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(context, context.getResources().getString(R.string.noExternalPermission), Toast.LENGTH_LONG).show();
+        if (grantResults.length > 0) {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            if (requestCode == REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION) {
+                System.out.println("Ouuu");
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    switch (requested) {
+                        case 0:
+                            shareGraph();
+                            return;
+                        case 1:
+                            saveTempBitmap(chart.getChartBitmap());
+                    }
+                } else {
+                    Toast.makeText(context, context.getResources().getString(R.string.noExternalPermission), Toast.LENGTH_LONG).show();
+                }
             }
         }
     }
@@ -311,7 +316,8 @@ public class FragmentDrawGraph extends DialogFragment {
     private void shareGraph() {
         int writeExternalStoragePermission = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (writeExternalStoragePermission != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(Objects.requireNonNull(getActivity()), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION);
+            requested = 0;
+            requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION);
             return;
         }
         Intent i = new Intent(Intent.ACTION_SEND);
@@ -340,8 +346,8 @@ public class FragmentDrawGraph extends DialogFragment {
         }else {
             int writeExternalStoragePermission = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
             if (writeExternalStoragePermission != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION);
-                return;
+                requested = 1;
+                requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION);
             }
         }
     }
@@ -350,7 +356,8 @@ public class FragmentDrawGraph extends DialogFragment {
 
         int writeExternalStoragePermission = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (writeExternalStoragePermission != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(Objects.requireNonNull(getActivity()), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION);
+            requested = 1;
+            requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION);
             return;
         }
 
