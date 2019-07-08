@@ -80,5 +80,5 @@
     <string name="e" translatable="false">e^x</string>
     <string name="abs" translatable="false">|x|</string>
 
-    <string name="credits" translatable="false">Powerd by iLoger</string>
+    <string name="credits" translatable="false">Powerd by iLoger</string> 
 </resources>
