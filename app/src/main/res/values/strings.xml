@@ -1,16 +1,16 @@
 <resources>
     <string name="app_name">Graph Calculator</string>
     <string name="action_settings">Impostazioni</string>
-    <string name="cos" translatable="false">cos</string>
+    <string name="cos" translatable="false">cos(x)</string>
     <string name="funzione_coseno">Funzione Coseno</string>
-    <string name="sin" translatable="false">sin</string>
+    <string name="sin" translatable="false">sin(x)</string>
     <string name="funzione_seno">Funzione Seno</string>
-    <string name="acos" translatable="false">Acos</string>
-    <string name="asin" translatable="false">Asin</string>
-    <string name="atan" translatable="false">Atan</string>
-    <string name="atan2" translatable="false">Atan2</string>
-    <string name="log" translatable="false">Log</string>
-    <string name="tan" translatable="false">TAN</string>
+    <string name="acos" translatable="false">acos(x)</string>
+    <string name="asin" translatable="false">asin(x)</string>
+    <string name="atan" translatable="false">atan(x)</string>
+    <string name="atan2" translatable="false">atan2(x)</string>
+    <string name="log" translatable="false">log(x)</string>
+    <string name="tan" translatable="false">tan(x)</string>
 
     <string name="riempiCampi">Riempire tutti i campi</string>
     <string name="controllaParentesi">Inserire un numero corretto di parentesi!</string>
