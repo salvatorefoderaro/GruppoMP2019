@@ -42,13 +42,18 @@
         Il numero di Nepero "e" ha la seguente sintassi: e_\n\n
         Le funzioni arcoseno, arcocoseno e arcotangente hanno rispettivamente la seguente sintassi:\n\n
         \t\t a_sin(), a_cos(), a_tan().\n\n
+        Le operazioni di somma e sottrazione tra funzioni non devono essere adiacenti a parentesi non utilizzate
+        nella definizione delle funzioni stesse.\n\n
+        \t\tEsempio:\n\n
+        \t\tSBAGLIATO: (sin(x_))+(x_)\n\n
+        \t\tCORRETTO:  (sin(x_)+x_)\n\n
         Si possono inserire due funzioni e confrontare i loro andamenti all interno di uno stesso intervallo.\n\n
         È possibile accedere a funzioni già esistenti con un doppio tocco sul campo della funzione.\n</string>
 
     <string name="help_text_3">\tGLI ESTREMI\n</string>
 
     <string name="help_text_4">È obbligatorio inserire gli estremi.\n\n
-        L estremo A e l estremo B devono essere numeri razionali.\n\n 
+        L estremo A e l estremo B devono essere numeri razionali.\n\n
         L estremo A deve essere strettamente minore dell estremo B.\n</string>
 
     <string name="help_text_6">\tIL GRAFICO\n</string>
