@@ -67,6 +67,8 @@ public class FragmentDrawGraph extends DialogFragment {
     private int toPlot;
     private int requested;
     private final ArrayList<Object> wewe = new ArrayList<>();
+    private TestAsyncTask Async1;
+    private TestAsyncTask Async2;
 
     @Override
     public void onAttach(Activity activity) {
@@ -84,16 +86,31 @@ public class FragmentDrawGraph extends DialogFragment {
             dialog.getWindow().setLayout(width, height);
         }
 
-        this.dialogBar = new ProgressDialog(context);
-        this.dialogBar.setTitle(getText(R.string.wait).toString());
-        this.dialogBar.setMessage(getText(R.string.calc).toString());
-        this.dialogBar.setCancelable(false);
-        this.dialogBar.setIndeterminate(true);
-        this.dialogBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        this.dialogBar.show();
-
         // Procedo con la funzione per l'avvio degli AsyncTask
-        drawExpression();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (this.dialogBar != null && this.dialogBar.isShowing()) {
+            this.dialogBar.dismiss();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (this.dialogBar != null && this.dialogBar.isShowing()) {
+            this.dialogBar.dismiss();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (this.dialogBar != null && this.dialogBar.isShowing()) {
+            this.dialogBar.dismiss();
+        }
     }
 
     @Override
@@ -114,8 +131,10 @@ public class FragmentDrawGraph extends DialogFragment {
         function2 = getArguments().getString("function2");
         estremoA = getArguments().getFloat("estremoA");
         estremoB = getArguments().getFloat("estremoB");
-
+        drawExpression();
         return view;
+
+
     }
 
     public void getValueBack(ArrayList<Entry> resultList, String functionName, float maxX, float maxY, float minX, float minY) {
@@ -162,6 +181,7 @@ public class FragmentDrawGraph extends DialogFragment {
         // in caso non ce ne siano altre procedo alla creazione del grafico
         toPlot = toPlot - 1;
         if (toPlot == 0) {
+            this.dialogBar.dismiss();
             lineDataSet.setColor(Color.BLUE);
             plotGraph();
         }
@@ -170,6 +190,14 @@ public class FragmentDrawGraph extends DialogFragment {
     // Specifica il tipo di DataClass che verrà passata al grafico
 
     private void drawExpression() {
+
+        this.dialogBar = new ProgressDialog(context);
+        this.dialogBar.setTitle(getText(R.string.wait).toString());
+        this.dialogBar.setMessage(getText(R.string.calc).toString());
+        this.dialogBar.setCancelable(false);
+        this.dialogBar.setIndeterminate(true);
+        this.dialogBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        this.dialogBar.show();
 
         dataSets = new ArrayList<>();  //private ArrayList<ILineDataSet> dataSets;
 
@@ -182,11 +210,11 @@ public class FragmentDrawGraph extends DialogFragment {
 
         // Faccio partire gli Async task per il calcolo dei valori
         if (function1 != null) {
-            new TestAsyncTask(context, function1, estremoA, estremoB, precision, this.dialogBar, this).execute();
+            Async1 = (TestAsyncTask) new TestAsyncTask(context, function1, estremoA, estremoB, precision, this.dialogBar, this).execute();
         }
 
         if (function2 != null) {
-            new TestAsyncTask(context, function2, estremoA, estremoB, precision, this.dialogBar, this).execute();
+            Async2 = (TestAsyncTask) new TestAsyncTask(context, function2, estremoA, estremoB, precision, this.dialogBar, this).execute();
         }
     }
 
@@ -211,7 +239,6 @@ public class FragmentDrawGraph extends DialogFragment {
         chart.setDoubleTapToZoomEnabled(false);
 
         // Nascondo la ProgressBar
-        this.dialogBar.dismiss();
 
         chart.setOnChartGestureListener(new OnChartGestureListener() {
             @Override
@@ -421,7 +448,9 @@ public class FragmentDrawGraph extends DialogFragment {
 
     @Override
     public void onDismiss(DialogInterface dialogInterface) {
+
         this.dialogBar.dismiss();
+
     }
 
 

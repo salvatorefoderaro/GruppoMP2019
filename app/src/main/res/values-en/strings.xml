@@ -28,6 +28,11 @@
         Euler Number has the following syntax: e_\n\n
         Arc sin, arc cosin and arc tangent functions have the following syntax respectively:\n\n
         \t\t a_sin(), a_cos(), a_tan().\n\n
+        Sum and subtraction operations between functions must not be close to brackets, except to those
+        used in definition of functions themselves.\n\n
+        \t\tExample:\n\n
+        \t\tWRONG:    (sin(x_))+(x_)\n\n
+        \t\tCORRECT:  (sin(x_)+x_)\n\n
         You can insert two functions and compare their trends into a same domain range.\n\n
         You can also use already typed functions by double-tapping function edit-text.\n</string>
     <string name="help_text_3">\t THE EXTREMES\n</string>

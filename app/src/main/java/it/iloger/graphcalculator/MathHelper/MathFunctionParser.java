@@ -22,9 +22,7 @@ class MathFunctionParser {
     }
 
     static String isLeftString(String string) {
-        if (string.contains("*")) {
-            string = string.substring(string.lastIndexOf("*"));
-        }
+
         List<Integer> charCountMap = new ArrayList<>();
         for (int i = 0; i < string.length(); i++) {
             if (string.charAt(i) == '(') {
@@ -36,9 +34,7 @@ class MathFunctionParser {
     }
 
     static String isRightString(String string) {
-        if (string.contains("*")) {
-            string = string.substring(string.indexOf("*"));
-        }
+
         List<Integer> charCountMap = new ArrayList<>();
         for (int i = 0; i < string.length(); i++) {
             if (string.charAt(i) == ')') {
