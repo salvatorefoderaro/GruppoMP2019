@@ -18,7 +18,7 @@ import it.iloger.graphcalculator.R;
 import static it.iloger.graphcalculator.Activity.MainActivity.error;
 import static it.iloger.graphcalculator.MathHelper.StringParser.parseString;
 
-public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList<Entry>> {
+public class ValueCalculator extends AsyncTask<ArrayList<Entry>, String, ArrayList<Entry>> {
 
     private final ProgressDialog dialog;
     private final Context context;
@@ -31,8 +31,8 @@ public class TestAsyncTask extends AsyncTask<ArrayList<Entry>, String, ArrayList
     private String valueToParse;
     private float maxY = 0, minY = 0, maxX = 0, minX = 0;
 
-    public TestAsyncTask(Context context, String input, float estremoA,
-                         float estremoB, float precision, ProgressDialog dialog, FragmentDrawGraph istance) {
+    public ValueCalculator(Context context, String input, float estremoA,
+                           float estremoB, float precision, ProgressDialog dialog, FragmentDrawGraph istance) {
         // list all the parameters like in normal class define
         this.context = context;
         this.input = this.originFunction = input;

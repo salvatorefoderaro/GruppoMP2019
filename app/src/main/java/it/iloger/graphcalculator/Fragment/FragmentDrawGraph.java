@@ -49,7 +49,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import it.iloger.graphcalculator.AsyncTask.TestAsyncTask;
+import it.iloger.graphcalculator.AsyncTask.ValueCalculator;
 import it.iloger.graphcalculator.R;
 
 public class FragmentDrawGraph extends DialogFragment {
@@ -67,8 +67,8 @@ public class FragmentDrawGraph extends DialogFragment {
     private int toPlot;
     private int requested;
     private final ArrayList<Object> wewe = new ArrayList<>();
-    private TestAsyncTask Async1;
-    private TestAsyncTask Async2;
+    private ValueCalculator Async1;
+    private ValueCalculator Async2;
 
     @Override
     public void onAttach(Activity activity) {
@@ -210,11 +210,11 @@ public class FragmentDrawGraph extends DialogFragment {
 
         // Faccio partire gli Async task per il calcolo dei valori
         if (function1 != null) {
-            Async1 = (TestAsyncTask) new TestAsyncTask(context, function1, estremoA, estremoB, precision, this.dialogBar, this).execute();
+            Async1 = (ValueCalculator) new ValueCalculator(context, function1, estremoA, estremoB, precision, this.dialogBar, this).execute();
         }
 
         if (function2 != null) {
-            Async2 = (TestAsyncTask) new TestAsyncTask(context, function2, estremoA, estremoB, precision, this.dialogBar, this).execute();
+            Async2 = (ValueCalculator) new ValueCalculator(context, function2, estremoA, estremoB, precision, this.dialogBar, this).execute();
         }
     }
 
