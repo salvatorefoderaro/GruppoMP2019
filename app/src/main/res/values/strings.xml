@@ -48,7 +48,7 @@
     <string name="help_text_3">\tGLI ESTREMI\n</string>
 
     <string name="help_text_4">È obbligatorio inserire gli estremi.\n\n
-        L estremo A e l estremo B devono essere due interi.\n\n
+        L estremo A e l estremo B devono essere numeri razionali.\n\n
         L estremo A deve essere strettamente minore dell estremo B.\n</string>
 
     <string name="help_text_6">\tIL GRAFICO\n</string>
