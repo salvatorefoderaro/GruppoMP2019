@@ -161,6 +161,7 @@ public class FragmentDrawGraph extends DialogFragment {
         // in caso non ce ne siano altre procedo alla creazione del grafico
         toPlot = toPlot - 1;
         if (toPlot == 0){
+            lineDataSet.setColor(Color.BLUE);
             plotGraph();
         }
     }
