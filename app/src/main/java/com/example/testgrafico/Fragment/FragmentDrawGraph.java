@@ -202,6 +202,7 @@ public class FragmentDrawGraph extends DialogFragment {
         yAxis.setZeroLineColor(Color.BLACK);
         yAxis.setZeroLineWidth(1.5f);
         chart.getAxisRight().setEnabled(false);
+        chart.getData().setHighlightEnabled(false);
         chart.setScaleX(1.0f);
         chart.setScaleY(1.0f);
         chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);

@@ -462,7 +462,7 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
 
         }else if (getClicked_editText().equals("editText1")){
-            editText1.getText().insert(cursor_position, "(tan(x_)(");
+            editText1.getText().insert(cursor_position, "(tan(x_))");
             getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
         } else {
             getSupportFragmentManager().beginTransaction().remove(fragmentToClose).commit();
