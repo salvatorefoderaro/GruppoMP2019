@@ -32,7 +32,7 @@
         You can also use already typed functions by double-tapping function edit-text.\n</string>
     <string name="help_text_3">\t THE EXTREMES\n</string>
     <string name="help_text_4">Extremes are required.\n\n
-        A extreme and B extreme must be integers.\n\n
+        A extreme and B extreme must be floats.\n\n
         A extreme must be closely lower than B extreme.\n</string>
     <string name="help_text_6">\tTHE GRAPH\n</string>
     <string name="help_text_7">Tap the botton below to show the graph.\n\n
