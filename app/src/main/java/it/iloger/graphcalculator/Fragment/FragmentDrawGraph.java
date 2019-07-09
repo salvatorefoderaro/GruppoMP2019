@@ -69,6 +69,7 @@ public class FragmentDrawGraph extends DialogFragment {
     private final ArrayList<Object> wewe = new ArrayList<>();
     private ValueCalculator Async1;
     private ValueCalculator Async2;
+    private boolean plotted = false;
 
     @Override
     public void onAttach(Activity activity) {
@@ -85,8 +86,9 @@ public class FragmentDrawGraph extends DialogFragment {
             int height = ViewGroup.LayoutParams.MATCH_PARENT;
             dialog.getWindow().setLayout(width, height);
         }
-
-        // Procedo con la funzione per l'avvio degli AsyncTask
+        if (!plotted) {
+            this.dialogBar.show();
+        }
     }
 
     @Override
@@ -133,7 +135,6 @@ public class FragmentDrawGraph extends DialogFragment {
         estremoB = getArguments().getFloat("estremoB");
         drawExpression();
         return view;
-
 
     }
 
@@ -197,7 +198,6 @@ public class FragmentDrawGraph extends DialogFragment {
         this.dialogBar.setCancelable(false);
         this.dialogBar.setIndeterminate(true);
         this.dialogBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        this.dialogBar.show();
 
         dataSets = new ArrayList<>();  //private ArrayList<ILineDataSet> dataSets;
 
@@ -220,7 +220,6 @@ public class FragmentDrawGraph extends DialogFragment {
 
     // Procedo con la creazione del grafico
     private void plotGraph() {
-
         LineData lineData = new LineData(dataSets);
 
         chart.setData(lineData);
@@ -281,6 +280,7 @@ public class FragmentDrawGraph extends DialogFragment {
                         });
                 alertDialog.show();
 
+
             }
 
             @Override
@@ -316,6 +316,7 @@ public class FragmentDrawGraph extends DialogFragment {
 
             }
         });
+        this.plotted = true;
     }
 
     // Permessi necessari per l'intent della condivisione e per il salvataggio del grafico in galleria
@@ -448,9 +449,7 @@ public class FragmentDrawGraph extends DialogFragment {
 
     @Override
     public void onDismiss(DialogInterface dialogInterface) {
-
         this.dialogBar.dismiss();
-
     }
 
 

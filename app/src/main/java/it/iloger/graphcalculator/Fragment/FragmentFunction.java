@@ -29,12 +29,10 @@ public class FragmentFunction extends DialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.function_fragment, container);
         Toolbar toolbar2 = view.findViewById(R.id.toolbar2);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar2);
         toolbar2.setTitle(getText(R.string.chooseFun).toString());
-
         setHasOptionsMenu(true);
         return view;
     }

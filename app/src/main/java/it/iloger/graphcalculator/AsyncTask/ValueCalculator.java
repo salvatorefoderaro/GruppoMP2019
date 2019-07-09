@@ -152,6 +152,7 @@ public class ValueCalculator extends AsyncTask<ArrayList<Entry>, String, ArrayLi
     protected void onProgressUpdate(String... values) {
         super.onProgressUpdate(values);
         error(context, values[0]);
+        this.cancel(true);
     }
 
     // Al termine dell'esecuzione, chiamo il metodo all'interno del fragment per restituire la lista con i valori calcolati
