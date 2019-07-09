@@ -14,7 +14,7 @@
 
     <string name="riempiCampi">Riempire tutti i campi</string>
     <string name="controllaParentesi">Inserire un numero corretto di parentesi!</string>
-    <string name="AminB">L estremo A deve essere strettamente minore dell estremo B!</string>
+    <string name="AminB">L estremo B deve essere maggiore di almeno 0.10 rispetto all\'estremo A!</string>
     <string name="estremi">Inserire valori corretti per gli estremi</string>
 
     <string name="errore">Errore</string>

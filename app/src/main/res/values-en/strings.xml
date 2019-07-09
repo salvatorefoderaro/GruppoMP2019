@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Graph Calculator</string>
-    <string name="AminB">A extreme must be closely lower than B extreme</string>
+    <string name="AminB">The extreme B must be at least 0.10 greater than the extreme A!</string>
     <string name="action_settings">Settings</string>
     <string name="controllaParentesi">Insert a right number of parenthesis</string>
     <string name="estremi">Insert extremes\' right valuse</string>
