@@ -58,7 +58,6 @@ public class FragmentDrawGraph extends DialogFragment {
     private String function2 = null;
     private float estremoA;
     private float estremoB;
-    private final float precision = 0.1f;
     private Context context;
     private LineChart chart;  //Ho cambiato il tipo di chart per avere più opzioni disponibili
     private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION = 1;
@@ -66,7 +65,7 @@ public class FragmentDrawGraph extends DialogFragment {
     private ArrayList<ILineDataSet> dataSets;
     private int toPlot;
     private int requested;
-    private final ArrayList<Object> wewe = new ArrayList<>();
+    private final ArrayList<Object> valueList = new ArrayList<>();
     private ValueCalculator Async1;
     private ValueCalculator Async2;
     private boolean plotted = false;
@@ -146,11 +145,11 @@ public class FragmentDrawGraph extends DialogFragment {
             return;
         }
 
-        wewe.add(functionName);
-        wewe.add(maxX);
-        wewe.add(maxY);
-        wewe.add(minX);
-        wewe.add(minY);
+        valueList.add(functionName);
+        valueList.add(maxX);
+        valueList.add(maxY);
+        valueList.add(minX);
+        valueList.add(minY);
 
         ArrayList<Entry> max = new ArrayList<>();
         ArrayList<Entry> min = new ArrayList<>();
@@ -209,6 +208,7 @@ public class FragmentDrawGraph extends DialogFragment {
         }
 
         // Faccio partire gli Async task per il calcolo dei valori
+        float precision = 0.1f;
         if (function1 != null) {
             Async1 = (ValueCalculator) new ValueCalculator(context, function1, estremoA, estremoB, precision, this.dialogBar, this).execute();
         }
@@ -258,14 +258,14 @@ public class FragmentDrawGraph extends DialogFragment {
 
                 DecimalFormat decimalFormat = new DecimalFormat("#0.00");
 
-                String message = context.getText(R.string.function) + ": " + wewe.get(0) + "\n\n" +
-                        context.getText(R.string.max).toString() + ": \n" + "\t X: " + decimalFormat.format(wewe.get(1)) + "\t Y: " + decimalFormat.format(wewe.get(2))
-                        + "\n" + context.getText(R.string.min).toString() + ": \n" + "\t X: " + decimalFormat.format(wewe.get(3)) + "\t Y: " + decimalFormat.format(wewe.get(4));
+                String message = context.getText(R.string.function) + ": " + valueList.get(0) + "\n\n" +
+                        context.getText(R.string.max).toString() + ": \n" + "\t X: " + decimalFormat.format(valueList.get(1)) + "\t Y: " + decimalFormat.format(valueList.get(2))
+                        + "\n" + context.getText(R.string.min).toString() + ": \n" + "\t X: " + decimalFormat.format(valueList.get(3)) + "\t Y: " + decimalFormat.format(valueList.get(4));
 
-                if ((wewe.size() > 5)) {
-                    message = message + "\n\n" + context.getText(R.string.function) + ": " + wewe.get(5) + "\n\n" + context.getText(R.string.max).toString() + ": \n" +
-                            "\t X: " + decimalFormat.format(wewe.get(6)) + "\t Y: " + decimalFormat.format(wewe.get(7))
-                            + "\n" + context.getText(R.string.min).toString() + ": \n" + "\t X: " + decimalFormat.format(wewe.get(8)) + "\t Y: " + decimalFormat.format(wewe.get(9));
+                if ((valueList.size() > 5)) {
+                    message = message + "\n\n" + context.getText(R.string.function) + ": " + valueList.get(5) + "\n\n" + context.getText(R.string.max).toString() + ": \n" +
+                            "\t X: " + decimalFormat.format(valueList.get(6)) + "\t Y: " + decimalFormat.format(valueList.get(7))
+                            + "\n" + context.getText(R.string.min).toString() + ": \n" + "\t X: " + decimalFormat.format(valueList.get(8)) + "\t Y: " + decimalFormat.format(valueList.get(9));
                 }
 
 
